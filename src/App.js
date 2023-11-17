@@ -1,3 +1,9 @@
+
+
+
+import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import Hamburguesa from './Components/Hamburguesa/Hamburguesa';
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
@@ -5,8 +11,7 @@ import React, { useEffect, useState } from "react";
 import { API } from "./shared/services/api";
 import Register from "./pages/Register/Register";
 export const Contexto = React.createContext();
-// import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
-// import "primereact/resources/themes/lara-light-indigo/theme.css";
+
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -24,6 +29,7 @@ function App() {
     checkSession();
   }, []);
   return (
+
     <Contexto.Provider value={{ token, setToken }}>
       <div className="App">
         <Router>
@@ -36,8 +42,11 @@ function App() {
             /> */}
           </Routes>
         </Router>
+
       </div>
+    <Hamburguesa></Hamburguesa>
     </Contexto.Provider>
+
   );
 }
 
