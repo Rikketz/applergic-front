@@ -3,25 +3,15 @@ import './App.css';
 import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
 import React from 'react';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
+import Hamburguesa from './Components/Hamburguesa/Hamburguesa';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>HOla</p>
+        <Hamburguesa></Hamburguesa>
         <ButtonGeneral text={"Hola"}/>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
         
       </header>
     </div>
