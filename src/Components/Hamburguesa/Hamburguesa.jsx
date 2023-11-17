@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Hamburguesa.scss';
+import 'animate.css';
 import fotoPerfil from '../../assets/pictures/usuario.png';
 import fotoFavorito from '../../assets/pictures/estrella.png';
 import fotoDiario from '../../assets/pictures/diario.png';
@@ -7,6 +8,7 @@ import fotoCompartir from '../../assets/pictures/compartir.png';
 import fotoTraducir from '../../assets/pictures/traductor.png';
 import fotoHoja from '../../assets/pictures/documento.png';
 import fotoSalir from '../../assets/pictures/salida-de-emergencia.png';
+
 
 
 export default function Hamburguesa() {
@@ -25,7 +27,7 @@ export default function Hamburguesa() {
         {buttonIsActivated && <div className='haFondoGris'> </div> }
 
         {buttonIsActivated && 
-        <div className="haMenu">
+        <div className="haMenu animate__animated animate__fadeInLeft">
             <div className='haMenu__div'>
                 <button onClick={toggleButton} className='haMenu__div--button'> <img className='haMenu__div--button--img' src='https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/9419C1A3-4787-4177-B727-B2338C933115.png' alt=''/> </button>
             </div>

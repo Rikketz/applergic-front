@@ -73,9 +73,17 @@
 }
 
 .haFondoGris{
-    width: 500vw;
-    height: 500vh;
+    width: 100vw;
+    height: 100vh;
     background-color: #7777775b;
-    position: absolute;
-    z-index: 5;
+    position: fixed;
+    z-index: 19;
+}
+
+.animate__animated.animate__fadeInLeft {
+    --animate-duration: 0.5s;
+}
+
+.animate__animated.animate__fadeInLeft {
+    --animate-duration: 0.5s;
 }
