@@ -1,30 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
-import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
-import React from 'react';
-import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login/Login";
+import React, { useEffect, useState } from "react";
+import { API } from "./shared/services/api";
+import Register from "./pages/Register/Register";
+export const Contexto = React.createContext();
+// import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
+// import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 function App() {
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  const checkSession = async () => {
+    try {
+      const result = await API.get("users/checksession");
+      console.log(result);
+    } catch (error) {
+      localStorage.removeItem("token");
+      setToken(null);
+    }
+  };
+  useEffect(() => {
+    checkSession();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>HOla</p>
-        <ButtonGeneral text={"Hola"}/>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        
-      </header>
-    </div>
+    <Contexto.Provider value={{ token, setToken }}>
+      <div className="App">
+        <Router>
+          <Routes>
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            {/* <Route
+              path="secure"
+              element={<AuthRoute component={<Secure />} />}
+            /> */}
+          </Routes>
+        </Router>
+      </div>
+    </Contexto.Provider>
   );
 }
 
