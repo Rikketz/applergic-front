@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
 import React from 'react';
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 function App() {
   return (
