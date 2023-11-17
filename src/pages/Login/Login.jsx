@@ -6,6 +6,7 @@ import { Contexto } from "../../App";
 import headerImage from "../../assets/img-header-login.png";
 import "./Login.scss";
 import logo from "../../assets/logo.png";
+import ButtonGeneral from '../../Components/buttonGeneral/buttonGeneral';
 
 const Login = () => {
   const {
@@ -78,12 +79,12 @@ const Login = () => {
           )}
           </div>
           <p className="pass-text">¿Olvidaste tu contraseña?</p>
-          <button>Entrar</button>
+<ButtonGeneral text={"Entrar"}></ButtonGeneral>
         </form>
 
-        <p>¿Nuevo en Applergic?</p>
-        <h3>Crea tu cuenta aquí</h3>
-        <h4>Me registraré en otro momento</h4>
+        <p className="p-style">¿Nuevo en Applergic?</p>
+        <h3 className="h3-style">Crea tu cuenta aquí</h3>
+        <h4 className="h4-style">Me registraré en otro momento</h4>
       </div>
     </div>
   );

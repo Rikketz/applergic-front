@@ -3,7 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import React, { useEffect, useState } from "react";
 import { API } from "./shared/services/api";
+import Register from "./pages/Register/Register";
 export const Contexto = React.createContext();
+// import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
+// import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -26,8 +29,11 @@ function App() {
         <Router>
           <Routes>
             <Route path="login" element={<Login />} />
-            {/* <Route path="register" element={<Register />} />
-          <Route path="secure" element={<AuthRoute component={<Secure />} />} />  */}
+            <Route path="register" element={<Register />} />
+            {/* <Route
+              path="secure"
+              element={<AuthRoute component={<Secure />} />}
+            /> */}
           </Routes>
         </Router>
       </div>
