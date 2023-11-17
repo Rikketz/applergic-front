@@ -1,20 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+
+
+
 import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
-import React from 'react';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import Hamburguesa from './Components/Hamburguesa/Hamburguesa';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login/Login";
+import React, { useEffect, useState } from "react";
+import { API } from "./shared/services/api";
+import Register from "./pages/Register/Register";
+export const Contexto = React.createContext();
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Hamburguesa></Hamburguesa>
-        <ButtonGeneral text={"Hola"}/>
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
-        
-      </header>
-    </div>
+  const checkSession = async () => {
+    try {
+      const result = await API.get("users/checksession");
+      console.log(result);
+    } catch (error) {
+      localStorage.removeItem("token");
+      setToken(null);
+    }
+  };
+  useEffect(() => {
+    checkSession();
+  }, []);
+  return (
+
+    <Contexto.Provider value={{ token, setToken }}>
+      <div className="App">
+        <Router>
+          <Routes>
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            {/* <Route
+              path="secure"
+              element={<AuthRoute component={<Secure />} />}
+            /> */}
+          </Routes>
+        </Router>
+
+      </div>
+    <Hamburguesa></Hamburguesa>
+    </Contexto.Provider>
+
   );
 }
 
