@@ -1,19 +1,12 @@
 import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Secure from "./pages/Secure";
-import Navbar from "./components/Navbar";
-import AuthRoute from "./components/AuthRoute";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login/Login";
 import React, { useEffect, useState } from "react";
 import { API } from "./shared/services/api";
 export const Contexto = React.createContext();
 
 function App() {
-
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const navigate = useNavigate();
 
   const checkSession = async () => {
     try {
@@ -22,7 +15,6 @@ function App() {
     } catch (error) {
       localStorage.removeItem("token");
       setToken(null);
-      // navigate('/login')
     }
   };
   useEffect(() => {
@@ -31,13 +23,13 @@ function App() {
   return (
     <Contexto.Provider value={{ token, setToken }}>
       <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="" element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="secure" element={<AuthRoute component={<Secure />} />} />
-        </Routes>
+        <Router>
+          <Routes>
+            <Route path="login" element={<Login />} />
+            {/* <Route path="register" element={<Register />} />
+          <Route path="secure" element={<AuthRoute component={<Secure />} />} />  */}
+          </Routes>
+        </Router>
       </div>
     </Contexto.Provider>
   );
