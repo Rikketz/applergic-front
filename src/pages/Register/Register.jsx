@@ -7,6 +7,7 @@ import arrow from "../../assets/left-arrow.png";
 import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
 import camera from "../../assets/camera.png";
 import home from "../../assets/home.png";
+import passwordIcon from "../../assets/ojoCerrado.png";
 
 const Register = () => {
   const {
@@ -18,7 +19,7 @@ const Register = () => {
 
   const registro = async (data) => {
     const formData = new FormData();
-    formData.append("file", data.foto[0]);
+    // formData.append("file", data.foto[0]);
     formData.append("Nombre completo", data["Nombre completo"]);
     formData.append("Dirección email", data["Dirección email"]);
     formData.append("Móvil", data["Móvil"]);
@@ -26,7 +27,7 @@ const Register = () => {
 
     try {
       const result = await axios.post(
-        "http://localhost:5053/users/register",
+        "http://localhost:5053/register",
         formData,
         {
           headers: {
@@ -68,11 +69,12 @@ const Register = () => {
           />
           {errors.foto && <p>{errors.foto.message}</p>}
         </div>
+        <p className="p-edit">Editar foto</p>
       </div>
       <div className="info-block">
         <form onSubmit={handleSubmit(registro)}>
           <div className="inputs">
-            <input
+            <input className="first-input"
               placeholder="Nombre completo"
               type="text"
               {...register("Nombre completo", {
@@ -80,7 +82,7 @@ const Register = () => {
               })}
             />
 
-            <input
+            <input className="all-inputs"
               placeholder="Dirección email"
               type="text"
               {...register("Dirección email", {
@@ -102,7 +104,7 @@ const Register = () => {
               </>
             )}
 
-            <input
+            <input className="all-inputs"
               placeholder="Móvil"
               type="tel"
               {...register("Móvil", {
@@ -114,9 +116,9 @@ const Register = () => {
               })}
             />
 
-            <input
+            <input className="all-inputs password-input-container"
               placeholder="Password"
-              type="text"
+              type="password"
               {...register("password", {
                 required: "La contraseña no puede ser vacía",
                 pattern: {
@@ -127,6 +129,7 @@ const Register = () => {
                 },
               })}
             />
+            
             {errors.password && (
               <>
                 {errors.password.type === "required" && (
@@ -137,6 +140,9 @@ const Register = () => {
                 )}
               </>
             )}
+
+            <img className="password-icon" src={passwordIcon} alt="password icon"  />
+            
             <ButtonGeneral
               className="button"
               text={"Guardar perfil"}
