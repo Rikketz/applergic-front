@@ -10,11 +10,10 @@ import home from "../../assets/home.png";
 import passwordIcon from "../../assets/ojoCerrado.png";
 
 const Register = () => {
-
   const fileInputRef = useRef(null);
 
   const handleEditClick = () => {
-    fileInputRef.current.click(); // Simula el clic en el input de archivo al hacer clic en "Editar foto"
+    fileInputRef.current.click();
   };
   const [isHomeVisible, setIsHomeVisible] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -23,7 +22,7 @@ const Register = () => {
     setIsPasswordVisible(true);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputCompleted = (e) => {
     const inputs = document.querySelectorAll(
       'input[type="text"], input[type="tel"], input[type="password"]'
     );
@@ -40,6 +39,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+
 
   const [previewImage, setPreviewImage] = useState("");
 
@@ -76,14 +76,14 @@ const Register = () => {
           },
         }
       );
+
       console.log(result);
-      navigate("/login");
+      navigate("/register-emergency-contact", { state: { userId: result.data.data._id } });
+      console.log(result.data.data._id);
     } catch (error) {
       console.error("Hubo un error durante el registro:", error);
     }
   };
-
-
 
   return (
     <div>
@@ -128,7 +128,11 @@ const Register = () => {
               />
               {errors.foto && <p>{errors.foto.message}</p>}
             </div>
-            {previewImage && <p onClick={handleEditClick} className="p-edit">Editar foto</p>}
+            {previewImage && (
+              <p onClick={handleEditClick} className="p-edit">
+                Editar foto
+              </p>
+            )}
             {/* <p className="p-edit">Editar foto</p> */}
           </div>
 
@@ -140,7 +144,7 @@ const Register = () => {
               {...register("Nombre completo", {
                 required: "El nombre no puede estar vacío",
               })}
-              onChange={handleInputChange}
+              onChange={handleInputCompleted}
             />
 
             <input
@@ -177,7 +181,7 @@ const Register = () => {
                   value: /^[0-9\b]+$/,
                 },
               })}
-              onChange={handleInputChange}
+              onChange={handleInputCompleted}
             />
 
             <input

@@ -9,9 +9,9 @@ import Register from "./pages/Register/Register";
 import RegisterEmergencyContact from "./pages/Register/RegisterEmergencyContact";
 export const Contexto = React.createContext();
 
-
-
 function App() {
+  const [userData, setUserData] = useState({});
+
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   // const checkSession = async () => {
@@ -27,26 +27,29 @@ function App() {
   //   checkSession();
   // }, []);
 
-
   return (
-
     <Contexto.Provider value={{ token, setToken }}>
       <div className="App">
         <Router>
           <Routes>
-            <Route path="register-emergency-contact" element={<RegisterEmergencyContact />} />
+            <Route
+              path="register-emergency-contact"
+              element={<RegisterEmergencyContact userData={userData} />}
+            />
             <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
+            <Route
+              path="register"
+              element={<Register setUserData={setUserData} />}
+            />
+
             {/* <Route
               path="secure"
               element={<AuthRoute component={<Secure />} />}
             /> */}
           </Routes>
         </Router>
-
       </div>
     </Contexto.Provider>
-
   );
 }
 
