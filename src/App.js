@@ -14,6 +14,9 @@ import Register from "./pages/Register/Register";
 import Home from "./pages/Home/Home";
 
 import RegisterEmergencyContact from "./pages/Register/RegisterEmergencyContact";
+import Intro1 from './pages/Intros/Intro1';
+import Intro2 from './pages/Intros/Intro2';
+import Intro3 from './pages/Intros/Intro3';
 export const Contexto = React.createContext();
 
 
@@ -41,6 +44,9 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />}/>
+            <Route path="/intro1" element={<Intro1/>} />
+            <Route path="/intro2" element={<Intro2/>} />
+            <Route path="/intro3" element={<Intro3/>} />
             <Route path="register-emergency-contact" element={<RegisterEmergencyContact />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
@@ -52,7 +58,6 @@ function App() {
         </Router>
 
       </div>
-    <Hamburguesa></Hamburguesa>
     </Contexto.Provider>
 
   );
