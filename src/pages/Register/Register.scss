@@ -160,6 +160,17 @@ button {
 
 .password-icon {
   position: absolute;
-  bottom: 243px;
+  bottom: 263px;
   right: 40px;
 }
+
+.upload-image {
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+

@@ -1,14 +1,14 @@
 // import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import Hamburguesa from './Components/Hamburguesa/Hamburguesa';
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // import { API } from "./shared/services/api";
 import Register from "./pages/Register/Register";
 import RegisterEmergencyContact from "./pages/Register/RegisterEmergencyContact";
 export const Contexto = React.createContext();
+
 
 
 function App() {
@@ -45,7 +45,6 @@ function App() {
         </Router>
 
       </div>
-    <Hamburguesa></Hamburguesa>
     </Contexto.Provider>
 
   );
