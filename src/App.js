@@ -10,6 +10,9 @@ import Login from "./pages/Login/Login";
 import React, { useEffect, useState } from "react";
 import { API } from "./shared/services/api";
 import Register from "./pages/Register/Register";
+
+import Home from "./pages/Home/Home";
+
 import RegisterEmergencyContact from "./pages/Register/RegisterEmergencyContact";
 export const Contexto = React.createContext();
 
@@ -37,6 +40,7 @@ function App() {
       <div className="App">
         <Router>
           <Routes>
+            <Route path="/" element={<Home />}/>
             <Route path="register-emergency-contact" element={<RegisterEmergencyContact />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
