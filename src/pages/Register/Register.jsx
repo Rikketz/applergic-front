@@ -10,45 +10,71 @@ import home from "../../assets/home.png";
 import passwordIcon from "../../assets/ojoCerrado.png";
 
 const Register = () => {
+
+  const fileInputRef = useRef(null);
+
+  const handleEditClick = () => {
+    fileInputRef.current.click(); // Simula el clic en el input de archivo al hacer clic en "Editar foto"
+  };
+  const [isHomeVisible, setIsHomeVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const handlePasswordOn = () => {
+    setIsPasswordVisible(true);
+  };
+
+  const handleInputChange = (e) => {
+    const inputs = document.querySelectorAll(
+      'input[type="text"], input[type="tel"], input[type="password"]'
+    );
+    const allInputsHaveData = Array.from(inputs).every(
+      (input) => input.value.trim().length > 0
+    );
+    setIsHomeVisible(allInputsHaveData);
+  };
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
 
-  const fileInputRef = useRef();
-  const [selectedImage, setSelectedImage] = useState(null);
-  
-  const handleImageUpload = (event) => {
-    event.preventDefault();
-    const file = event.target.files && event.target.files[0];
+  const [previewImage, setPreviewImage] = useState("");
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
     if (file) {
-      setSelectedImage(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
+
+    setValue("foto[0]", file);
   };
 
-  //PARA FICHEROS
   const registro = async (data) => {
     const formData = new FormData();
-    formData.append("foto", selectedImage);
-    formData.append("nombreCompleto", data.nombreCompleto);
-    formData.append("email", data.email);
-    formData.append("telefono", data.telefono);
+    formData.append("foto", data["foto[0]"]);
+    formData.append("email", data["Dirección email"]);
     formData.append("password", data.password);
+    formData.append("nombreCompleto", data["Nombre completo"]);
+    formData.append("direccion", data["Dirección email"]);
+    formData.append("telefono", data.Móvil);
 
     try {
-      console.log('About to send request');
       const result = await axios.post(
         "http://localhost:5053/user/register",
         formData,
-        
-        // {
-        //   headers: {
-        //     "Content-Type": "multipart/form-data",
-        //   },
-        // }
-        
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       console.log(result);
       navigate("/login");
@@ -65,84 +91,69 @@ const Register = () => {
         <div className="volver-div">
           <div className="volver-div__content">
             <img className="left-arrow" src={arrow} alt="arrow icon" />
-            <p>Volver</p>
+            <p className="p-volver">Volver</p>
           </div>
-          <img className="homen-icon" src={home} alt="home icon" />
+          {isHomeVisible && (
+            <img className="homen-icon" src={home} alt="home icon" />
+          )}
         </div>
 
         <p>1 de 4</p>
       </div>
 
       <h2>Dinos quién eres</h2>
-
       <div className="info-block">
         <form onSubmit={handleSubmit(registro)}>
           <div className="camera-div">
-            <div
-              className="upload-image"
-              onClick={() =>
-                fileInputRef.current && fileInputRef.current.click()
-              }
-            >
-              {!selectedImage ? (
-                <>
-                  <img src={camera} alt="camera" className="camera-icon" />
-                  <label className="upload-label" htmlFor="uploadInput">
-                    Subir foto
-                  </label>
-                </>
+            <div className="upload-image">
+              {previewImage ? (
+                <img
+                  className="camera-icon-preview"
+                  src={previewImage}
+                  alt="preview"
+                />
               ) : (
-                <>
-                  <img
-                    src={URL.createObjectURL(selectedImage)}
-                    alt="profile pic"
-                  />
-                </>
+                <label htmlFor="uploadImage" className="camera-icon-label">
+                  <img className="camera-icon" src={camera} alt="camera" />
+                  Subir foto
+                </label>
               )}
+              <input
+                id="uploadImage"
+                type="file"
+                style={{ opacity: 0, position: "absolute" }}
+                {...register("foto[0]")}
+                onChange={handleImageChange}
+                ref={fileInputRef}
+              />
+              {errors.foto && <p>{errors.foto.message}</p>}
             </div>
-
-            <input
-              id="uploadInput"
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              style={{ display: "none" }}
-            />
+            {previewImage && <p onClick={handleEditClick} className="p-edit">Editar foto</p>}
+            {/* <p className="p-edit">Editar foto</p> */}
           </div>
-          {selectedImage && (
-            <p
-              className="p-edit"
-              onClick={() =>
-                fileInputRef.current && fileInputRef.current.click()
-              }
-            >
-              Editar foto
-            </p>
-          )}
+
           <div className="inputs">
             <input
               className="first-input"
               placeholder="Nombre completo"
               type="text"
-              {...register("nombreCompleto", {
+              {...register("Nombre completo", {
                 required: "El nombre no puede estar vacío",
               })}
-              autoComplete="name"
+              onChange={handleInputChange}
             />
 
             <input
               className="all-inputs"
               placeholder="Dirección email"
               type="text"
-              {...register("email", {
+              {...register("Dirección email", {
                 required: "El email no puede estar vacío",
                 pattern: {
                   message: "El email no tiene formato correcto",
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                 },
               })}
-              autoComplete="email"
             />
             {errors.email && (
               <>
@@ -159,17 +170,18 @@ const Register = () => {
               className="all-inputs"
               placeholder="Móvil"
               type="tel"
-              {...register("telefono", {
+              {...register("Móvil", {
                 required: "El móvil no puede estar vacío",
                 pattern: {
                   message: "El móvil no tiene formato correcto",
                   value: /^[0-9\b]+$/,
                 },
               })}
-              autoComplete="phone"
+              onChange={handleInputChange}
             />
 
             <input
+              onFocus={handlePasswordOn}
               className="all-inputs password-input-container"
               placeholder="Password"
               type="password"
@@ -195,11 +207,13 @@ const Register = () => {
               </>
             )}
 
-            <img
-              className="password-icon"
-              src={passwordIcon}
-              alt="password icon"
-            />
+            {isPasswordVisible && (
+              <img
+                className="password-icon"
+                src={passwordIcon}
+                alt="password icon"
+              />
+            )}
 
             <ButtonGeneral
               className="button"
