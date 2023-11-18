@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -13,32 +13,56 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
 
-  const registro = async (data) => {
-    const formData = new FormData();
-    // formData.append("file", data.foto[0]);
-    formData.append("Nombre completo", data["Nombre completo"]);
-    formData.append("Dirección email", data["Dirección email"]);
-    formData.append("Móvil", data["Móvil"]);
-    formData.append("password", data.password);
+  const [previewImage, setPreviewImage] = useState(null);
 
-    try {
-      const result = await axios.post(
-        "http://localhost:5053/register",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log(result);
-      navigate("/login");
-    } catch (error) {
-      console.error("Hubo un error durante el registro:", error);
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    console.log("File:", file);
+  
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+  
+      // Asegurarse de que el valor de "foto[0]" se establece correctamente
+      setValue("foto[0]", file);
+    }
+  };
+
+  const registro = async (data) => {
+    if (data.foto && data.foto[0]) {
+      const formData = new FormData();
+      formData.append("foto", data.foto[0]);
+      formData.append("email", data["Dirección email"]);
+      formData.append("password", data.password);
+      formData.append("nombreCompleto", data["Nombre completo"]);
+      formData.append("direccion", data["Dirección email"]);
+      formData.append("telefono", data.Móvil);
+  
+      try {
+        const result = await axios.post(
+          "http://localhost:5053/user/register",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        console.log(result);
+        navigate("/login");
+      } catch (error) {
+        console.error("Hubo un error durante el registro:", error);
+      }
+    } else {
+      console.error("No se proporcionó ninguna imagen");
     }
   };
 
@@ -52,29 +76,40 @@ const Register = () => {
           </div>
           <img className="homen-icon" src={home} alt="home icon" />
         </div>
-
         <p>1 de 4</p>
       </div>
 
       <h2>Dinos quién eres</h2>
       <div className="camera-div">
         <div className="upload-image">
-          <img className="camera-icon" src={camera} alt="camera" />
-          <label htmlFor="uploadImage">Subir foto</label>
+          {previewImage ? (
+            <img
+              className="camera-icon-preview"
+              src={previewImage}
+              alt="preview"
+            />
+          ) : (
+            <label htmlFor="uploadImage" className="camera-icon-label">
+              <img className="camera-icon" src={camera} alt="camera" />
+              Subir foto
+            </label>
+          )}
           <input
             id="uploadImage"
             type="file"
-            style={{ display: "none" }}
-            {...register("foto")}
+            style={{ opacity: 0, position: "absolute" }}
+            {...register("foto[0]")}
+            onChange={handleImageChange}
           />
           {errors.foto && <p>{errors.foto.message}</p>}
         </div>
         <p className="p-edit">Editar foto</p>
       </div>
       <div className="info-block">
-        <form onSubmit={handleSubmit(registro)}>
+        <form onSubmit={handleSubmit(registro)} encType="multipart/form-data">
           <div className="inputs">
-            <input className="first-input"
+            <input
+              className="first-input"
               placeholder="Nombre completo"
               type="text"
               {...register("Nombre completo", {
@@ -82,7 +117,8 @@ const Register = () => {
               })}
             />
 
-            <input className="all-inputs"
+            <input
+              className="all-inputs"
               placeholder="Dirección email"
               type="text"
               {...register("Dirección email", {
@@ -104,7 +140,8 @@ const Register = () => {
               </>
             )}
 
-            <input className="all-inputs"
+            <input
+              className="all-inputs"
               placeholder="Móvil"
               type="tel"
               {...register("Móvil", {
@@ -116,7 +153,8 @@ const Register = () => {
               })}
             />
 
-            <input className="all-inputs password-input-container"
+            <input
+              className="all-inputs password-input-container"
               placeholder="Password"
               type="password"
               {...register("password", {
@@ -129,7 +167,7 @@ const Register = () => {
                 },
               })}
             />
-            
+
             {errors.password && (
               <>
                 {errors.password.type === "required" && (
@@ -141,8 +179,12 @@ const Register = () => {
               </>
             )}
 
-            <img className="password-icon" src={passwordIcon} alt="password icon"  />
-            
+            <img
+              className="password-icon"
+              src={passwordIcon}
+              alt="password icon"
+            />
+
             <ButtonGeneral
               className="button"
               text={"Guardar perfil"}
