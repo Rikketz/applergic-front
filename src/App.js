@@ -17,6 +17,7 @@ import RegisterEmergencyContact from "./pages/Register/RegisterEmergencyContact"
 import Intro1 from './pages/Intros/Intro1';
 import Intro2 from './pages/Intros/Intro2';
 import Intro3 from './pages/Intros/Intro3';
+import Intro4 from './pages/Intros/Intro4';
 export const Contexto = React.createContext();
 
 
@@ -47,6 +48,7 @@ function App() {
             <Route path="/intro1" element={<Intro1/>} />
             <Route path="/intro2" element={<Intro2/>} />
             <Route path="/intro3" element={<Intro3/>} />
+            <Route path="/intro4" element={<Intro4/>} />
             <Route path="register-emergency-contact" element={<RegisterEmergencyContact />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
