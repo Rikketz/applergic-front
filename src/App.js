@@ -4,7 +4,9 @@ import Login from "./pages/Login/Login";
 import React, { useEffect, useState } from "react";
 import { API } from "./shared/services/api";
 import Register from "./pages/Register/Register";
+import Home from "./pages/Home/Home";
 export const Contexto = React.createContext();
+
 // import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
 // import "primereact/resources/themes/lara-light-indigo/theme.css";
 
@@ -28,6 +30,7 @@ function App() {
       <div className="App">
         <Router>
           <Routes>
+            <Route path="/" element={<Home />}/>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             {/* <Route
