@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,28 @@ import home from "../../assets/home.png";
 import passwordIcon from "../../assets/ojoCerrado.png";
 
 const Register = () => {
+  const fileInputRef = useRef(null);
+
+  const handleEditClick = () => {
+    fileInputRef.current.click();
+  };
+  const [isHomeVisible, setIsHomeVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const handlePasswordOn = () => {
+    setIsPasswordVisible(true);
+  };
+
+  const handleInputCompleted = (e) => {
+    const inputs = document.querySelectorAll(
+      'input[type="text"], input[type="tel"], input[type="password"]'
+    );
+    const allInputsHaveData = Array.from(inputs).every(
+      (input) => input.value.trim().length > 0
+    );
+    setIsHomeVisible(allInputsHaveData);
+  };
+
   const {
     register,
     handleSubmit,
@@ -18,51 +40,48 @@ const Register = () => {
   } = useForm();
   const navigate = useNavigate();
 
-  const [previewImage, setPreviewImage] = useState(null);
+
+  const [previewImage, setPreviewImage] = useState("");
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    console.log("File:", file);
-  
+
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewImage(reader.result);
       };
       reader.readAsDataURL(file);
-  
-      // Asegurarse de que el valor de "foto[0]" se establece correctamente
-      setValue("foto[0]", file);
     }
+
+    setValue("foto[0]", file);
   };
 
   const registro = async (data) => {
-    if (data.foto && data.foto[0]) {
-      const formData = new FormData();
-      formData.append("foto", data.foto[0]);
-      formData.append("email", data["Dirección email"]);
-      formData.append("password", data.password);
-      formData.append("nombreCompleto", data["Nombre completo"]);
-      formData.append("direccion", data["Dirección email"]);
-      formData.append("telefono", data.Móvil);
-  
-      try {
-        const result = await axios.post(
-          "http://localhost:5053/user/register",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        console.log(result);
-        navigate("/login");
-      } catch (error) {
-        console.error("Hubo un error durante el registro:", error);
-      }
-    } else {
-      console.error("No se proporcionó ninguna imagen");
+    const formData = new FormData();
+    formData.append("foto", data["foto[0]"]);
+    formData.append("email", data["Dirección email"]);
+    formData.append("password", data.password);
+    formData.append("nombreCompleto", data["Nombre completo"]);
+    formData.append("direccion", data["Dirección email"]);
+    formData.append("telefono", data.Móvil);
+
+    try {
+      const result = await axios.post(
+        "http://localhost:5053/user/register",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log(result);
+      navigate("/register-emergency-contact", { state: { userId: result.data.data._id } });
+      console.log(result.data.data._id);
+    } catch (error) {
+      console.error("Hubo un error durante el registro:", error);
     }
   };
 
@@ -72,41 +91,51 @@ const Register = () => {
         <div className="volver-div">
           <div className="volver-div__content">
             <img className="left-arrow" src={arrow} alt="arrow icon" />
-            <p>Volver</p>
+            <p className="p-volver">Volver</p>
           </div>
-          <img className="homen-icon" src={home} alt="home icon" />
+          {isHomeVisible && (
+            <img className="homen-icon" src={home} alt="home icon" />
+          )}
         </div>
+
         <p>1 de 4</p>
       </div>
 
       <h2>Dinos quién eres</h2>
-      <div className="camera-div">
-        <div className="upload-image">
-          {previewImage ? (
-            <img
-              className="camera-icon-preview"
-              src={previewImage}
-              alt="preview"
-            />
-          ) : (
-            <label htmlFor="uploadImage" className="camera-icon-label">
-              <img className="camera-icon" src={camera} alt="camera" />
-              Subir foto
-            </label>
-          )}
-          <input
-            id="uploadImage"
-            type="file"
-            style={{ opacity: 0, position: "absolute" }}
-            {...register("foto[0]")}
-            onChange={handleImageChange}
-          />
-          {errors.foto && <p>{errors.foto.message}</p>}
-        </div>
-        <p className="p-edit">Editar foto</p>
-      </div>
       <div className="info-block">
-        <form onSubmit={handleSubmit(registro)} encType="multipart/form-data">
+        <form onSubmit={handleSubmit(registro)}>
+          <div className="camera-div">
+            <div className="upload-image">
+              {previewImage ? (
+                <img
+                  className="camera-icon-preview"
+                  src={previewImage}
+                  alt="preview"
+                />
+              ) : (
+                <label htmlFor="uploadImage" className="camera-icon-label">
+                  <img className="camera-icon" src={camera} alt="camera" />
+                  Subir foto
+                </label>
+              )}
+              <input
+                id="uploadImage"
+                type="file"
+                style={{ opacity: 0, position: "absolute" }}
+                {...register("foto[0]")}
+                onChange={handleImageChange}
+                ref={fileInputRef}
+              />
+              {errors.foto && <p>{errors.foto.message}</p>}
+            </div>
+            {previewImage && (
+              <p onClick={handleEditClick} className="p-edit">
+                Editar foto
+              </p>
+            )}
+            {/* <p className="p-edit">Editar foto</p> */}
+          </div>
+
           <div className="inputs">
             <input
               className="first-input"
@@ -115,6 +144,7 @@ const Register = () => {
               {...register("Nombre completo", {
                 required: "El nombre no puede estar vacío",
               })}
+              onChange={handleInputCompleted}
             />
 
             <input
@@ -151,9 +181,11 @@ const Register = () => {
                   value: /^[0-9\b]+$/,
                 },
               })}
+              onChange={handleInputCompleted}
             />
 
             <input
+              onFocus={handlePasswordOn}
               className="all-inputs password-input-container"
               placeholder="Password"
               type="password"
@@ -179,11 +211,13 @@ const Register = () => {
               </>
             )}
 
-            <img
-              className="password-icon"
-              src={passwordIcon}
-              alt="password icon"
-            />
+            {isPasswordVisible && (
+              <img
+                className="password-icon"
+                src={passwordIcon}
+                alt="password icon"
+              />
+            )}
 
             <ButtonGeneral
               className="button"

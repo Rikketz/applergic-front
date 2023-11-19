@@ -1,14 +1,10 @@
-
-
-
-import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
+// import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import Hamburguesa from './Components/Hamburguesa/Hamburguesa';
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
-import React, { useEffect, useState } from "react";
-import { API } from "./shared/services/api";
+import React, { useState } from "react";
+// import { API } from "./shared/services/api";
 import Register from "./pages/Register/Register";
 
 import Home from "./pages/Home/Home";
@@ -19,6 +15,7 @@ import Intro2 from './pages/Intros/Intro2';
 import Intro3 from './pages/Intros/Intro3';
 import Intro4 from './pages/Intros/Intro4';
 export const Contexto = React.createContext();
+
 
 
 function App() {
