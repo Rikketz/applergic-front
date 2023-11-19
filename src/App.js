@@ -37,18 +37,6 @@ function App() {
 
   return (
 
-    <Contexto.Provider value={{ token, setToken }}>
-      <div className="App">
-        <Router>
-          <Routes>
-
-
-            {/* <Route
-              path="secure"
-              element={<AuthRoute component={<Secure />} />}
-            /> */}
-
-
     <Contexto.Provider value={{ token, setToken, idioma, setIdioma, languageSelectedList }}>
       <div className="App">
         <Router>
