@@ -101,6 +101,11 @@ h2 {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 12px;
+    
+  }
+
+  .p-volver{
+    color: #00cadf;
   }
 }
 
@@ -133,9 +138,11 @@ h2 {
   margin-bottom: 15px;
 
   .camera-icon {
-    width: 80px;
+    width: 100%;
     position: absolute;
-    padding-bottom: 15px;
+    left: -1px;
+    bottom: 10px;
+
   }
 
   label {
@@ -160,7 +167,7 @@ button {
 
 .password-icon {
   position: absolute;
-  bottom: 263px;
+  bottom: 250px;
   right: 40px;
 }
 

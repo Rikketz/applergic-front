@@ -1,0 +1,140 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url(../../assets/fonts/Montserrat.ttf);
+}
+
+
+.documentTranslatedMainDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 16px;
+    margin-right: 16px;
+    &__superior{
+        display: flex;
+        flex-direction: row;
+        width: 343px;
+        justify-content: space-between;
+
+        &--img{
+            height: 24px;
+        }
+    }
+
+    &__infoSuperior{
+        margin-top: 12px;
+        &--h3{
+            font-size: 21px;
+            font-family: 'Montserrat';
+            font-weight: 600;
+        }
+        &--h4{
+            margin-top: 14px;
+            font-size: 15px;
+            font-family: 'Montserrat';
+            line-height: 24px;
+            font-weight: normal;
+        }
+        &--h5{
+            margin-top: 12px;
+            font-family: 'Montserrat';
+            font-weight: bold;
+            font-size: 16px;
+        }
+    }
+
+    &__middleDiv{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        &--nombre{
+            margin-top: 19px;
+            font-size: 14px;
+            font-weight: 410;
+            font-family: 'Montserrat';
+        }
+        &--allergy{
+            margin-top: 8px;
+            color: rgb(247, 73, 113);
+            font-size: 14px;
+            font-weight: 410;
+            font-family: 'Montserrat';
+        }
+        &--date{
+            margin-top: 32px;
+            font-size: 14px;
+            font-weight: 410;
+            font-family: 'Montserrat';
+        }
+        &--newProducts{
+            margin-top: 32px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 410;
+            font-family: 'Montserrat';
+        }
+    }
+
+    &__infoInferior{
+        margin-top: 15px;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+
+        &__divFoto{
+            display: flex;
+            flex-direction: row;
+
+            &--img{
+                height: 72px;
+                width: 72px;
+            }
+            &__textos{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-left: 16px;
+                &--date{
+                    font-size: 12px;
+                    font-family: 'Montserrat';
+                    color: rgb(168, 168, 168);
+                }
+                &--name{
+                    font-size: 12px;
+                    font-family: 'Montserrat';
+                    color: rgb(168, 168, 168);
+                }
+            }
+        }
+        &__divIngredients{
+            margin-top: 26px;
+            display: flex;
+            flex-direction: row;
+            width: 307px;
+
+            &--ingredients{
+                text-align: left;
+                margin-top: 16px;
+                font-size: 12px;
+                font-family: 'Montserrat';
+                color: rgb(168, 168, 168);
+            }
+        }
+    }
+
+    &--nextDoc{
+        margin-top: 33px;
+        font-size: 12px;
+        color: rgb(38, 199, 220);
+        font-family: 'Montserrat';
+        font-weight: 550;
+    }
+}
+
+
+.negrita{
+    font-weight: 520;
+}

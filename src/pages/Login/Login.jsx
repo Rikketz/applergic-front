@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { API } from "../../shared/services/api";
+// import { API } from "../../shared/services/api";
 import { useNavigate } from "react-router-dom";
 import { Contexto } from "../../App";
 import headerImage from "../../assets/img-header-login.png";
 import "./Login.scss";
 import logo from "../../assets/logo.png";
 import ButtonGeneral from '../../Components/buttonGeneral/buttonGeneral';
+import axios from "axios";
 
 const Login = () => {
   const {
@@ -18,7 +19,7 @@ const Login = () => {
   const { setToken } = useContext(Contexto);
 
   const log = async (data) => {
-    const result = await API.post("/login", data);
+    const result = await axios.post("http://localhost:5053/user/login", data);
     console.log(result);
     setToken(result.data.token);
     localStorage.setItem("token", result.data.token);
