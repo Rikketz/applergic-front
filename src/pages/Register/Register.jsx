@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import arrow from "../../assets/left-arrow.png";
 import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
 import camera from "../../assets/camera.png";
 import home from "../../assets/home.png";
+import passwordIcon from "../../assets/ojoCerrado.png";
 
 const Register = () => {
   const {
@@ -16,23 +17,38 @@ const Register = () => {
   } = useForm();
   const navigate = useNavigate();
 
+  const fileInputRef = useRef();
+  const [selectedImage, setSelectedImage] = useState(null);
+  
+  const handleImageUpload = (event) => {
+    event.preventDefault();
+    const file = event.target.files && event.target.files[0];
+    if (file) {
+      setSelectedImage(file);
+    }
+  };
+
+  //PARA FICHEROS
   const registro = async (data) => {
     const formData = new FormData();
-    formData.append("file", data.foto[0]);
-    formData.append("Nombre completo", data["Nombre completo"]);
-    formData.append("Dirección email", data["Dirección email"]);
-    formData.append("Móvil", data["Móvil"]);
+    formData.append("foto", selectedImage);
+    formData.append("nombreCompleto", data.nombreCompleto);
+    formData.append("email", data.email);
+    formData.append("telefono", data.telefono);
     formData.append("password", data.password);
 
     try {
+      console.log('About to send request');
       const result = await axios.post(
-        "http://localhost:5053/users/register",
+        "http://localhost:5053/user/register",
         formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        
+        // {
+        //   headers: {
+        //     "Content-Type": "multipart/form-data",
+        //   },
+        // }
+        
       );
       console.log(result);
       navigate("/login");
@@ -40,6 +56,8 @@ const Register = () => {
       console.error("Hubo un error durante el registro:", error);
     }
   };
+
+
 
   return (
     <div>
@@ -56,40 +74,75 @@ const Register = () => {
       </div>
 
       <h2>Dinos quién eres</h2>
-      <div className="camera-div">
-        <div className="upload-image">
-          <img className="camera-icon" src={camera} alt="camera" />
-          <label htmlFor="uploadImage">Subir foto</label>
-          <input
-            id="uploadImage"
-            type="file"
-            style={{ display: "none" }}
-            {...register("foto")}
-          />
-          {errors.foto && <p>{errors.foto.message}</p>}
-        </div>
-      </div>
+
       <div className="info-block">
         <form onSubmit={handleSubmit(registro)}>
+          <div className="camera-div">
+            <div
+              className="upload-image"
+              onClick={() =>
+                fileInputRef.current && fileInputRef.current.click()
+              }
+            >
+              {!selectedImage ? (
+                <>
+                  <img src={camera} alt="camera" className="camera-icon" />
+                  <label className="upload-label" htmlFor="uploadInput">
+                    Subir foto
+                  </label>
+                </>
+              ) : (
+                <>
+                  <img
+                    src={URL.createObjectURL(selectedImage)}
+                    alt="profile pic"
+                  />
+                </>
+              )}
+            </div>
+
+            <input
+              id="uploadInput"
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              style={{ display: "none" }}
+            />
+          </div>
+          {selectedImage && (
+            <p
+              className="p-edit"
+              onClick={() =>
+                fileInputRef.current && fileInputRef.current.click()
+              }
+            >
+              Editar foto
+            </p>
+          )}
           <div className="inputs">
             <input
+              className="first-input"
               placeholder="Nombre completo"
               type="text"
-              {...register("Nombre completo", {
+              {...register("nombreCompleto", {
                 required: "El nombre no puede estar vacío",
               })}
+              autoComplete="name"
             />
 
             <input
+              className="all-inputs"
               placeholder="Dirección email"
               type="text"
-              {...register("Dirección email", {
+              {...register("email", {
                 required: "El email no puede estar vacío",
                 pattern: {
                   message: "El email no tiene formato correcto",
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                 },
               })}
+              autoComplete="email"
             />
             {errors.email && (
               <>
@@ -103,20 +156,23 @@ const Register = () => {
             )}
 
             <input
+              className="all-inputs"
               placeholder="Móvil"
               type="tel"
-              {...register("Móvil", {
+              {...register("telefono", {
                 required: "El móvil no puede estar vacío",
                 pattern: {
                   message: "El móvil no tiene formato correcto",
                   value: /^[0-9\b]+$/,
                 },
               })}
+              autoComplete="phone"
             />
 
             <input
+              className="all-inputs password-input-container"
               placeholder="Password"
-              type="text"
+              type="password"
               {...register("password", {
                 required: "La contraseña no puede ser vacía",
                 pattern: {
@@ -127,6 +183,7 @@ const Register = () => {
                 },
               })}
             />
+
             {errors.password && (
               <>
                 {errors.password.type === "required" && (
@@ -137,6 +194,13 @@ const Register = () => {
                 )}
               </>
             )}
+
+            <img
+              className="password-icon"
+              src={passwordIcon}
+              alt="password icon"
+            />
+
             <ButtonGeneral
               className="button"
               text={"Guardar perfil"}

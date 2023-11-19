@@ -18,7 +18,7 @@ const Login = () => {
   const { setToken } = useContext(Contexto);
 
   const log = async (data) => {
-    const result = await API.post("http://localhost:5053/users/login", data);
+    const result = await API.post("/login", data);
     console.log(result);
     setToken(result.data.token);
     localStorage.setItem("token", result.data.token);
@@ -56,7 +56,7 @@ const Login = () => {
             </>
           )}
           <input placeholder="Password"
-            type="text"
+            type="password"
             {...register("password", {
               required: "La contraseña no puede ser vacia",
               pattern: {
