@@ -1,4 +1,3 @@
-
 import './buttonGeneral.scss';
 
 export default function ButtonGeneral({text}) {
