@@ -17,34 +17,31 @@ const RegisterEmergencyContact = () => {
   const location = useLocation();
 
   const userId = location.state.userId;
+  console.log(userId);
 
   const emergencyContact = async (data) => {
-    const contactoEmergencia = {
-      // userId: userId,
-      nombreContacto: data["nombreContacto"],
-      emailContacto: data["emailContacto"],
-      telefonoContacto: data["telefonoContacto"],
-      poliza: data["poliza"],
-    };
     try {
-      if (userId) {
-        const result = await axios.post(
-          `http://localhost:5053/user/register-emergency-contact/${userId}`,
-          contactoEmergencia
-        );
-
-        console.log(result);
-        navigate("/login");
-      } else {
-        console.error("El userId no está definido");
-      }
-    } catch (error) {
-      console.error(
-        "Hubo un error durante el registro del contacto de emergencia:",
-        error
+      const { nombreContacto, emailContacto, telefonoContacto, poliza } = data;
+  
+      const contactoEmergencia = {
+        nombreContacto,
+        emailContacto,
+        telefonoContacto,
+        poliza,
+      };
+  
+      const result = await axios.put(
+        `http://localhost:5053/user/register-emergency-contact/${userId}`,
+        contactoEmergencia
       );
+  
+      console.log(result);
+      navigate("/");
+    } catch (error) {
+      console.error("Hubo un error durante el registro del contacto de emergencia:", error);
     }
   };
+
 
   return (
     <div>
