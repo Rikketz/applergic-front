@@ -40,8 +40,11 @@ const Register = () => {
   } = useForm();
   const navigate = useNavigate();
 
-
   const [previewImage, setPreviewImage] = useState("");
+
+  const goBack = () => {
+    window.history.back();
+  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -78,7 +81,9 @@ const Register = () => {
       );
 
       console.log(result);
-      navigate("/register-emergency-contact", { state: { userId: result.data.data._id } });
+      navigate("/register-emergency-contact", {
+        state: { userId: result.data.data._id },
+      });
       console.log(result.data.data._id);
     } catch (error) {
       console.error("Hubo un error durante el registro:", error);
@@ -91,7 +96,9 @@ const Register = () => {
         <div className="volver-div">
           <div className="volver-div__content">
             <img className="left-arrow" src={arrow} alt="arrow icon" />
-            <p className="p-volver">Volver</p>
+            <p className="p-volver" onClick={goBack}>
+              Volver
+            </p>
           </div>
           {isHomeVisible && (
             <img className="homen-icon" src={home} alt="home icon" />
@@ -218,9 +225,10 @@ const Register = () => {
                 alt="password icon"
               />
             )}
+            {/* {!isHomeVisible ? $$greyButton.classList.add('button-grey') : $$greyButton.classList.remove('button-grey')}; */}
 
             <ButtonGeneral
-              className="button"
+              className="button-grey"
               text={"Guardar perfil"}
             ></ButtonGeneral>
           </div>

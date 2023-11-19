@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 export default function DocumentTranslated() {
     const { setIdioma, languageSelectedList } = useContext(Contexto);
     const navigate = useNavigate();
+    
     const codIdioma = languageSelectedList[0];
 
     useEffect(() => {
