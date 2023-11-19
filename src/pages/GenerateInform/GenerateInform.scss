@@ -1,0 +1,256 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../../assets/fonts/Montserrat.ttf');
+}
+
+.generateInform{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &__cerrar{
+        height: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-right: 25px;
+        margin-top: 25px;
+        
+        &--img{
+            height: 24px;
+            width: 24px;
+            opacity: 0.8;
+        }
+    }
+
+    &__titulo{
+        margin-top: 15px;
+
+        &--h2{
+            font-size: 21px;
+            font-family: 'Montserrat';
+            font-weight: 600;
+        }
+    }
+    &__descripcion{
+        margin-top: 18px;
+        margin-bottom: 30px;
+
+        &--h3{
+            font-size: 17px;
+            font-family: 'Montserrat';
+            font-weight: normal;
+            
+        }
+    }
+
+    &__selectorFechas{
+
+        &--input{
+            border: solid 2px;
+            border-color: rgba(54, 182, 182, 0.531); 
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+}
+
+.selectLanguage{
+    display: flex;
+    flex-direction: row;
+
+    &__divFlags1{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 50%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    &__divFlags2{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 50%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+.separadorIdiomas{
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 6px;
+    justify-content: center;
+
+    &--img{
+        height: 32px;
+        width: 32px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    &--button{
+        font-family: 'Montserrat';
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.498);
+        height: 32px;
+        width: 100px;
+        margin-top: 0;
+        background-color: white;
+        border: solid 2px;
+        border-color: rgba($color: #000000, $alpha: 0.5);
+        border-radius: 25px;
+
+        &--spain{
+            font-family: 'Montserrat';
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.498);
+            height: 32px;
+            width: 100px;
+            margin-top: 0;
+            background-color: white;
+            border: solid 2px;
+            border-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 25px;
+        }
+        &--france{
+            font-family: 'Montserrat';
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.498);
+            height: 32px;
+            width: 100px;
+            margin-top: 0;
+            background-color: white;
+            border: solid 2px;
+            border-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 25px;
+        }
+        &--portugal{
+            font-family: 'Montserrat';
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.498);
+            height: 32px;
+            width: 100px;
+            margin-top: 0;
+            background-color: white;
+            border: solid 2px;
+            border-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 25px;
+        }
+        &--germany{
+            font-family: 'Montserrat';
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.498);
+            height: 32px;
+            width: 100px;
+            margin-top: 0;
+            background-color: white;
+            border: solid 2px;
+            border-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 25px;
+        }
+        &--japan{
+            font-family: 'Montserrat';
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.498);
+            height: 32px;
+            width: 100px;
+            margin-top: 0;
+            background-color: white;
+            border: solid 2px;
+            border-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 25px;
+        }
+        &--russia{
+            font-family: 'Montserrat';
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.498);
+            height: 32px;
+            width: 100px;
+            margin-top: 0;
+            background-color: white;
+            border: solid 2px;
+            border-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 25px;
+        }
+        &--uk{
+            font-family: 'Montserrat';
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.498);
+            height: 32px;
+            width: 100px;
+            margin-top: 0;
+            background-color: white;
+            border: solid 2px;
+            border-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 25px;
+        }
+        &--italy{
+            font-family: 'Montserrat';
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.498);
+            height: 32px;
+            width: 100px;
+            margin-top: 0;
+            background-color: white;
+            border: solid 2px;
+            border-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 25px;
+        }
+        &--sweeden{
+            font-family: 'Montserrat';
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.498);
+            height: 32px;
+            width: 100px;
+            margin-top: 0;
+            background-color: white;
+            border: solid 2px;
+            border-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 25px;
+        }
+        &--india{
+            font-family: 'Montserrat';
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.498);
+            height: 32px;
+            width: 100px;
+            margin-top: 0;
+            background-color: white;
+            border: solid 2px;
+            border-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 25px;
+        }
+        &--china{
+            font-family: 'Montserrat';
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.498);
+            height: 32px;
+            width: 100px;
+            margin-top: 0;
+            background-color: white;
+            border: solid 2px;
+            border-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 25px;
+        }
+        &--arab{
+            font-family: 'Montserrat';
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.498);
+            height: 32px;
+            width: 100px;
+            margin-top: 0;
+            background-color: white;
+            border: solid 2px;
+            border-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 25px;
+        }
+    }
+}
+
+.seleccionado{
+    background-color: rgb(59, 200, 59);
+    color: white;
+}
