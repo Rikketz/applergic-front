@@ -1,0 +1,84 @@
+
+$iphone-12-pro-width: 428px;
+
+.Intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+margin-top: 40px;
+
+  &__image--logo {
+    width: 30%; 
+    max-width: $iphone-12-pro-width; 
+    margin-top: 80px;
+  }
+
+  &__image {
+    width: 60%; 
+    max-width: $iphone-12-pro-width; 
+    margin-top: 80px;
+  }
+
+
+  &__paragraph--p {
+    margin-top: 50px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 26px;
+
+    & span {
+        font-weight: bold;
+      }
+  }
+
+  &__paragraph {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    margin-top: 5px;
+  }
+
+  &__carousel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+
+    img {
+      max-width: 20%;
+      height: auto;
+    }
+  }
+
+  &__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 20px;
+    color: gray;
+    margin-top: 90px;
+
+    p{
+        font-size: 12px;
+    }
+
+
+    &--left,
+    &--right {
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      display: flex; 
+      align-items: center; 
+    }
+
+  }
+}
+
+.flecha {
+  width: 20px;
+  height: auto;
+
+}
