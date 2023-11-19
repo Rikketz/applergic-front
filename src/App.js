@@ -1,3 +1,6 @@
+import { Ingredients } from "./Pages/Ingredients/Ingredients";
+import { RatingApp } from "./Pages/Rating-App/Rating";
+import { SuccessfulScanner } from "./Pages/SuccessfulScanner/SuccessfulScanner";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -37,23 +40,15 @@ function App() {
 
   return (
 
-    <Contexto.Provider value={{ token, setToken }}>
-      <div className="App">
-        <Router>
-          <Routes>
-
-
-            {/* <Route
-              path="secure"
-              element={<AuthRoute component={<Secure />} />}
-            /> */}
 
 
     <Contexto.Provider value={{ token, setToken, idioma, setIdioma, languageSelectedList }}>
       <div className="App">
         <Router>
           <Routes>
-            <Route path="/" element={<Home />}/>
+            <Route path="/Ingredientes" element={<Ingredients />} />
+            <Route path="/Valoración" element={<RatingApp />} />
+            <Route path="/Escaner_Exitoso" element={<SuccessfulScanner />} />
             <Route path="/intro1" element={<Intro1/>} />
             <Route path="/intro2" element={<Intro2/>} />
             <Route path="/intro3" element={<Intro3/>} />
@@ -70,6 +65,7 @@ function App() {
             <Route path="generateInform/inform1" element={<DocumentTranslated />} />
             <Route path="generateInform/inform2" element={<DocumentTranslated2 />} />
             <Route path="generateInform" element={<GenerateInform />} />
+            <Route path="/" element={<Home />}/>
 
           </Routes>
         </Router>
