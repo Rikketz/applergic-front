@@ -1,6 +1,3 @@
-export default function ButtonGeneral({text}) {
-
-    return (
-    <button> {text} </button>
-    );
+export function ButtonGeneral({ text }) {
+  return <button> {text} </button>;
 }

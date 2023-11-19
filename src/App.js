@@ -1,29 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
-import React from 'react';
+import "./App.css";
+
+import React from "react";
+
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { Ingredients } from "./Pages/Ingredients/Ingredients";
+import { RatingApp } from "./Pages/Rating-App/Rating";
+import { SuccessfulScanner } from "./Pages/SuccessfulScanner/SuccessfulScanner";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>HOla</p>
-        <ButtonGeneral text={"Hola"}/>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        
-      </header>
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/Ingredientes" element={<Ingredients />} />
+          <Route path="/Valoración" element={<RatingApp />} />
+          <Route path="/Escaner_Exitoso" element={<SuccessfulScanner />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
