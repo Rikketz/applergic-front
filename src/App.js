@@ -1,3 +1,6 @@
+import { Ingredients } from "./Pages/Ingredients/Ingredients";
+import { RatingApp } from "./Pages/Rating-App/Rating";
+import { SuccessfulScanner } from "./Pages/SuccessfulScanner/SuccessfulScanner";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -36,17 +39,19 @@ function App() {
   // }, []);
 
   return (
-    <Contexto.Provider
-      value={{ token, setToken, idioma, setIdioma, languageSelectedList }}
-    >
+
+    <Contexto.Provider value={{ token, setToken, idioma, setIdioma, languageSelectedList }}>
       <div className="App">
         <Router>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/intro1" element={<Intro1 />} />
-            <Route path="/intro2" element={<Intro2 />} />
-            <Route path="/intro3" element={<Intro3 />} />
-            <Route path="/intro4" element={<Intro4 />} />
+            <Route path="/Ingredientes" element={<Ingredients />} />
+            <Route path="/Valoración" element={<RatingApp />} />
+            <Route path="/Escaner_Exitoso" element={<SuccessfulScanner />} />
+            <Route path="/intro1" element={<Intro1/>} />
+            <Route path="/intro2" element={<Intro2/>} />
+            <Route path="/intro3" element={<Intro3/>} />
+            <Route path="/intro4" element={<Intro4/>} />
+
             <Route
               path="register-emergency-contact"
               element={<RegisterEmergencyContact userData={userData} />}
@@ -65,6 +70,9 @@ function App() {
               element={<DocumentTranslated2 />}
             />
             <Route path="generateInform" element={<GenerateInform />} />
+
+            <Route path="/" element={<Home />}/>
+
           </Routes>
         </Router>
       </div>
