@@ -1,14 +1,13 @@
-// import ButtonGeneral from './Components/buttonGeneral/buttonGeneral';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import React, { useState } from "react";
-// import { API } from "./shared/services/api";
 import Register from "./pages/Register/Register";
-
+import DocumentTranslated from "./pages/DocumentTranslated/DocumentTranslated";
+import DocumentTranslated2 from "./pages/DocumentTranslated2/DocumentTranslated2";
+import GenerateInform from "./pages/GenerateInform/GenerateInform";
 import Home from "./pages/Home/Home";
-
 import RegisterEmergencyContact from "./pages/Register/RegisterEmergencyContact";
 import Intro1 from './pages/Intros/Intro1';
 import Intro2 from './pages/Intros/Intro2';
@@ -20,6 +19,8 @@ export const Contexto = React.createContext();
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [idioma, setIdioma] = useState("");
+  const languageSelectedList = useState([]);
 
   // const checkSession = async () => {
   //   try {
@@ -37,7 +38,7 @@ function App() {
 
   return (
 
-    <Contexto.Provider value={{ token, setToken }}>
+    <Contexto.Provider value={{ token, setToken, idioma, setIdioma, languageSelectedList }}>
       <div className="App">
         <Router>
           <Routes>
@@ -49,14 +50,14 @@ function App() {
             <Route path="register-emergency-contact" element={<RegisterEmergencyContact />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
-            {/* <Route
-              path="secure"
-              element={<AuthRoute component={<Secure />} />}
-            /> */}
+            <Route path="generateInform/inform1" element={<DocumentTranslated />} />
+            <Route path="generateInform/inform2" element={<DocumentTranslated2 />} />
+            <Route path="generateInform" element={<GenerateInform />} />
           </Routes>
         </Router>
 
       </div>
+
     </Contexto.Provider>
 
   );
