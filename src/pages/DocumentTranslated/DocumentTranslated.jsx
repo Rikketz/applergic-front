@@ -3,12 +3,16 @@ import { Contexto } from '../../App';
 import html2pdf from 'html2pdf.js';
 import DocumentTranslator from '../../Components/DocumentTranslator/DocumentTranslator';
 import ButtonGeneral from '../../Components/buttonGeneral/buttonGeneral';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function DocumentTranslated() {
     const { setIdioma, languageSelectedList } = useContext(Contexto);
     const navigate = useNavigate();
     const codIdioma = languageSelectedList[0];
+
+    const goBack = () => {
+        window.history.back();
+    };
 
     useEffect(() => {
         setIdioma(codIdioma);
@@ -41,8 +45,8 @@ export default function DocumentTranslated() {
     return (<>
     <div className="documentTranslatedMainDiv">
         <div className="documentTranslatedMainDiv__superior">
-            <img className="documentTranslatedMainDiv__superior--img" src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/778C0600-375F-416A-AEB4-8241161DC7CF.png" alt=""/>
-            <img className="documentTranslatedMainDiv__superior--img" src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/517E8F96-1F82-4480-82FB-A847C7B97F91.png" alt=""/>
+            <img onClick={goBack} className="documentTranslatedMainDiv__superior--img" src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/778C0600-375F-416A-AEB4-8241161DC7CF.png" alt=""/>
+            <Link to={'/'}><img className="documentTranslatedMainDiv__superior--img" src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/517E8F96-1F82-4480-82FB-A847C7B97F91.png" alt=""/></Link>
         </div>
         <div className="documentTranslatedMainDiv__infoSuperior">
             <h3 className="documentTranslatedMainDiv__infoSuperior--h3">Este es el informe</h3>
