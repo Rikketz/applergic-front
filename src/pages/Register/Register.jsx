@@ -120,7 +120,7 @@ const Register = () => {
                   alt="preview"
                 />
               ) : (
-                <label htmlFor="uploadImage" className="camera-icon-label">
+                <label htmlFor="uploadImage" className="camera-icon__label">
                   <img className="camera-icon" src={camera} alt="camera" />
                   Subir foto
                 </label>
