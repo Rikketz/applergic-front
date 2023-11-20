@@ -1,8 +1,12 @@
 .footer-scanner {
    width: 100vw;
-   height: 5vh;
+   height: 15vh;
    display: flex;
    justify-content: center;
    align-items: center;
-   background-color: blue;
+   
+   .buttonGeneral {
+      margin-top: 0;
+      margin-bottom: 10%;
+   }
 }

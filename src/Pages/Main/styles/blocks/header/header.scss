@@ -1,0 +1,21 @@
+.header-main {
+   width: 100vw;
+   height: 5vh;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   .img-header-main {
+      width: 35px;
+      height: auto;
+      margin-right: 3%;
+      object-fit: cover;
+   }
+
+   .img-header-main-menu {
+      width: 25px;
+      height: auto;
+      margin-left: 3%;
+      object-fit: cover;
+   }
+}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { ToggleButton } from "primereact/togglebutton";
 
-export function ButtonIngredients({ value, onClassChange }) {
+export default function ButtonIngredients({ value, onClassChange }) {
   const [checkedItems, setCheckedItems] = useState(
     new Array(value.length).fill(false)
   );

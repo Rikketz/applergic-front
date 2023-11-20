@@ -2,10 +2,10 @@ import React from "react";
 
 import "./styles/style.scss";
 
-import { Acordeon } from "../../Components/Acordeon/Acordeon";
-import { ButtonGeneral } from "../../Components/buttonGeneral/buttonGeneral";
+import Acordeon from "../../Components/Acordeon/Acordeon";
+import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
 
-export function Ingredients() {
+export default function Ingredients() {
   const ingredientes = [
     {
       A: [

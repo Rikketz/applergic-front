@@ -1,6 +1,6 @@
-import { Ingredients } from "./Pages/Ingredients/Ingredients";
-import { RatingApp } from "./Pages/Rating-App/Rating";
-import { SuccessfulScanner } from "./Pages/SuccessfulScanner/SuccessfulScanner";
+import Ingredients from "./pages/Ingredients/Ingredients";
+import RatingApp from "./pages/Rating-App/Rating";
+import SuccessfulScanner from "./pages/SuccessfulScanner/SuccessfulScanner";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -12,10 +12,11 @@ import DocumentTranslated2 from "./pages/DocumentTranslated2/DocumentTranslated2
 import GenerateInform from "./pages/GenerateInform/GenerateInform";
 import Home from "./pages/Home/Home";
 import RegisterEmergencyContact from "./pages/Register/RegisterEmergencyContact";
-import Intro1 from './pages/Intros/Intro1';
-import Intro2 from './pages/Intros/Intro2';
-import Intro3 from './pages/Intros/Intro3';
-import Intro4 from './pages/Intros/Intro4';
+import Intro1 from "./pages/Intros/Intro1";
+import Intro2 from "./pages/Intros/Intro2";
+import Intro3 from "./pages/Intros/Intro3";
+import Intro4 from "./pages/Intros/Intro4";
+import Main from "./pages/Main/Main";
 export const Contexto = React.createContext();
 
 function App() {
@@ -39,20 +40,20 @@ function App() {
   // }, []);
 
   return (
-
-
-
-    <Contexto.Provider value={{ token, setToken, idioma, setIdioma, languageSelectedList }}>
+    <Contexto.Provider
+      value={{ token, setToken, idioma, setIdioma, languageSelectedList }}
+    >
       <div className="App">
         <Router>
           <Routes>
             <Route path="/Ingredientes" element={<Ingredients />} />
             <Route path="/Valoración" element={<RatingApp />} />
             <Route path="/Escaner_Exitoso" element={<SuccessfulScanner />} />
-            <Route path="/intro1" element={<Intro1/>} />
-            <Route path="/intro2" element={<Intro2/>} />
-            <Route path="/intro3" element={<Intro3/>} />
-            <Route path="/intro4" element={<Intro4/>} />
+            <Route path="/Main" element={<Main />} />
+            <Route path="/intro1" element={<Intro1 />} />
+            <Route path="/intro2" element={<Intro2 />} />
+            <Route path="/intro3" element={<Intro3 />} />
+            <Route path="/intro4" element={<Intro4 />} />
             <Route
               path="register-emergency-contact"
               element={<RegisterEmergencyContact userData={userData} />}
@@ -62,15 +63,19 @@ function App() {
               path="register"
               element={<Register setUserData={setUserData} />}
             />
-            <Route path="generateInform/inform1" element={<DocumentTranslated />} />
-            <Route path="generateInform/inform2" element={<DocumentTranslated2 />} />
+            <Route
+              path="generateInform/inform1"
+              element={<DocumentTranslated />}
+            />
+            <Route
+              path="generateInform/inform2"
+              element={<DocumentTranslated2 />}
+            />
             <Route path="generateInform" element={<GenerateInform />} />
-            <Route path="/" element={<Home />}/>
-
+            <Route path="/" element={<Home />} />
           </Routes>
         </Router>
       </div>
-
     </Contexto.Provider>
   );
 }

@@ -1,8 +1,5 @@
-import './buttonGeneral.scss';
+import "./buttonGeneral.scss";
 
-export default function ButtonGeneral({text}) {
-
-    return (
-    <button className='buttonGeneral'> {text} </button>
-    );
+export default function ButtonGeneral({ text }) {
+  return <button className="buttonGeneral"> {text} </button>;
 }
