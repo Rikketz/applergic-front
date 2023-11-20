@@ -20,11 +20,9 @@ import ResultPage from "./pages/ResultPage/ResultPage";
 import CameraPage from "./pages/CameraPage/CameraPage";
 import axios from "axios";
 import IngredientsTest from "./pages/Ingredients/IngredientsTest";
-<<<<<<< HEAD
 import UserProfile from "./pages/UserProfile/UserProfile";
-=======
 import Main from "./pages/Main/Main";
->>>>>>> 6670f029aba82cf6d7570f491795cf6943789920
+
 export const Contexto = React.createContext();
 
 function App() {

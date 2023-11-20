@@ -59,29 +59,29 @@ const UserProfile = () => {
       <p className="p-edit">Editar perfil</p>
       <div className="userinfo-div">
         <p className="userinfo-div__pstyle">
-          <span>Nombre:</span> {userData.user.nombreCompleto}
+          <span className="span-syle"> Nombre:</span> {userData.user.nombreCompleto}
         </p>
         <p className="userinfo-div__pstyle">
-          <span>Email:</span> {userData.user.email}
+          <span className="span-syle">Email:</span> {userData.user.email}
         </p>
         <p className="userinfo-div__pstyle">
-          <span>Télefono:</span> {userData.user.telefono}
+          <span className="span-syle">Télefono:</span> {userData.user.telefono}
         </p>
       </div>
       <h4 className="h4-style">Contacto de emergencia</h4>
       <div className="emergencycontact-div">
         <p className="emergencycontact-div__pstyle">
-          <span>Nombre:</span> {userData.user.contactoEmergencia.nombreContacto}
+          <span className="span-syle">Nombre:</span> {userData.user.contactoEmergencia.nombreContacto}
         </p>
         <p className="emergencycontact-div__pstyle">
-          <span>Email:</span> {userData.user.contactoEmergencia.emailContacto}
+          <span className="span-syle">Email:</span> {userData.user.contactoEmergencia.emailContacto}
         </p>
         <p className="emergencycontact-div__pstyle">
-          <span>Télefono:</span>{" "}
+          <span className="span-syle">Télefono:</span>{" "}
           {userData.user.contactoEmergencia.telefonoContacto}
         </p>
         <p className="emergencycontact-div__pstyle">
-          <span>Póliza:</span> {userData.user.contactoEmergencia.poliza}
+          <span className="span-syle">Póliza:</span> {userData.user.contactoEmergencia.poliza}
         </p>
       </div>
 

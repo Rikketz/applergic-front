@@ -21,7 +21,7 @@ export default function Main() {
         <img src={logo} alt="logo" className="img-main-main"></img>
         <h1>Applergic</h1>
         <p className="p-main-main">Mi guia alimentaria</p>
-        <ButtonGeneral text={"Escanear"} />
+        <Link to="/camerapage"><ButtonGeneral text={"Escanear"} /></Link>
         <p className="p-main-main">Escanea un nuevo producto</p>
         <ButtonGeneral text={"Buscar"} />
         <p className="p-main-main">Busca un comercio o restaurante para ti</p>
