@@ -12,10 +12,10 @@ import DocumentTranslated2 from "./pages/DocumentTranslated2/DocumentTranslated2
 import GenerateInform from "./pages/GenerateInform/GenerateInform";
 import Home from "./pages/Home/Home";
 import RegisterEmergencyContact from "./pages/Register/RegisterEmergencyContact";
-import Intro1 from "./pages/Intros/Intro1";
-import Intro2 from "./pages/Intros/Intro2";
-import Intro3 from "./pages/Intros/Intro3";
-import Intro4 from "./pages/Intros/Intro4";
+import Intro1 from './pages/Intros/Intro1';
+import Intro2 from './pages/Intros/Intro2';
+import Intro3 from './pages/Intros/Intro3';
+import Intro4 from './pages/Intros/Intro4';
 import ResultPage from "./pages/ResultPage/ResultPage";
 import CameraPage from "./pages/CameraPage/CameraPage";
 import axios from "axios";
@@ -29,6 +29,7 @@ function App() {
   const [idioma, setIdioma] = useState("");
   const [languageSelectedList, setLanguageSelectedList] = useState(["es"]);
   const [alergenos, setAlergenos] = useState([]);
+  const [codigoParaPasar, setCodigoParaPasar] = useState('');
 
   useEffect(() => {
     axios
@@ -43,32 +44,16 @@ function App() {
       });
   }, []);
 
-  // const checkSession = async () => {
-  //   try {
-  //     const result = await API.get("/checksession");
-  //     console.log(result);
-  //   } catch (error) {
-  //     localStorage.removeItem("token");
-  //     setToken(null);
-  //   }
-  // };
-  // useEffect(() => {
-  //   checkSession();
-  // }, []);
 
   return (
-    <Contexto.Provider
-      value={{
-        token,
-        setToken,
-        idioma,
-        setIdioma,
-        languageSelectedList,
-        setLanguageSelectedList,
-        alergenos,
-        setAlergenos,
-      }}
-    >
+
+
+
+
+    <Contexto.Provider value={{ token, setToken, idioma, setIdioma, languageSelectedList, setLanguageSelectedList, alergenos, setAlergenos, codigoParaPasar, setCodigoParaPasar }}>
+
+
+
       <div className="App">
         <Router>
           <Routes>
