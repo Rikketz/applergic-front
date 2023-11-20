@@ -1,6 +1,6 @@
-import  Ingredients  from "./pages/Ingredients/Ingredients";
-import  RatingApp  from "./pages/Rating-App/Rating";
-import  SuccessfulScanner  from "./pages/SuccessfulScanner/SuccessfulScanner";
+import Ingredients from "./pages/Ingredients/Ingredients";
+import RatingApp from "./pages/Rating-App/Rating";
+import SuccessfulScanner from "./pages/SuccessfulScanner/SuccessfulScanner";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -20,27 +20,29 @@ import ResultPage from "./pages/ResultPage/ResultPage";
 import CameraPage from "./pages/CameraPage/CameraPage";
 import axios from "axios";
 import IngredientsTest from "./pages/Ingredients/IngredientsTest";
+import Main from "./pages/Main/Main";
 export const Contexto = React.createContext();
 
 function App() {
   const [userData, setUserData] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [idioma, setIdioma] = useState("");
-  const [languageSelectedList, setLanguageSelectedList] = useState(['es']);
+  const [languageSelectedList, setLanguageSelectedList] = useState(["es"]);
   const [alergenos, setAlergenos] = useState([]);
   const [codigoParaPasar, setCodigoParaPasar] = useState('');
 
   useEffect(() => {
-    axios.get("http://localhost:5053/alergeno")
-    
-    .then(response => {
-        setAlergenos(response.data);
-    })
-    .catch(error => {
-        console.error("Error al obtener alérgenos:", error);
-    });
+    axios
+      .get("http://localhost:5053/alergeno")
 
-}, []);
+      .then((response) => {
+        setAlergenos(response.data);
+        console.log("Alergenos:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener alérgenos:", error);
+      });
+  }, []);
 
 
   return (
@@ -57,13 +59,14 @@ function App() {
           <Routes>
             <Route path="/ingredientes" element={<IngredientsTest />} />
             <Route path="/valoracion" element={<RatingApp />} />
-            <Route path="/Escaner_Exitoso" element={<SuccessfulScanner />} />
-            <Route path="/intro1" element={<Intro1/>} />
-            <Route path="/intro2" element={<Intro2/>} />
-            <Route path="/intro3" element={<Intro3/>} />
-            <Route path="/intro4" element={<Intro4/>} />  
-            <Route path="/camerapage" element={<CameraPage/>} />
-            <Route path="/resultpage" element={<ResultPage/>} />
+            <Route path="/escaner_exitoso" element={<SuccessfulScanner />} />
+            <Route path="/main" element={<Main />} />
+            <Route path="/intro1" element={<Intro1 />} />
+            <Route path="/intro2" element={<Intro2 />} />
+            <Route path="/intro3" element={<Intro3 />} />
+            <Route path="/intro4" element={<Intro4 />} />
+            <Route path="/camerapage" element={<CameraPage />} />
+            <Route path="/resultpage" element={<ResultPage />} />
             <Route
               path="register-emergency-contact"
               element={<RegisterEmergencyContact userData={userData} />}
@@ -83,8 +86,7 @@ function App() {
             />
             <Route path="generateInform" element={<GenerateInform />} />
 
-            <Route path="/" element={<Home />}/>
-
+            <Route path="/" element={<Home />} />
           </Routes>
         </Router>
       </div>

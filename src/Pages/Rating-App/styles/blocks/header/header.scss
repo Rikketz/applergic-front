@@ -1,8 +1,22 @@
 .header-rating {
    width: 100vw;
-   height: 5vh;
+   height: 8vh;
    display: flex;
-   justify-content: center;
+   justify-content: space-between;
    align-items: center;
-   background-color: red;
+
+   .header-rating-div {
+      width: 18%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: 2%;
+      color: aqua;
+
+      .img-header-rating-back {
+         width: 15px;
+         height: auto;
+         object-fit: cover;
+      }
+   }
 }
