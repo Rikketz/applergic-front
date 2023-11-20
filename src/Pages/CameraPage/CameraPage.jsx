@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import jsQR from 'jsqr'; //Codigo QR
-import Quagga from '@ericblade/quagga2'; //Codigo de barras
+import jsQR from 'jsqr';
+import Quagga from '@ericblade/quagga2';
 import './CameraPage.scss';
 
-const Camera = () => {
+export default function CameraPage () {
   const videoRef = useRef(null);
   const navigate = useNavigate();
 
@@ -24,14 +24,34 @@ const Camera = () => {
 
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
+          videoRef.current.onloadedmetadata = () => {
+            videoRef.current.play();
+          };
+          videoRef.current.onloadeddata = handleVideoLoad;
         }
       } catch (err) {
-        console.error('Error accessing the camera');
+        console.error('Error accessing the camera:', err);
       }
     };
-
+  
     accessCamera();
   }, []);
+  
+  const handleVideoLoad = () => {
+    const video = videoRef.current;
+  
+    if (video) {
+      const { videoWidth, videoHeight } = video;
+      const canvas = document.createElement('canvas');
+      const canvasContext = canvas.getContext('2d');
+  
+      canvas.width = videoWidth;
+      canvas.height = videoHeight;
+  
+      canvasContext.drawImage(video, 0, 0, videoWidth, videoHeight);
+      
+    }
+  };
 
   const detectQR = () => {
     const video = videoRef.current;
@@ -78,7 +98,7 @@ const Camera = () => {
           },
         }, (err) => {
           if (err) {
-            console.error('Error initializing Quagga:');
+            console.error('Error initializing Quagga:', err);
             return;
           }
 
@@ -182,4 +202,4 @@ const Camera = () => {
   );
 };
 
-export default Camera;
+

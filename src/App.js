@@ -1,3 +1,4 @@
+import  Ingredients  from "./pages/Ingredients/Ingredients";
 import  RatingApp  from "./pages/Rating-App/Rating";
 import  SuccessfulScanner  from "./pages/SuccessfulScanner/SuccessfulScanner";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -11,12 +12,15 @@ import DocumentTranslated2 from "./pages/DocumentTranslated2/DocumentTranslated2
 import GenerateInform from "./pages/GenerateInform/GenerateInform";
 import Home from "./pages/Home/Home";
 import RegisterEmergencyContact from "./pages/Register/RegisterEmergencyContact";
-import Intro1 from "./pages/Intros/Intro1";
-import Intro2 from "./pages/Intros/Intro2";
-import Intro3 from "./pages/Intros/Intro3";
-import Intro4 from "./pages/Intros/Intro4";
+import Intro1 from './pages/Intros/Intro1';
+import Intro2 from './pages/Intros/Intro2';
+import Intro3 from './pages/Intros/Intro3';
+import Intro4 from './pages/Intros/Intro4';
+import ResultPage from "./pages/ResultPage/ResultPage";
+import CameraPage from "./pages/CameraPage/CameraPage";
 import axios from "axios";
 import IngredientsTest from "./pages/Ingredients/IngredientsTest";
+import UserProfile from "./pages/UserProfile/UserProfile";
 export const Contexto = React.createContext();
 
 function App() {
@@ -71,13 +75,15 @@ function App() {
             <Route path="/intro1" element={<Intro1/>} />
             <Route path="/intro2" element={<Intro2/>} />
             <Route path="/intro3" element={<Intro3/>} />
-            <Route path="/intro4" element={<Intro4/>} />
-
+            <Route path="/intro4" element={<Intro4/>} />  
+            <Route path="/camerapage" element={<CameraPage/>} />
+            <Route path="/resultpage" element={<ResultPage/>} />
             <Route
               path="register-emergency-contact"
               element={<RegisterEmergencyContact userData={userData} />}
             />
             <Route path="login" element={<Login />} />
+            <Route path="userprofile" element={<UserProfile />} />
             <Route
               path="register"
               element={<Register setUserData={setUserData} />}
