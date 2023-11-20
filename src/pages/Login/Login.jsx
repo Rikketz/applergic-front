@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 // import { API } from "../../shared/services/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Contexto } from "../../App";
 import headerImage from "../../assets/img-header-login.png";
 import "./Login.scss";
@@ -84,7 +84,7 @@ const Login = () => {
         </form>
 
         <p className="p-style">¿Nuevo en Applergic?</p>
-        <h3 className="h3-style">Crea tu cuenta aquí</h3>
+        <Link to={'/register'}><h3 className="h3-style">Crea tu cuenta aquí</h3></Link>
         <h4 className="h4-style">Me registraré en otro momento</h4>
       </div>
     </div>

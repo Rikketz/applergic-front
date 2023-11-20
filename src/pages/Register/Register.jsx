@@ -11,7 +11,7 @@ import passwordIcon from "../../assets/ojoCerrado.png";
 
 const Register = () => {
   const fileInputRef = useRef(null);
-
+  const [selectedAlergenos, setSelectedAlergenos] = useState([]);
   const handleEditClick = () => {
     fileInputRef.current.click();
   };
@@ -84,25 +84,31 @@ const Register = () => {
     formData.append("telefono", data.Móvil);
 
     try {
-      const result = await axios.post(
-        "http://localhost:5053/user/register",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
 
-      console.log(result);
-      navigate("/register-emergency-contact", {
-        state: { userId: result.data.data._id },
-      });
-      console.log(result.data.data._id);
-    } catch (error) {
-      console.error("Hubo un error durante el registro:", error);
-    }
-  };
+  const result = await axios.post("http://localhost:5053/user/register", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  localStorage.setItem("userId", result.data.data._id);
+  localStorage.setItem("selectedAlergenos", JSON.stringify(selectedAlergenos));
+  console.log(result);
+  navigate("/register-emergency-contact", { state: { userId: result.data.data._id } });
+  console.log(result.data.data._id);
+} catch (error) {
+  if (error.response) {
+    // El servidor respondió con un código de estado fuera del rango 2xx
+    console.error("Error de respuesta del servidor:", error.response.data);
+  } else if (error.request) {
+    // La solicitud fue realizada, pero no se recibió una respuesta del servidor
+    console.error("No se recibió respuesta del servidor:", error.request);
+  } else {
+    // Algo sucedió en la configuración de la solicitud que generó un error
+    console.error("Error durante la configuración de la solicitud:", error.message);
+  }
+}}
+
 
   return (
     <div>
@@ -134,7 +140,7 @@ const Register = () => {
                   alt="preview"
                 />
               ) : (
-                <label htmlFor="uploadImage" className="camera-icon-label">
+                <label htmlFor="uploadImage" className="camera-icon__label">
                   <img className="camera-icon" src={camera} alt="camera" />
                   Subir foto
                 </label>
