@@ -5,7 +5,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Register from "./pages/Register/Register";
 import DocumentTranslated from "./pages/DocumentTranslated/DocumentTranslated";
 import DocumentTranslated2 from "./pages/DocumentTranslated2/DocumentTranslated2";
@@ -16,6 +16,8 @@ import Intro1 from "./pages/Intros/Intro1";
 import Intro2 from "./pages/Intros/Intro2";
 import Intro3 from "./pages/Intros/Intro3";
 import Intro4 from "./pages/Intros/Intro4";
+import axios from "axios";
+import IngredientsTest from "./pages/Ingredients/IngredientsTest";
 export const Contexto = React.createContext();
 
 function App() {
@@ -23,6 +25,20 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [idioma, setIdioma] = useState("");
   const [languageSelectedList, setLanguageSelectedList] = useState(['es']);
+  const [alergenos, setAlergenos] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5053/alergeno")
+    
+    .then(response => {
+        setAlergenos(response.data);
+        console.log("Alergenos:", response.data);
+    })
+    .catch(error => {
+        console.error("Error al obtener alérgenos:", error);
+    });
+
+}, []);
   
 
   // const checkSession = async () => {
@@ -43,13 +59,14 @@ function App() {
 
 
 
-    <Contexto.Provider value={{ token, setToken, idioma, setIdioma, languageSelectedList, setLanguageSelectedList }}>
+    <Contexto.Provider value={{ token, setToken, idioma, setIdioma, languageSelectedList, setLanguageSelectedList, alergenos, setAlergenos }}>
+
 
 
       <div className="App">
         <Router>
           <Routes>
-            <Route path="/ingredientes" element={<Ingredients />} />
+            <Route path="/ingredientes" element={<IngredientsTest />} />
             <Route path="/valoracion" element={<RatingApp />} />
             <Route path="/Escaner_Exitoso" element={<SuccessfulScanner />} />
             <Route path="/intro1" element={<Intro1/>} />
