@@ -36,10 +36,14 @@ const RegisterEmergencyContact = () => {
       );
   
       console.log(result);
-      navigate("/");
+      navigate("/Ingredientes");
     } catch (error) {
       console.error("Hubo un error durante el registro del contacto de emergencia:", error);
     }
+  };
+
+  const goBack = () => {
+    window.history.back();
   };
 
 
@@ -49,7 +53,7 @@ const RegisterEmergencyContact = () => {
         <div className="volver-div">
           <div className="volver-div__content">
             <img className="left-arrow" src={arrow} alt="arrow icon" />
-            <p>Volver</p>
+            <p className="p-volver" onClick={goBack}>Volver</p>
           </div>
           <img className="homen-icon" src={home} alt="home icon" />
         </div>

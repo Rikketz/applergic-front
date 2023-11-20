@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ import passwordIcon from "../../assets/ojoCerrado.png";
 
 const Register = () => {
   const fileInputRef = useRef(null);
-
+  const [selectedAlergenos, setSelectedAlergenos] = useState([]);
   const handleEditClick = () => {
     fileInputRef.current.click();
   };
@@ -22,15 +22,29 @@ const Register = () => {
     setIsPasswordVisible(true);
   };
 
-  const handleInputCompleted = (e) => {
+  const handleInputCompleted = () => {
     const inputs = document.querySelectorAll(
       'input[type="text"], input[type="tel"], input[type="password"]'
     );
+
     const allInputsHaveData = Array.from(inputs).every(
       (input) => input.value.trim().length > 0
     );
+
     setIsHomeVisible(allInputsHaveData);
   };
+
+  // useEffect(() => {
+  //   if (!isHomeVisible) {
+  //     const $$greyButton = document.querySelector(".buttonGeneral");
+  //     $$greyButton.className = "button-grey";
+  //     console.log("isHomeVisible es false");
+  //   } else {
+  //     const $$greyButton = document.querySelector(".buttonGeneral");
+  //     $$greyButton.className ="buttonGeneral";
+  //     console.log("isHomeVisible es true");
+  //   }
+  // }, [isHomeVisible]);
 
   const {
     register,
@@ -40,8 +54,11 @@ const Register = () => {
   } = useForm();
   const navigate = useNavigate();
 
-
   const [previewImage, setPreviewImage] = useState("");
+
+  const goBack = () => {
+    window.history.back();
+  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -54,12 +71,12 @@ const Register = () => {
       reader.readAsDataURL(file);
     }
 
-    setValue("foto[0]", file);
+    setValue("foto", file);
   };
 
   const registro = async (data) => {
     const formData = new FormData();
-    formData.append("foto", data["foto[0]"]);
+    formData.append("foto", data["foto"]);
     formData.append("email", data["Dirección email"]);
     formData.append("password", data.password);
     formData.append("nombreCompleto", data["Nombre completo"]);
@@ -67,23 +84,31 @@ const Register = () => {
     formData.append("telefono", data.Móvil);
 
     try {
-      const result = await axios.post(
-        "http://localhost:5053/user/register",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
 
-      console.log(result);
-      navigate("/register-emergency-contact", { state: { userId: result.data.data._id } });
-      console.log(result.data.data._id);
-    } catch (error) {
-      console.error("Hubo un error durante el registro:", error);
-    }
-  };
+  const result = await axios.post("http://localhost:5053/user/register", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  localStorage.setItem("userId", result.data.data._id);
+  localStorage.setItem("selectedAlergenos", JSON.stringify(selectedAlergenos));
+  console.log(result);
+  navigate("/register-emergency-contact", { state: { userId: result.data.data._id } });
+  console.log(result.data.data._id);
+} catch (error) {
+  if (error.response) {
+    // El servidor respondió con un código de estado fuera del rango 2xx
+    console.error("Error de respuesta del servidor:", error.response.data);
+  } else if (error.request) {
+    // La solicitud fue realizada, pero no se recibió una respuesta del servidor
+    console.error("No se recibió respuesta del servidor:", error.request);
+  } else {
+    // Algo sucedió en la configuración de la solicitud que generó un error
+    console.error("Error durante la configuración de la solicitud:", error.message);
+  }
+}}
+
 
   return (
     <div>
@@ -91,7 +116,9 @@ const Register = () => {
         <div className="volver-div">
           <div className="volver-div__content">
             <img className="left-arrow" src={arrow} alt="arrow icon" />
-            <p className="p-volver">Volver</p>
+            <p className="p-volver" onClick={goBack}>
+              Volver
+            </p>
           </div>
           {isHomeVisible && (
             <img className="homen-icon" src={home} alt="home icon" />
@@ -113,7 +140,7 @@ const Register = () => {
                   alt="preview"
                 />
               ) : (
-                <label htmlFor="uploadImage" className="camera-icon-label">
+                <label htmlFor="uploadImage" className="camera-icon__label">
                   <img className="camera-icon" src={camera} alt="camera" />
                   Subir foto
                 </label>
@@ -122,7 +149,7 @@ const Register = () => {
                 id="uploadImage"
                 type="file"
                 style={{ opacity: 0, position: "absolute" }}
-                {...register("foto[0]")}
+                {...register("foto")}
                 onChange={handleImageChange}
                 ref={fileInputRef}
               />
@@ -158,6 +185,7 @@ const Register = () => {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                 },
               })}
+              onChange={handleInputCompleted}
             />
             {errors.email && (
               <>
@@ -198,6 +226,7 @@ const Register = () => {
                     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$/,
                 },
               })}
+              onChange={handleInputCompleted}
             />
 
             {errors.password && (
@@ -219,10 +248,11 @@ const Register = () => {
               />
             )}
 
-            <ButtonGeneral
-              className="button"
-              text={"Guardar perfil"}
-            ></ButtonGeneral>
+              <ButtonGeneral
+               className="save-profile-button"
+               isHomeVisible={isHomeVisible}
+               text={"Guardar perfil"}/>
+
           </div>
         </form>
       </div>

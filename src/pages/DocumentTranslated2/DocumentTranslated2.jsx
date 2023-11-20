@@ -11,7 +11,8 @@ export default function DocumentTranslated2() {
     const navigate = useNavigate();
     const location = useLocation();
     const idiomaValue = location.state && location.state.idiomaValue;
-    const codIdioma = idiomaValue || languageSelectedList[1];
+    const codIdioma = languageSelectedList[1];
+    console.log(languageSelectedList[1]);
 
     useEffect(() => {
         setIdioma(codIdioma);
