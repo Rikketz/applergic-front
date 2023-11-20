@@ -1,8 +1,12 @@
 .footer-rating {
    width: 100vw;
-   height: 5vh;
+   height: 15vh;
    display: flex;
    justify-content: center;
    align-items: center;
-   background-color: blue;
+
+   .buttonGeneral {
+      color: aqua;
+      background-color: transparent;
+   }
 }

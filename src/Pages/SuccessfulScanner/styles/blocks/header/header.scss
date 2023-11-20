@@ -1,8 +1,34 @@
 .header-scanner {
    width: 100vw;
-   height: 5vh;
+   height: 8vh;
    display: flex;
-   justify-content: center;
+   justify-content: space-between;
    align-items: center;
-   background-color: red;
+
+   .header-scanner-div {
+      width: 18%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: 2%;
+      color: aqua;
+
+      .img-header-scanner-back {
+         width: 15px;
+         height: auto;
+         object-fit: cover;
+      }
+   }
+
+   .span-header-scanner {
+      font-size: 13px;
+      margin-right: 13%;
+   }
+
+   .img-header-scanner-close {
+      width: 25px;
+      height: auto;
+      object-fit: cover;
+      margin-right: 2%;
+   }
 }
