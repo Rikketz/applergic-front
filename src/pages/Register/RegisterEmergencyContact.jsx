@@ -36,7 +36,7 @@ const RegisterEmergencyContact = () => {
       );
   
       console.log(result);
-      navigate("/");
+      navigate("/Ingredientes");
     } catch (error) {
       console.error("Hubo un error durante el registro del contacto de emergencia:", error);
     }
