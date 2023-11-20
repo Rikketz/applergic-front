@@ -25,6 +25,7 @@ export default function DocumentTranslated() {
         window.history.back();
     };
 
+
     useEffect(() => {
         setIdioma(codIdioma);
         const token = localStorage.getItem('token'); // Obtener el token del localStorage
