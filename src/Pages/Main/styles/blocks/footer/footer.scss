@@ -1,0 +1,13 @@
+.footer-main {
+   width: 100vw;
+   height: 5vh;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+
+   .img-footer-main {
+      width: 35px;
+      height: auto;
+      object-fit: cover;
+   }
+}

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './ResultPage.scss';
+import { Contexto } from "../../App";
 
 export default function ResultPage () {
   const location = useLocation();
@@ -12,6 +13,7 @@ const detectedBarcode = location.state && location.state.detectedBarcode;
   // const [detectedBarcode, setDetectedBarcode] = useState();
   // const [filteredProduct] = useState(null);
   const [loading, setLoading] = useState(true); // Variable de estado para el estado de carga
+  const { codigoParaPasar, setCodigoParaPasar } = useContext(Contexto);
 
 
 
@@ -47,6 +49,7 @@ const detectedBarcode = location.state && location.state.detectedBarcode;
       if (matchingProduct) {
         setFoundProduct(matchingProduct);
         console.log(matchingProduct);
+        setCodigoParaPasar(matchingProduct.codigo)
 
       } else {
         console.log('No se encontraron coincidencias para el código:', detectedQRCode);
@@ -63,6 +66,7 @@ const detectedBarcode = location.state && location.state.detectedBarcode;
       const matchingBarcodeProduct = productData.find(product => product.codigo === detectedBarcode);
       if (matchingBarcodeProduct) {
         setFoundProduct(matchingBarcodeProduct);
+        
         console.log('Producto encontrado por código de barras:', matchingBarcodeProduct);
       } else {
         console.log('No se encontraron coincidencias para el código de barras:', detectedBarcode);
@@ -78,6 +82,8 @@ const detectedBarcode = location.state && location.state.detectedBarcode;
   const goBack = () => {
     window.history.back();
   };
+
+  
 
   return (
     <div className={`page-result${foundProduct ? '' : ' no-match'}`}>
@@ -136,7 +142,7 @@ const detectedBarcode = location.state && location.state.detectedBarcode;
       
         <div className='logos-container'>
           <img className='logos-r' src="https://w7.pngwing.com/pngs/194/804/png-transparent-favorite-star-favorites-favourite-multimedia-multimedia-icon.png" alt='Logo 1' />
-          <img className='logos-r' src="https://w7.pngwing.com/pngs/750/391/png-transparent-computer-icons-diary-address-book-notebook-miscellaneous-rectangle-black.png" alt='Logo 2' />
+          <Link  to={'/generateInform'}><img className='logos-r' src="https://w7.pngwing.com/pngs/750/391/png-transparent-computer-icons-diary-address-book-notebook-miscellaneous-rectangle-black.png" alt='Logo 2' /></Link>
           <img className='logos-r' src="https://w7.pngwing.com/pngs/613/126/png-transparent-three-circle-and-two-line-logo-computer-icons-share-icon-sharing-symbol-share-miscellaneous-black-and-white-share.png" alt='Logo 3' />
         </div>
       </div>

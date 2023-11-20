@@ -1,8 +1,12 @@
 .footer-ingredients {
    width: 100vw;
-   height: 5vh;
+   height: 10vh;
    display: flex;
    justify-content: center;
    align-items: center;
    color: blue;
+
+   .buttonGeneral {
+      margin: 0;
+   }
 }

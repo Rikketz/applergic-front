@@ -1,0 +1,18 @@
+.main-main {
+   width: 100vw;
+   height: 90vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   .img-main-main {
+      width: 100px;
+      height: auto;
+      padding-bottom: 5%;
+   }
+
+   .p-main-main {
+      color: #000;
+   }
+}
