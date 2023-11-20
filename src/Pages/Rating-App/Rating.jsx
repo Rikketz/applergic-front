@@ -4,10 +4,10 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "./styles/style.scss";
 
-import { ButtonGeneral } from "../../Components/buttonGeneral/buttonGeneral";
+import  ButtonGeneral  from "../../Components/buttonGeneral/buttonGeneral";
 import { Rating } from "primereact/rating";
 
-export function RatingApp() {
+export default function RatingApp() {
   const [value, setValue] = useState(null);
 
   return (

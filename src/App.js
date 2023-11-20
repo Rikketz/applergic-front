@@ -1,6 +1,6 @@
-import { Ingredients } from "./Pages/Ingredients/Ingredients";
-import { RatingApp } from "./Pages/Rating-App/Rating";
-import { SuccessfulScanner } from "./Pages/SuccessfulScanner/SuccessfulScanner";
+import  Ingredients  from "./pages/Ingredients/Ingredients";
+import  RatingApp  from "./pages/Rating-App/Rating";
+import  SuccessfulScanner  from "./pages/SuccessfulScanner/SuccessfulScanner";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -20,10 +20,10 @@ export const Contexto = React.createContext();
 
 function App() {
   const [userData, setUserData] = useState({});
-
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [idioma, setIdioma] = useState("");
-  const languageSelectedList = useState([]);
+  const [languageSelectedList, setLanguageSelectedList] = useState(['es']);
+  
 
   // const checkSession = async () => {
   //   try {
@@ -43,12 +43,12 @@ function App() {
 
 
 
-    <Contexto.Provider value={{ token, setToken, idioma, setIdioma, languageSelectedList }}>
+    <Contexto.Provider value={{ token, setToken, idioma, setIdioma, languageSelectedList, setLanguageSelectedList }}>
       <div className="App">
         <Router>
           <Routes>
-            <Route path="/Ingredientes" element={<Ingredients />} />
-            <Route path="/Valoración" element={<RatingApp />} />
+            <Route path="/ingredientes" element={<Ingredients />} />
+            <Route path="/valoracion" element={<RatingApp />} />
             <Route path="/Escaner_Exitoso" element={<SuccessfulScanner />} />
             <Route path="/intro1" element={<Intro1/>} />
             <Route path="/intro2" element={<Intro2/>} />

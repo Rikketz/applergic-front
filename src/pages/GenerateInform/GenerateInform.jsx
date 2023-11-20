@@ -21,12 +21,9 @@ import { useContext } from 'react';
 export default function GenerateInform() {
     
 
-    const { languageSelectedList } = useContext(Contexto);
+    const { languageSelectedList, setLanguageSelectedList } = useContext(Contexto);
     const navigate = useNavigate();
-    languageSelectedList.splice(0,1);
-    languageSelectedList.splice(0,1);
 
-    languageSelectedList.push('es');
     console.log(languageSelectedList);
 
     const buttonChecker = () => {
@@ -37,6 +34,7 @@ export default function GenerateInform() {
             console.log("Selecciona un máximo de 2 idiomas");
             
         } else {
+            setLanguageSelectedList(languageSelectedList);
             navigate('/generateInform/inform1');
             console.log("Todo correcto");
         }
@@ -48,6 +46,7 @@ export default function GenerateInform() {
         if (!languageSelectedList.includes('es')) {
             document.querySelector('.separadorIdiomas--button--spain').classList.add('seleccionado');
             languageSelectedList.push('es');
+            console.log(languageSelectedList);
             console.log("Idioma añadido a la lista", languageSelectedList);
         } else if (languageSelectedList.includes('es')){
             document.querySelector('.separadorIdiomas--button--spain').classList.remove('seleccionado');
