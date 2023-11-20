@@ -1,8 +1,10 @@
 import React from "react";
 
-import "./styles/style.scss";
+// import "./styles/style.scss";
+
 
 import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
+
 
 export default function SuccessfulScanner() {
   return (
