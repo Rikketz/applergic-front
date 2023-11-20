@@ -7,7 +7,7 @@ import "./styles/style.scss";
 import  ButtonGeneral  from "../../Components/buttonGeneral/buttonGeneral";
 import { Rating } from "primereact/rating";
 
-export function RatingApp() {
+export default function RatingApp() {
   const [value, setValue] = useState(null);
 
   return (

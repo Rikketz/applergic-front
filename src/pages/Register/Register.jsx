@@ -40,8 +40,11 @@ const Register = () => {
   } = useForm();
   const navigate = useNavigate();
 
-
   const [previewImage, setPreviewImage] = useState("");
+
+  const goBack = () => {
+    window.history.back();
+  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -67,6 +70,7 @@ const Register = () => {
     formData.append("telefono", data.Móvil);
 
     try {
+
   const result = await axios.post("http://localhost:5053/user/register", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -91,13 +95,16 @@ const Register = () => {
   }
 }}
 
+
   return (
     <div>
       <div className="mini-header">
         <div className="volver-div">
           <div className="volver-div__content">
             <img className="left-arrow" src={arrow} alt="arrow icon" />
-            <p className="p-volver">Volver</p>
+            <p className="p-volver" onClick={goBack}>
+              Volver
+            </p>
           </div>
           {isHomeVisible && (
             <img className="homen-icon" src={home} alt="home icon" />
@@ -119,7 +126,7 @@ const Register = () => {
                   alt="preview"
                 />
               ) : (
-                <label htmlFor="uploadImage" className="camera-icon-label">
+                <label htmlFor="uploadImage" className="camera-icon__label">
                   <img className="camera-icon" src={camera} alt="camera" />
                   Subir foto
                 </label>
@@ -224,9 +231,10 @@ const Register = () => {
                 alt="password icon"
               />
             )}
+            {/* {!isHomeVisible ? $$greyButton.classList.add('button-grey') : $$greyButton.classList.remove('button-grey')}; */}
 
             <ButtonGeneral
-              className="button"
+              className="button-grey"
               text={"Guardar perfil"}
             ></ButtonGeneral>
           </div>

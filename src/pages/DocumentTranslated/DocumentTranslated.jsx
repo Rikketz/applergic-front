@@ -1,20 +1,61 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Contexto } from '../../App';
 import html2pdf from 'html2pdf.js';
 import DocumentTranslator from '../../Components/DocumentTranslator/DocumentTranslator';
 import ButtonGeneral from '../../Components/buttonGeneral/buttonGeneral';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
+
 
 export default function DocumentTranslated() {
-    const { setIdioma, languageSelectedList } = useContext(Contexto);
+
+
+    // ENTORNO DE PRUEBAS
+
+    const [username, setUsername] = useState('');
+
+
+    // FIN ENTORNO DE PRUEBAS
+
+    const { setIdioma, languageSelectedList, setLanguageSelectedList } = useContext(Contexto);
     const navigate = useNavigate();
-    const codIdioma = languageSelectedList[0];
+    let codIdioma = languageSelectedList[0];
+    console.log(languageSelectedList);
+    const goBack = () => {
+        window.history.back();
+    };
+
 
     useEffect(() => {
         setIdioma(codIdioma);
-    }, [languageSelectedList, setIdioma, codIdioma]);
+        const token = localStorage.getItem('token'); // Obtener el token del localStorage
+        if (token) {
+            const decodedToken = jwtDecode(token); // Decodificar el token para obtener los datos del usuario
+            if (decodedToken) {
+                const { id, email } = decodedToken; // Obtener el id y el email del usuario
+                fetch(`http://localhost:5053/user/getuser/${id}`) // Hacer una petición GET al backend
+                .then((response) => response.json())
+                .then((data) => {
+                console.log(data);
+                
+                
+            const alergiaLista = data.user.alergia;
+            if (alergiaLista.length === 0) {
+                console.log('No hay alergias');
+            }
+            const  nombreCompleto  = data.user.nombreCompleto; // Suponiendo que el nombre del usuario está en la propiedad 'name' de la respuesta del servidor
+            console.log(nombreCompleto);
+            setUsername(nombreCompleto); // Actualizar el estado con el nombre del usuario
+            
+            })
+            .catch((error) => {
+            console.error('Error al obtener el nombre del usuario:', error);
+            });
+        }}
+    }, [languageSelectedList, setIdioma, codIdioma, setUsername]);
 
     const nextDoc = () => {
+        codIdioma = languageSelectedList[1];
         navigate('/generateInform/inform2');
     }
 
@@ -41,8 +82,8 @@ export default function DocumentTranslated() {
     return (<>
     <div className="documentTranslatedMainDiv">
         <div className="documentTranslatedMainDiv__superior">
-            <img className="documentTranslatedMainDiv__superior--img" src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/778C0600-375F-416A-AEB4-8241161DC7CF.png" alt=""/>
-            <img className="documentTranslatedMainDiv__superior--img" src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/517E8F96-1F82-4480-82FB-A847C7B97F91.png" alt=""/>
+            <img onClick={goBack} className="documentTranslatedMainDiv__superior--img" src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/778C0600-375F-416A-AEB4-8241161DC7CF.png" alt=""/>
+            <Link to={'/'}><img className="documentTranslatedMainDiv__superior--img" src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/517E8F96-1F82-4480-82FB-A847C7B97F91.png" alt=""/></Link>
         </div>
         <div className="documentTranslatedMainDiv__infoSuperior">
             <h3 className="documentTranslatedMainDiv__infoSuperior--h3">Este es el informe</h3>
@@ -51,9 +92,9 @@ export default function DocumentTranslated() {
             <h5 className="documentTranslatedMainDiv__infoSuperior--h5">IDIOMA</h5>
         </div>
         <div className="documentTranslatedMainDiv__middleDiv">
-            <h5 className="documentTranslatedMainDiv__middleDiv--nombre"> <DocumentTranslator codIdioma={codIdioma} texto1={'Nombre'} />: Pepito Pepital.</h5>
+            <h5 className="documentTranslatedMainDiv__middleDiv--nombre"> <DocumentTranslator codIdioma={codIdioma} texto1={'Nombre'} />: {username}.</h5>
             <p className="documentTranslatedMainDiv__middleDiv--allergy"> <DocumentTranslator codIdioma={codIdioma} texto1={'Alérgico a'} />: <DocumentTranslator codIdioma={codIdioma} texto1={'Lista de alergias'} /> </p>
-            <p className="documentTranslatedMainDiv__middleDiv--date"> <DocumentTranslator codIdioma={codIdioma} texto1={'Fecha'} />: <DocumentTranslator codIdioma={codIdioma} texto1={'8 de noviembre de 2019'} /> </p>
+            <p className="documentTranslatedMainDiv__middleDiv--date"> <DocumentTranslator codIdioma={codIdioma} texto1={'Fecha'} />: <DocumentTranslator codIdioma={codIdioma} texto1={'23 de Noviembre de 2023'} /> </p>
             <p className="documentTranslatedMainDiv__middleDiv--newProducts"> <DocumentTranslator codIdioma={codIdioma} texto1={'Nuevos productos aptos incluidos en tu diario'} />. </p>
         </div>
         <div className="documentTranslatedMainDiv__infoInferior">

@@ -2,9 +2,11 @@ import React from "react";
 
 // import "./styles/style.scss";
 
-import  ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
 
-export function SuccessfulScanner() {
+import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
+
+
+export default function SuccessfulScanner() {
   return (
     <>
       <header className="header-scanner"></header>

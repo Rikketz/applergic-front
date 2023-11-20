@@ -42,6 +42,10 @@ const RegisterEmergencyContact = () => {
     }
   };
 
+  const goBack = () => {
+    window.history.back();
+  };
+
 
   return (
     <div>
@@ -49,7 +53,7 @@ const RegisterEmergencyContact = () => {
         <div className="volver-div">
           <div className="volver-div__content">
             <img className="left-arrow" src={arrow} alt="arrow icon" />
-            <p>Volver</p>
+            <p className="p-volver" onClick={goBack}>Volver</p>
           </div>
           <img className="homen-icon" src={home} alt="home icon" />
         </div>
