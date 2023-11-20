@@ -16,6 +16,8 @@ import Intro1 from './pages/Intros/Intro1';
 import Intro2 from './pages/Intros/Intro2';
 import Intro3 from './pages/Intros/Intro3';
 import Intro4 from './pages/Intros/Intro4';
+import ResultPage from "./Pages/ResultPage/ResultPage";
+import CameraPage from "./Pages/CameraPage/CameraPage";
 export const Contexto = React.createContext();
 
 function App() {
@@ -53,6 +55,10 @@ function App() {
             <Route path="/intro2" element={<Intro2/>} />
             <Route path="/intro3" element={<Intro3/>} />
             <Route path="/intro4" element={<Intro4/>} />
+            
+            <Route path="/camerapage" element={<CameraPage/>} />
+            <Route path="/resultpage" element={<ResultPage/>} />
+
             <Route
               path="register-emergency-contact"
               element={<RegisterEmergencyContact userData={userData} />}
