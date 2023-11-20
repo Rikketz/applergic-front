@@ -3,7 +3,7 @@ import React from "react";
 import "./styles/style.scss";
 
 import { Acordeon } from "../../Components/Acordeon/Acordeon";
-import { ButtonGeneral } from "../../Components/buttonGeneral/buttonGeneral";
+import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
 
 export function Ingredients() {
   const ingredientes = [

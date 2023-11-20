@@ -2,7 +2,7 @@ import React from "react";
 
 import "./styles/style.scss";
 
-import { ButtonGeneral } from "../../Components/buttonGeneral/buttonGeneral";
+import  ButtonGeneral  from "../../Components/buttonGeneral/buttonGeneral";
 
 export function SuccessfulScanner() {
   return (

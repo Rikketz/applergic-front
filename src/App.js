@@ -1,6 +1,6 @@
-import { Ingredients } from "./Pages/Ingredients/Ingredients";
-import { RatingApp } from "./Pages/Rating-App/Rating";
-import { SuccessfulScanner } from "./Pages/SuccessfulScanner/SuccessfulScanner";
+import { Ingredients } from "./pages/Ingredients/Ingredients";
+import { RatingApp } from "./pages/Rating-App/Rating";
+import { SuccessfulScanner } from "./pages/SuccessfulScanner/SuccessfulScanner";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

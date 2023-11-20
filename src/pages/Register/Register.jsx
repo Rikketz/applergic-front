@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -22,15 +22,29 @@ const Register = () => {
     setIsPasswordVisible(true);
   };
 
-  const handleInputCompleted = (e) => {
+  const handleInputCompleted = () => {
     const inputs = document.querySelectorAll(
       'input[type="text"], input[type="tel"], input[type="password"]'
     );
+
     const allInputsHaveData = Array.from(inputs).every(
       (input) => input.value.trim().length > 0
     );
+
     setIsHomeVisible(allInputsHaveData);
   };
+
+  // useEffect(() => {
+  //   if (!isHomeVisible) {
+  //     const $$greyButton = document.querySelector(".buttonGeneral");
+  //     $$greyButton.className = "button-grey";
+  //     console.log("isHomeVisible es false");
+  //   } else {
+  //     const $$greyButton = document.querySelector(".buttonGeneral");
+  //     $$greyButton.className ="buttonGeneral";
+  //     console.log("isHomeVisible es true");
+  //   }
+  // }, [isHomeVisible]);
 
   const {
     register,
@@ -57,12 +71,12 @@ const Register = () => {
       reader.readAsDataURL(file);
     }
 
-    setValue("foto[0]", file);
+    setValue("foto", file);
   };
 
   const registro = async (data) => {
     const formData = new FormData();
-    formData.append("foto", data["foto[0]"]);
+    formData.append("foto", data["foto"]);
     formData.append("email", data["Dirección email"]);
     formData.append("password", data.password);
     formData.append("nombreCompleto", data["Nombre completo"]);
@@ -129,7 +143,7 @@ const Register = () => {
                 id="uploadImage"
                 type="file"
                 style={{ opacity: 0, position: "absolute" }}
-                {...register("foto[0]")}
+                {...register("foto")}
                 onChange={handleImageChange}
                 ref={fileInputRef}
               />
@@ -165,6 +179,7 @@ const Register = () => {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                 },
               })}
+              onChange={handleInputCompleted}
             />
             {errors.email && (
               <>
@@ -205,6 +220,7 @@ const Register = () => {
                     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$/,
                 },
               })}
+              onChange={handleInputCompleted}
             />
 
             {errors.password && (
@@ -225,12 +241,12 @@ const Register = () => {
                 alt="password icon"
               />
             )}
-            {/* {!isHomeVisible ? $$greyButton.classList.add('button-grey') : $$greyButton.classList.remove('button-grey')}; */}
 
-            <ButtonGeneral
-              className="button-grey"
-              text={"Guardar perfil"}
-            ></ButtonGeneral>
+              <ButtonGeneral
+               className="save-profile-button"
+               isHomeVisible={isHomeVisible}
+               text={"Guardar perfil"}/>
+
           </div>
         </form>
       </div>
