@@ -1,21 +1,37 @@
 import React, { useState } from "react";
+
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "./styles/style.scss";
-import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
 
+import applergic from "./assets/Logo.png";
+import back from "./assets/back.png";
+
+import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
 import { Rating } from "primereact/rating";
+import { Link } from "react-router-dom";
 
 export default function RatingApp() {
   const [value, setValue] = useState(null);
 
   return (
     <>
-      <header className="header-rating"></header>
+      <header className="header-rating">
+        <Link to="/Main">
+          <div className="header-rating-div">
+            <img
+              src={back}
+              alt="back-logo"
+              className="img-header-rating-back"
+            />
+            <span>Volver</span>
+          </div>
+        </Link>
+      </header>
       <main className="main-rating">
-        <img src="./assets/Logo.png" alt="logo-applergic" />
-        <h5>¡Gracias por usar Applergic!</h5>
-        <h6>Por favor, evalua tu experiencia.</h6>
+        <img src={applergic} alt="logo-applergic" className="img-main-rating" />
+        <h3 className="h3-main-rating">¡Gracias por usar Applergic!</h3>
+        <h4 className="h4-main-rating">Por favor, evalua tu experiencia.</h4>
         <Rating
           value={value}
           onChange={(e) => setValue(e.value)}
@@ -23,7 +39,9 @@ export default function RatingApp() {
         />
       </main>
       <footer className="footer-rating">
-        <ButtonGeneral text={"Enviar sugerencias"} />
+        <Link to="/Main">
+          <ButtonGeneral text={"Enviar sugerencias"} />
+        </Link>
       </footer>
     </>
   );
