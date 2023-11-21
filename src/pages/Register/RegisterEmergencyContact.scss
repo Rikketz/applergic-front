@@ -1,3 +1,12 @@
+.home-icon-div {
+  width: 70px;
+}
+
+.home-icon{
+  padding-top: 3px;
+}
+
+
 .mini-header {
   margin-top: 40px;
   margin-left: 22px;
@@ -11,8 +20,10 @@
     color: #00cadf;
     font-size: 13px;
     justify-content: space-between;
+    align-items: center;
 
     &__content {
+      width: 60px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -23,6 +34,10 @@
     height: 13px;
     margin-right: 10px;
   }
+}
+
+.p-numbers {
+  margin-top: 6px;
 }
 
 h2 {

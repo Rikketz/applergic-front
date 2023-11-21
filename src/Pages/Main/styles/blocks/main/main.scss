@@ -1,18 +1,27 @@
 .main-main {
-   width: 100vw;
-   height: 90vh;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
+  // width: 100vw;
+  // height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 70px;
+  margin-bottom: 120px;
 
-   .img-main-main {
-      width: 100px;
-      height: auto;
-      padding-bottom: 5%;
-   }
+  .img-main-main {
+    width: 160px;
+    height: auto;
+    margin-bottom: 100px;
+  }
 
-   .p-main-main {
-      color: #000;
-   }
+  .p-main-main {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    color: #767676;
+    margin-top: 6px;
+    margin-bottom: 14px;
+  }
 }

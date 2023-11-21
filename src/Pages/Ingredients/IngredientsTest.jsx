@@ -7,8 +7,8 @@ import "primereact/resources/primereact.min.css";
 import "./styles/style.scss";
 
 import close from "./assets/close.png";
-import back from "./assets/back.png";
-
+// import back from "./assets/back.png";
+import arrow from "../../assets/left-arrow.png";
 import { useNavigate } from "react-router-dom";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { ButtonIngredients } from "../../Components/Button-Ingredients/ButtonIngredients";
@@ -27,6 +27,10 @@ export default function IngredientsTest() {
   const navigate = useNavigate();
   const [showIngredients, setShowIngredients] = useState(true);
   const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const goBack = () => {
+    window.history.back();
+  };
 
   const handleClassChange = () => {
     setShowIngredients(false);
@@ -103,8 +107,19 @@ export default function IngredientsTest() {
       <section
         className={`section-ingredients ${showIngredients ? "" : "hidden"}`}
       >
-        <header className="header-ingredients" id="header-ingredients">
-          <div className="header-ingredients-div-link">
+ <div className="mini-header">
+        <div className="volver-div">
+          <div className="volver-div__content">
+            <img className="left-arrow" src={arrow} alt="arrow icon" />
+            <p className="p-volver" onClick={goBack}>Volver</p>
+          </div>
+          <p className="p-numbers">3 de 4</p>
+          <div className="home-icon-div">
+          </div>
+        </div>
+        </div>
+
+        {/* <div className="header-ingredients-div-link">
             <Link to="/main" className="a-header-ingredients">
               <div className="header-ingredients-div">
                 <img
@@ -116,7 +131,9 @@ export default function IngredientsTest() {
               </div>
             </Link>
             <span className="span-header-scanner">3 de 4</span>
-          </div>
+          </div> */}
+
+        <header className="header-ingredients" id="header-ingredients">
           <div className="header-ingredients-div-title">
             <h2>Selecciona tus alergias e intolerancias.</h2>
             <h4>

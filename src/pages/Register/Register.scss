@@ -40,7 +40,7 @@ h2 {
         margin-bottom: 70px;
       }
 
-      &__poliza{
+      &__poliza {
         margin-bottom: 70px;
       }
     }
@@ -92,12 +92,22 @@ h2 {
     color: #00cadf;
     font-size: 13px;
     justify-content: space-between;
+    align-items: flex-end;
 
     &__content {
+      width: 60px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
+  }
+
+  .p-numbers {
+    margin-top: 6px;
+  }
+
+  .home-icon-div {
+    width: 70px;
   }
 
   .left-arrow {

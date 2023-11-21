@@ -122,14 +122,17 @@ const Register = () => {
               Volver
             </p>
           </div>
+          <p className="p-numbers">1 de 4</p>
+          <div className="home-icon-div">
           {isHomeVisible && (
             <Link to="/main">
               <img className="homen-icon" src={home} alt="home icon" />
             </Link>
           )}
+          </div>
         </div>
 
-        <p>1 de 4</p>
+
       </div>
 
       <h2>Dinos quién eres</h2>
