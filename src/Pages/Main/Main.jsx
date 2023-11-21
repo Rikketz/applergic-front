@@ -9,13 +9,15 @@ import star from "./assets/star.png";
 import notebook from "./assets/notebook.png";
 import share from "./assets/share.png";
 import { Link } from "react-router-dom";
+import Logout from "../../Components/Logout/Logout";
 
 export default function Main() {
   return (
     <>
       <header className="header-main">
         <img src={menu} alt="menu-logo" className="img-header-main-menu"></img>
-        <img src={info} alt="info-logo" className="img-header-main"></img>
+        <Logout/>
+        {/* <img src={info} alt="info-logo" className="img-header-main"></img> */}
       </header>
       <main className="main-main">
         <img src={logo} alt="logo" className="img-main-main"></img>
