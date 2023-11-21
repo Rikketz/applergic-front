@@ -19,6 +19,7 @@ h2 {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+    position: relative;
 
     .first-input {
       font-family: "Montserrat", sans-serif;
@@ -34,6 +35,14 @@ h2 {
       font-family: "Montserrat", sans-serif;
       font-weight: 400;
       font-size: 16px;
+
+      &__password-input-container {
+        margin-bottom: 70px;
+      }
+
+      &__poliza{
+        margin-bottom: 70px;
+      }
     }
 
     input[type="password"] {
@@ -159,8 +168,8 @@ h2 {
   }
 }
 
-.save-profile-button{
-margin-top: 50px;
+.save-profile-button {
+  margin-top: 50px;
 }
 
 .p-edit {
@@ -176,6 +185,6 @@ margin-top: 50px;
 
 .password-icon {
   position: absolute;
-  bottom: 250px;
-  right: 40px;
+  bottom: 143px;
+  right: 12px;
 }

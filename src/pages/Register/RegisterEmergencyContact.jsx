@@ -119,7 +119,7 @@ const RegisterEmergencyContact = () => {
             />
 
             <input
-              className="all-inputs"
+              className="all-inputs__poliza"
               placeholder="Compañía de Seguros/Nº Póliza"
               type="text"
               {...register("poliza", {
