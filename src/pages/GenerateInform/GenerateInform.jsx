@@ -325,7 +325,7 @@ export default function GenerateInform() {
     return (<>
     <div className='generateInform'>
         <div className='generateInform__cerrar'>
-            <Link to={'/'}> <img className='generateInform__cerrar--img' src='https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/9419C1A3-4787-4177-B727-B2338C933115.png' alt=''/> </Link>
+            <Link to={'/main'}> <img className='generateInform__cerrar--img' src='https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/9419C1A3-4787-4177-B727-B2338C933115.png' alt=''/> </Link>
         </div>
         <div className='generateInform__titulo'>
             <h2 className='generateInform__titulo--h2'>Vamos a generar el</h2>
