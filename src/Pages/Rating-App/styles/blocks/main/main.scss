@@ -1,0 +1,32 @@
+.main-rating {
+   width: 100vw;
+   height: 77vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+
+   .img-main-rating {
+      width: 180px;
+      height: auto;
+      object-fit: cover;
+      margin-bottom: 10%;
+   }
+
+   .h3-main-rating {
+      margin-bottom: 5%;
+   }
+
+   .h4-main-rating {
+      font-size: 20px;
+      margin-bottom: 5%;
+   }
+
+   .p-rating-item-active path {
+      color: yellow;
+      stroke: black;
+      stroke-width: 0.5;
+      font-size: 100px;
+   }
+}

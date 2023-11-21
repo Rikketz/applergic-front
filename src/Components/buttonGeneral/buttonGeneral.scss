@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../assets/fonts/Montserrat.ttf");
+}
+
+.buttonGeneral {
+  width: 325px;
+  height: 50px;
+  background-color: #37bfd2;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  border-style: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+
+.button-grey {
+    background-color: #c4c4c4;
+    width: 325px;
+    height: 50px;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    border-style: none;
+    border-radius: 7px;
+    cursor: pointer;
+  }

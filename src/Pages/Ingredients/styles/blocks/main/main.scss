@@ -1,0 +1,74 @@
+.main-ingredients {
+
+   width: 100vw;
+   height: 100%;
+   margin-bottom: 5%;
+   
+   .p-accordion-content {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: 5%;
+      margin-right: 5%;
+   }
+
+   p-accordion-tab p-accordion-tab-active {
+      color: white;
+      margin-bottom: 3%;
+      
+   }
+
+   .p-accordion-header-link {
+      padding: 5%;
+   }
+
+   .p-button {
+      margin: 1%;
+      padding: 2%;
+
+      .p-button-label {
+         width: auto;
+         margin: 0;
+         font-size: 13px;
+      }
+   }
+
+   .p-togglebutton.p-button {
+      border: 1px solid grey;
+      border-radius: 25px;
+   }
+
+   .p-togglebutton.p-button.p-highlight:hover {
+      background-color: #F8466F;
+      border-color: #F8466F;
+      color: white;
+   }
+
+   .p-togglebutton.p-button.p-highlight {
+      background-color: #F8466F;
+      border-color: #F8466F;
+      color: white;
+   }
+
+   span.p-accordion-header-text {
+      width: 10%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 3%;
+      border-radius: 100px;
+      background-color: #A8A8A8;
+      color: white;
+   }
+
+   span.p-accordion-header-text-active {
+      width: 10%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 3%;
+      background-color: #F8466F;
+      color: white;
+   }
+}

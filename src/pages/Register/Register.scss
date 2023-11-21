@@ -1,0 +1,181 @@
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+}
+
+.info-block {
+  margin-top: 40px;
+  margin-left: 22px;
+  margin-right: 22px;
+
+  .inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+
+    .first-input {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .all-inputs {
+      width: 100%;
+      border-bottom: 1px solid #cccccc;
+      height: 60px;
+      margin-bottom: 10px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+    }
+
+    input[type="password"] {
+      font-family: "Monserrat";
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: 2px;
+    }
+
+    ::placeholder {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      color: #cccccc;
+      font-size: 14px;
+    }
+  }
+
+  h2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: left;
+  }
+
+  .data-text {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    text-align: left;
+    margin-top: 30px;
+  }
+}
+
+.mini-header {
+  margin-top: 40px;
+  margin-left: 22px;
+  margin-right: 22px;
+  margin-bottom: 15px;
+
+  .volver-div {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    display: flex;
+    color: #00cadf;
+    font-size: 13px;
+    justify-content: space-between;
+
+    &__content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .left-arrow {
+    height: 13px;
+    margin-right: 10px;
+  }
+
+  p {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  .p-volver {
+    color: #00cadf;
+  }
+}
+
+.camera-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.upload-image {
+  display: flex;
+  height: 110px;
+  width: 110px;
+  border: 2px solid #00cadf;
+  border-radius: 104px;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #00cadf;
+  font-size: 12px;
+  position: relative;
+  margin-bottom: 15px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .camera-icon {
+    width: 75%;
+    height: 70%;
+    position: absolute;
+    left: 13px;
+    bottom: 22px;
+  }
+
+  label {
+    margin-top: 60px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    color: #00cadf;
+    font-size: 12px;
+  }
+}
+
+.save-profile-button{
+margin-top: 50px;
+}
+
+.p-edit {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #00cadf;
+  font-size: 12px;
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.password-icon {
+  position: absolute;
+  bottom: 250px;
+  right: 40px;
+}

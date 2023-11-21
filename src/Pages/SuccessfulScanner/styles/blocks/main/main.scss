@@ -1,0 +1,21 @@
+.main-scanner {
+   width: 100vw;
+   height: 77vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+
+   .img-main-scanner {
+      width: 250px;
+      height: auto;
+      object-fit: cover;
+   }
+
+   .h2-main-scanner {
+      margin-top: 10%;
+      margin-left: 11%;
+      margin-right: 11%;
+   }
+}

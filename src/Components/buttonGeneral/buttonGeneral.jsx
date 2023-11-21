@@ -1,6 +1,9 @@
-export default function ButtonGeneral({text}) {
+import "./buttonGeneral.scss";
 
-    return (
-    <button> {text} </button>
-    );
+export default function ButtonGeneral({ text, isHomeVisible }) {
+  return (
+    <button className={isHomeVisible ? "buttonGeneral" : "button-grey"}>
+      {text}
+    </button>
+  );
 }
