@@ -2,9 +2,19 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 28px;
+    height: 28px;
     &__toggleButton {
+        margin-left: 16px;
         background-color: rgba($color: #000000, $alpha: 0);
         border: none;
+        width: 26px;
+        height: 26px;
+        &--img{
+            width: 26px;
+            height: 26px;
+        
+        }
     }
     &__toggle {
         display: none;
@@ -77,6 +87,7 @@
     height: 100vh;
     background-color: #7777775b;
     position: fixed;
+    bottom: 0;
     z-index: 19;
 }
 
