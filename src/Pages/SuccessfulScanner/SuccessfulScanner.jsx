@@ -8,16 +8,16 @@ import close from "./assets/close.png";
 import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
 import { Link } from "react-router-dom";
 
-export default function SuccessfulScanner() {
+export default function FirstScanner() {
   return (
     <>
       <header className="header-scanner">
         <div className="header-scanner-div">
           <img src={back} alt="back-logo" className="img-header-scanner-back" />
-          <span>Volver</span>
+          <span className="span-header-scanner">Volver</span>
         </div>
         <span className="span-header-scanner">4 de 4</span>
-        <Link to="/Main">
+        <Link to="/Main" className="a-header-scanner-close">
           <img
             src={close}
             alt="close-logo"

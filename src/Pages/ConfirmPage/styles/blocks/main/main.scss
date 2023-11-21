@@ -1,0 +1,21 @@
+.main-confirm {
+   width: 100vw;
+   height: 77vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+
+   .img-main-confirm {
+      width: 250px;
+      height: auto;
+      object-fit: cover;
+   }
+
+   .h2-main-confirm {
+      margin-top: 10%;
+      margin-left: 11%;
+      margin-right: 11%;
+   }
+}

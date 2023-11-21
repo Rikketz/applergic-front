@@ -1,6 +1,5 @@
 import Ingredients from "./pages/Ingredients/Ingredients";
 import RatingApp from "./pages/Rating-App/Rating";
-import SuccessfulScanner from "./pages/SuccessfulScanner/SuccessfulScanner";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -21,6 +20,8 @@ import CameraPage from "./pages/CameraPage/CameraPage";
 import axios from "axios";
 import IngredientsTest from "./pages/Ingredients/IngredientsTest";
 import Main from "./pages/Main/Main";
+import FirstScanner from "./pages/SuccessfulScanner/SuccessfulScanner";
+import ConfirmPage from "./pages/ConfirmPage/ConfirmPage";
 export const Contexto = React.createContext();
 
 function App() {
@@ -73,8 +74,9 @@ function App() {
         <Router>
           <Routes>
             <Route path="/ingredientes" element={<IngredientsTest />} />
+            <Route path="/confirmar" element={<ConfirmPage />} />
             <Route path="/valoracion" element={<RatingApp />} />
-            <Route path="/escaner_exitoso" element={<SuccessfulScanner />} />
+            <Route path="/escaner" element={<FirstScanner />} />
             <Route path="/main" element={<Main />} />
             <Route path="/intro1" element={<Intro1 />} />
             <Route path="/intro2" element={<Intro2 />} />
