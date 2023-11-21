@@ -102,3 +102,59 @@
       color: white;
    }
 }
+
+.main-confirm {
+   width: 100vw;
+   height: 60vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+
+   .h2-main-confirm {
+      margin-top: 10%;
+      margin-left: 11%;
+      margin-right: 11%;
+   }
+
+   .chips-main {
+      width: 70%;
+      height: 25%;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      text-align: center;
+      align-items: center;
+      margin-top: 7%;
+
+      .p-chip {
+         background-color: #F8466F;
+         color: white;
+         margin: 5px;
+
+         span {
+            width: auto;
+            height: auto;
+            padding: 5px;
+            margin: 0;
+            font-size: 13px;
+         }
+      }
+   }
+
+   .main-button-toggle {
+      margin-top: 10px;
+      display: inline-block;
+      padding: 10px 15px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid #C4C4C4;
+      border-radius: 15px;
+      color: #C4C4C4;
+      background-color: white;
+   }
+}

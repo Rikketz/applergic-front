@@ -14,6 +14,7 @@ import { Accordion, AccordionTab } from "primereact/accordion";
 import { ButtonIngredients } from "../../Components/Button-Ingredients/ButtonIngredients";
 import { Contexto } from "../../App";
 import { Link } from "react-router-dom";
+import { Chip } from "primereact/chip";
 
 export default function IngredientsTest() {
   const [activeIndex, setActiveIndex] = useState(
@@ -162,6 +163,14 @@ export default function IngredientsTest() {
             A continuación te resumimos los alimentos registrados como
             peligrosos para ti.
           </h4>
+          <div className="chips-main">
+            {selectedAlergenos.map((item, index) => (
+              <Chip key={index} label={item.alergeno} />
+            ))}
+          </div>
+          <Link to="">
+            <button className="main-button-toggle">Añadir nuevos</button>
+          </Link>
         </main>
         <footer className="footer-confirm">
           <Link to="/escaner">
