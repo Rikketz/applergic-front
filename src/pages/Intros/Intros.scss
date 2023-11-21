@@ -59,7 +59,7 @@ margin-top: 40px;
     align-items: center; 
     padding: 20px;
     color: gray;
-    margin-top: 90px;
+    margin-top: 80px;
 
     p{
         font-size: 12px;
@@ -81,4 +81,10 @@ margin-top: 40px;
   width: 20px;
   height: auto;
 
+}
+
+.intro1__parteInferior{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }

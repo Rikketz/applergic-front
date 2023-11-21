@@ -27,16 +27,18 @@ export default function Intro1(){
             <p>dirá si es apto para ti.</p>
             </div>
           </div>
-          <div className="Intro__carousel">
-            <img src={Carrousel1} alt="Imagen de carrousel 1" />
-          </div>
-          <div className="Intro__navigation">
-            <Link to="/login" className="Intro__navigation--left">
-              <p>Saltar</p>
-            </Link>
-            <Link to="/intro2" className="Intro__navigation--right">
-              <p>Siguiente</p><img className='flecha' src={Flecha} alt='flecha a la derecha'></img>
-            </Link>
+          <div className='intro1__parteInferior'>
+            <div className="Intro__carousel">
+              <img src={Carrousel1} alt="Imagen de carrousel 1" />
+            </div>
+            <div className="Intro__navigation">
+              <Link to="/login" className="Intro__navigation--left">
+                <p>Saltar</p>
+              </Link>
+              <Link to="/intro2" className="Intro__navigation--right">
+                <p>Siguiente</p><img className='flecha' src={Flecha} alt='flecha a la derecha'></img>
+              </Link>
+            </div>
           </div>
         </>
       );
