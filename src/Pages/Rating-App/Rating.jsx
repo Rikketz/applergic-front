@@ -24,7 +24,7 @@ export default function RatingApp() {
               alt="back-logo"
               className="img-header-rating-back"
             />
-            <span>Volver</span>
+            <span className="span-header-rating">Volver</span>
           </div>
         </Link>
       </header>
@@ -39,7 +39,7 @@ export default function RatingApp() {
         />
       </main>
       <footer className="footer-rating">
-        <Link to="/Main">
+        <Link to="/main">
           <ButtonGeneral text={"Enviar sugerencias"} />
         </Link>
       </footer>

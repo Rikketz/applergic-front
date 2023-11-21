@@ -4,7 +4,54 @@
    height: 20vh;
    display: flex;
    flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   text-align: center;
+   justify-content: space-around;
+
+   .header-ingredients-div-link {
+      width: 100%;
+      height: 20%;
+      display: flex;
+
+      .a-header-ingredients {
+         width: 40%;
+         height: 100%;
+         margin-left: 2%;
+
+         .header-ingredients-div {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            color: aqua;
+            
+            .img-header-ingredients-back {
+               width: 15px;
+               height: auto;
+               object-fit: cover;
+            }
+            
+            .span-header-ingredients {
+               width: auto;
+               margin: 0;
+               font-size: 13px;
+            }
+         }
+      }
+
+      .span-header-scanner {
+         width: 60%;
+         height: 100%;
+         font-size: 13px;
+         text-align: justify;
+      }
+   }
+
+   .header-ingredients-div-title {
+      width: 100%;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+   }
 }

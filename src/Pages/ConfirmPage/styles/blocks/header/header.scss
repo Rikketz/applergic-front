@@ -1,0 +1,21 @@
+.header-confirm {
+   width: 100vw;
+   height: 8vh;
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+
+   .a-header-confirm-close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 2%;
+      
+      .img-header-confirm-close {
+         width: 25px;
+         height: auto;
+         align-items: center;
+         object-fit: cover;
+      }
+   }
+}

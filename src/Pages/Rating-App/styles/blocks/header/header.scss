@@ -10,13 +10,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-left: 2%;
+      margin-left: 15%;
       color: aqua;
 
       .img-header-rating-back {
          width: 15px;
          height: auto;
          object-fit: cover;
+      }
+
+      .span-header-rating {
+         width: auto;
+         margin: 0;
+         font-size: 13px;
       }
    }
 }
