@@ -14,7 +14,9 @@ export default function FirstScanner() {
       <header className="header-scanner">
         <div className="header-scanner-div">
           <img src={back} alt="back-logo" className="img-header-scanner-back" />
-          <span className="span-header-scanner">Volver</span>
+          <Link to="/ingredientes">
+            <span className="span-header-scanner">Volver</span>
+          </Link>
         </div>
         <span className="span-header-scanner">4 de 4</span>
         <Link to="/Main" className="a-header-scanner-close">

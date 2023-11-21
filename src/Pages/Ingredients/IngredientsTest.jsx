@@ -14,6 +14,7 @@ import { Accordion, AccordionTab } from "primereact/accordion";
 import { ButtonIngredients } from "../../Components/Button-Ingredients/ButtonIngredients";
 import { Contexto } from "../../App";
 import { Link } from "react-router-dom";
+import { Chip } from "primereact/chip";
 
 export default function IngredientsTest() {
   const [activeIndex, setActiveIndex] = useState(
@@ -24,6 +25,18 @@ export default function IngredientsTest() {
   const [selectedAlergenos, setSelectedAlergenos] = useState([]);
   const { alergenos } = useContext(Contexto);
   const navigate = useNavigate();
+  const [showIngredients, setShowIngredients] = useState(true);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleClassChange = () => {
+    setShowIngredients(false);
+    setShowConfirmation(true);
+  };
+
+  const handleClassInvert = () => {
+    setShowIngredients(true);
+    setShowConfirmation(false);
+  };
 
   const handleSave = async () => {
     console.log("Botón Guardar clickeado");
@@ -82,10 +95,15 @@ export default function IngredientsTest() {
     }
   };
 
+  console.log("ingredientes", showIngredients);
+  console.log("confirmacion", showConfirmation);
+
   return (
     <>
-      <>
-        <header className="header-ingredients">
+      <section
+        className={`section-ingredients ${showIngredients ? "" : "hidden"}`}
+      >
+        <header className="header-ingredients" id="header-ingredients">
           <div className="header-ingredients-div-link">
             <Link to="/main" className="a-header-ingredients">
               <div className="header-ingredients-div">
@@ -139,22 +157,26 @@ export default function IngredientsTest() {
           </section>
         </main>
         <footer className="footer-ingredients">
-          <div onClick={handleSave}>
-            <Link to="/confirmar">
-              <ButtonGeneral text={"Guardar"} />
-            </Link>
+          <div onClick={handleClassChange}>
+            <ButtonGeneral text={"Guardar"} />
           </div>
         </footer>
-      </>
-      <>
+      </section>
+      <section
+        className={`section-confirm ${showConfirmation ? "" : "hidden"}`}
+      >
         <header className="header-confirm">
-          <Link to="/main" className="a-header-confirm-close">
+          <a
+            className="a-header-confirm-close"
+            href="#header-ingredients"
+            onClick={handleClassInvert}
+          >
             <img
               src={close}
               alt="close-logo"
               className="img-header-confirm-close"
             />
-          </Link>
+          </a>
         </header>
         <main className="main-confirm">
           <h2 className="h2-main-confirm">Confirma tu selección.</h2>
@@ -162,13 +184,21 @@ export default function IngredientsTest() {
             A continuación te resumimos los alimentos registrados como
             peligrosos para ti.
           </h4>
+          <div className="chips-main">
+            {selectedAlergenos.map((item, index) => (
+              <Chip key={index} label={item.alergeno} />
+            ))}
+          </div>
+          <a href="#header-ingredients" onClick={handleClassInvert}>
+            <button className="main-button-toggle">Añadir nuevos</button>
+          </a>
         </main>
         <footer className="footer-confirm">
-          <Link to="/escaner">
+          <Link to="/escaner" onClick={handleSave}>
             <ButtonGeneral text={"Confirmar"} />
           </Link>
         </footer>
-      </>
+      </section>
     </>
   );
 }
