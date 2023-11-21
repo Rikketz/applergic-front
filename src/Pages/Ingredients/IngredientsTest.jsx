@@ -12,7 +12,9 @@ import { Contexto } from "../../App";
 import { useNavigate } from "react-router";
 
 export default function IngredientsTest() {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(
+    Array.from({ length: 99 }, (_, i) => i)
+  );
   const [alergenosPorLetra, setAlergenosPorLetra] = useState({});
   const [selectedAlergenos, setSelectedAlergenos] = useState([]);
   const { alergenos } = useContext(Contexto);
@@ -87,6 +89,7 @@ export default function IngredientsTest() {
       <main className="main-ingredients">
         <section className="card">
           <Accordion
+            multiple
             activeIndex={activeIndex}
             onTabChange={(e) => setActiveIndex(e.index)}
           >
@@ -104,11 +107,6 @@ export default function IngredientsTest() {
             ))}
           </Accordion>
         </section>
-        {/* <Acordeon
-            alergenos={alergenos}
-            setSelectedAlergenos={setSelectedAlergenos}
-            onAlergenoSelect={handleAlergenoSelect}  
-            /> */}
       </main>
       <footer className="footer-ingredients">
         <div onClick={handleSave}>

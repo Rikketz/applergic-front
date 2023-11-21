@@ -1,17 +1,23 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url(../../assets/fonts/Montserrat.ttf);
+}
+
 .page{
+  margin-top: 8px;
   width: 100%;
-  height: 100vh;
   display: grid;
   align-content: center;
   justify-items: center;
 }
 .head{
-display: flex;
-justify-content: flex-end;
-padding-left: 10px;
+  display: flex;
+  padding-right: 25px;
+  width: 100%;
+  justify-content: flex-end;
 }
 .logo-x{
-  width: 25px;
+  width: 18px;
   margin-top: 35px;
 }
 
@@ -23,27 +29,40 @@ padding-left: 10px;
 }
 
 .camera-video {
-  width: 300px; 
- height: 200px;
+  width: 328px; 
+  height: 216px;
   margin-bottom: 10px;
-  border-radius: 5%;
+  border-radius: 16px;
+  border: 10px solid rgb(123, 123, 123);
 }
 .t-p{
-  margin-bottom: 50px;
+  margin-bottom: 70px;
 }
 .text-qr{
-  margin-bottom: 25px;
-  width: 215px;
+  font-family: 'Montserrat';
+  font-size: 15px;
+  margin-bottom: 40px;
+  width: 247px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+
 }
 .text-nfc{
-  margin-bottom: 25px;
-
-  -webkit-text-stroke: thin;
+  font-family: 'Montserrat';
+  font-size: 15px;
+  margin-bottom: 88px;
+  width: 247px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }
 
 .text-barras{
-  margin-bottom: 25px;
+  font-family: 'Montserrat';
+  font-size: 15px;
+  margin-bottom: 40px;
   width: 247px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }
 strong{
   -webkit-text-stroke: thin;
@@ -51,17 +70,19 @@ strong{
 .file-logs{
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   margin-top: 25px;
 }
 
 .log-box{
   display: grid;
-  width: 80px;
+  width: 62px;
   justify-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .logs{
-  width: 25px;
+  width: 36px;
 }
 .log-i-a, .log-i-b, .log-i-c{
   background-color: lightgray;
@@ -69,7 +90,7 @@ strong{
   display: grid;
   justify-items: center;
   align-items: center;
-  padding: 15px;
+  padding: 0px;
   width: 30px;
   height: 30px;
 }
@@ -81,7 +102,8 @@ span{
 
 
 .log-i-a, .log-i-b, .log-i-c{
-  padding: 10px;
+  width: 56px;
+  height: 56px;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -89,6 +111,8 @@ span{
 
 .log-i-a.active, .log-i-b.active, .log-i-c.active {
   background-color: rgb(0, 225, 255);
+  width: 56px;
+  height: 56px;
 }
 
 .qr-link-overlay, .barcode-overlay {
@@ -102,4 +126,17 @@ span{
   z-index: 10;
   width: 245px;
   height: 190px;
+}
+
+.letrasIconos{
+  font-family: 'Montserrat';
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.lineaMedioCamara{
+  width: 308px;
+  height: 2px;
+  background-color: rgba(220, 71, 8, 0.67);
+  position: absolute;
 }

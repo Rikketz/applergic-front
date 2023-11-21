@@ -24,6 +24,12 @@
    .p-button {
       margin: 1%;
       padding: 2%;
+
+      .p-button-label {
+         width: auto;
+         margin: 0;
+         font-size: 13px;
+      }
    }
 
    .p-togglebutton.p-button {

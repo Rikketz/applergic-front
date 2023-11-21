@@ -20,7 +20,9 @@ import ResultPage from "./pages/ResultPage/ResultPage";
 import CameraPage from "./pages/CameraPage/CameraPage";
 import axios from "axios";
 import IngredientsTest from "./pages/Ingredients/IngredientsTest";
+import UserProfile from "./pages/UserProfile/UserProfile";
 import Main from "./pages/Main/Main";
+
 export const Contexto = React.createContext();
 
 function App() {
@@ -72,6 +74,7 @@ function App() {
               element={<RegisterEmergencyContact userData={userData} />}
             />
             <Route path="login" element={<Login />} />
+            <Route path="userprofile" element={<UserProfile />} />
             <Route
               path="register"
               element={<Register setUserData={setUserData} />}
