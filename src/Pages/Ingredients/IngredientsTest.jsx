@@ -6,6 +6,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "./styles/style.scss";
 
+import close from "./assets/close.png";
 import back from "./assets/back.png";
 
 import { useNavigate } from "react-router-dom";
@@ -83,66 +84,91 @@ export default function IngredientsTest() {
 
   return (
     <>
-      <header className="header-ingredients">
-        <div className="header-ingredients-div-link">
-          <Link to="/main" className="a-header-ingredients">
-            <div className="header-ingredients-div">
-              <img
-                src={back}
-                alt="back-logo"
-                className="img-header-ingredients-back"
-              />
-              <span className="span-header-ingredients">Volver</span>
+      <>
+        <header className="header-ingredients">
+          <div className="header-ingredients-div-link">
+            <Link to="/main" className="a-header-ingredients">
+              <div className="header-ingredients-div">
+                <img
+                  src={back}
+                  alt="back-logo"
+                  className="img-header-ingredients-back"
+                />
+                <span className="span-header-ingredients">Volver</span>
+              </div>
+            </Link>
+            <span className="span-header-scanner">3 de 4</span>
+          </div>
+          <div className="header-ingredients-div-title">
+            <h2>Selecciona tus alergias e intolerancias.</h2>
+            <h4>
+              Los elementos marcados serán identificados en tus búsquedas como
+              peligrosos para ti.
+            </h4>
+          </div>
+        </header>
+        <main className="main-ingredients">
+          <section className="main-ingredients-section">
+            <div>
+              {Object.keys(alergenosPorLetra).map((letra, index) => (
+                <span key={index}>
+                  <a href={`#span-${letra}`}>{letra}</a>
+                </span>
+              ))}
             </div>
+          </section>
+          <section className="card">
+            <Accordion
+              multiple
+              activeIndex={activeIndex}
+              onTabChange={(e) => setActiveIndex(e.index)}
+            >
+              {Object.keys(alergenosPorLetra).map((letra, index) => (
+                <AccordionTab key={index} header={letra} id={`span-${letra}`}>
+                  <ButtonIngredients
+                    value={alergenosPorLetra[letra].map(
+                      (alergeno) => alergeno.nombre
+                    )}
+                    letra={letra}
+                    selectedAlergenos={selectedAlergenos}
+                    onAlergenoSelect={handleAlergenoSelect}
+                  />
+                </AccordionTab>
+              ))}
+            </Accordion>
+          </section>
+        </main>
+        <footer className="footer-ingredients">
+          <div onClick={handleSave}>
+            <Link to="/confirmar">
+              <ButtonGeneral text={"Guardar"} />
+            </Link>
+          </div>
+        </footer>
+      </>
+      <>
+        <header className="header-confirm">
+          <Link to="/main" className="a-header-confirm-close">
+            <img
+              src={close}
+              alt="close-logo"
+              className="img-header-confirm-close"
+            />
           </Link>
-          <span className="span-header-scanner">3 de 4</span>
-        </div>
-        <div className="header-ingredients-div-title">
-          <h2>Selecciona tus alergias e intolerancias.</h2>
+        </header>
+        <main className="main-confirm">
+          <h2 className="h2-main-confirm">Confirma tu selección.</h2>
           <h4>
-            Los elementos marcados serán identificados en tus búsquedas como
+            A continuación te resumimos los alimentos registrados como
             peligrosos para ti.
           </h4>
-        </div>
-      </header>
-      <main className="main-ingredients">
-        <section className="main-ingredients-section">
-          <div>
-            {Object.keys(alergenosPorLetra).map((letra, index) => (
-              <span key={index}>
-                <a href={`#span-${letra}`}>{letra}</a>
-              </span>
-            ))}
-          </div>
-        </section>
-        <section className="card">
-          <Accordion
-            multiple
-            activeIndex={activeIndex}
-            onTabChange={(e) => setActiveIndex(e.index)}
-          >
-            {Object.keys(alergenosPorLetra).map((letra, index) => (
-              <AccordionTab key={index} header={letra} id={`span-${letra}`}>
-                <ButtonIngredients
-                  value={alergenosPorLetra[letra].map(
-                    (alergeno) => alergeno.nombre
-                  )}
-                  letra={letra}
-                  selectedAlergenos={selectedAlergenos}
-                  onAlergenoSelect={handleAlergenoSelect}
-                />
-              </AccordionTab>
-            ))}
-          </Accordion>
-        </section>
-      </main>
-      <footer className="footer-ingredients">
-        <div onClick={handleSave}>
-          <Link to="/confirmar">
-            <ButtonGeneral text={"Guardar"} />
+        </main>
+        <footer className="footer-confirm">
+          <Link to="/escaner">
+            <ButtonGeneral text={"Confirmar"} />
           </Link>
-        </div>
-      </footer>
+        </footer>
+      </>
     </>
   );
 }
