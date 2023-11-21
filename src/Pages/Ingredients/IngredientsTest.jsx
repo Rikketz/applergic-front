@@ -6,19 +6,39 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "./styles/style.scss";
 
+import close from "./assets/close.png";
+// import back from "./assets/back.png";
+import arrow from "../../assets/left-arrow.png";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { ButtonIngredients } from "../../Components/Button-Ingredients/ButtonIngredients";
 import { Contexto } from "../../App";
-import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import { Chip } from "primereact/chip";
 
 export default function IngredientsTest() {
   const [activeIndex, setActiveIndex] = useState(
     Array.from({ length: 99 }, (_, i) => i)
   );
+
   const [alergenosPorLetra, setAlergenosPorLetra] = useState({});
   const [selectedAlergenos, setSelectedAlergenos] = useState([]);
   const { alergenos } = useContext(Contexto);
-  const navigate = useNavigate();
+  const [showIngredients, setShowIngredients] = useState(true);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const goBack = () => {
+    window.history.back();
+  };
+
+  const handleClassChange = () => {
+    setShowIngredients(false);
+    setShowConfirmation(true);
+  };
+
+  const handleClassInvert = () => {
+    setShowIngredients(true);
+    setShowConfirmation(false);
+  };
 
   const handleSave = async () => {
     console.log("Botón Guardar clickeado");
@@ -35,7 +55,6 @@ export default function IngredientsTest() {
       );
       // console.log("Result from backend:", result);
       // console.log("Selecciones de alérgenos guardadas:", result.data);
-      navigate("/login");
     } catch (error) {
       console.error("Hubo un error al guardar las selecciones:", error);
     }
@@ -77,42 +96,125 @@ export default function IngredientsTest() {
     }
   };
 
+  console.log("ingredientes", showIngredients);
+  console.log("confirmacion", showConfirmation);
+
   return (
     <>
-      <header className="header-ingredients">
-        <h2>Selecciona tus alergias e intolerancias.</h2>
-        <h4>
-          Los elementos marcados serán identificados en tus búsquedas como
-          peligrosos para ti.
-        </h4>
-      </header>
-      <main className="main-ingredients">
-        <section className="card">
-          <Accordion
-            multiple
-            activeIndex={activeIndex}
-            onTabChange={(e) => setActiveIndex(e.index)}
-          >
-            {Object.keys(alergenosPorLetra).map((letra, index) => (
-              <AccordionTab key={index} header={letra}>
-                <ButtonIngredients
-                  value={alergenosPorLetra[letra].map(
-                    (alergeno) => alergeno.nombre
-                  )}
-                  letra={letra}
-                  selectedAlergenos={selectedAlergenos}
-                  onAlergenoSelect={handleAlergenoSelect}
-                />
-              </AccordionTab>
-            ))}
-          </Accordion>
-        </section>
-      </main>
-      <footer className="footer-ingredients">
-        <div onClick={handleSave}>
-          <ButtonGeneral text={"Guardar"} />
+      <section
+        className={`section-ingredients ${showIngredients ? "" : "hidden"}`}
+      >
+        <div className="mini-header">
+          <div className="volver-div">
+            <div className="volver-div__content">
+              <img className="left-arrow" src={arrow} alt="arrow icon" />
+              <p className="p-volver" onClick={goBack}>
+                Volver
+              </p>
+            </div>
+            <p className="p-numbers">3 de 4</p>
+            <div className="home-icon-div"></div>
+          </div>
         </div>
-      </footer>
+
+        {/* <div className="header-ingredients-div-link">
+            <Link to="/main" className="a-header-ingredients">
+              <div className="header-ingredients-div">
+                <img
+                  src={back}
+                  alt="back-logo"
+                  className="img-header-ingredients-back"
+                />
+                <span className="span-header-ingredients">Volver</span>
+              </div>
+            </Link>
+            <span className="span-header-scanner">3 de 4</span>
+          </div> */}
+
+        <header className="header-ingredients" id="header-ingredients">
+          <div className="header-ingredients-div-title">
+            <h2>Selecciona tus alergias e intolerancias.</h2>
+            <h4>
+              Los elementos marcados serán identificados en tus búsquedas como
+              peligrosos para ti.
+            </h4>
+          </div>
+        </header>
+        <main className="main-ingredients">
+          <section className="main-ingredients-section">
+            <div>
+              {Object.keys(alergenosPorLetra).map((letra, index) => (
+                <span key={index}>
+                  <a href={`#span-${letra}`}>{letra}</a>
+                </span>
+              ))}
+            </div>
+          </section>
+          <section className="card">
+            <Accordion
+              multiple
+              activeIndex={activeIndex}
+              onTabChange={(e) => setActiveIndex(e.index)}
+            >
+              {Object.keys(alergenosPorLetra).map((letra, index) => (
+                <AccordionTab key={index} header={letra} id={`span-${letra}`}>
+                  <ButtonIngredients
+                    value={alergenosPorLetra[letra].map(
+                      (alergeno) => alergeno.nombre
+                    )}
+                    letra={letra}
+                    selectedAlergenos={selectedAlergenos}
+                    onAlergenoSelect={handleAlergenoSelect}
+                  />
+                </AccordionTab>
+              ))}
+            </Accordion>
+          </section>
+        </main>
+        <footer className="footer-ingredients">
+          <div onClick={handleClassChange}>
+            <ButtonGeneral text={"Guardar"} />
+          </div>
+        </footer>
+      </section>
+      <section
+        className={`section-confirm ${showConfirmation ? "" : "hidden"}`}
+      >
+        <header className="header-confirm">
+          <a
+            className="a-header-confirm-close"
+            href="#header-ingredients"
+            onClick={handleClassInvert}
+          >
+            <img
+              src={close}
+              alt="close-logo"
+              className="img-header-confirm-close"
+            />
+          </a>
+        </header>
+        <main className="main-confirm">
+          <h2 className="h2-main-confirm">Confirma tu selección.</h2>
+          <h4>
+            A continuación te resumimos los alimentos registrados como
+            peligrosos para ti.
+          </h4>
+          <div className="chips-main">
+            {selectedAlergenos.map((item, index) => (
+              <Chip key={index} label={item.alergeno} />
+            ))}
+            <br />
+            <a href="#header-ingredients" onClick={handleClassInvert}>
+              <button className="main-button-toggle">Añadir nuevos</button>
+            </a>
+          </div>
+        </main>
+        <footer className="footer-confirm">
+          <Link to="/escaner" onClick={handleSave}>
+            <ButtonGeneral text={"Confirmar"} />
+          </Link>
+        </footer>
+      </section>
     </>
   );
 }

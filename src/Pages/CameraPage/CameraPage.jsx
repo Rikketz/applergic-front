@@ -176,25 +176,26 @@ export default function CameraPage () {
             </div>
           )}
           <video ref={videoRef} autoPlay playsInline className="camera-video"></video>
+          <div className='lineaMedioCamara'></div>
         </div>
         <div className='file-logs'>
           <div className='log-box'>
             <div className={`log-i-b ${activeImage === 'bar' ? 'active' : ''}`} onClick={() => handleImageClick('bar')}>
               <img className='logs' src='https://cdn-icons-png.flaticon.com/512/39/39881.png' alt='Codigo de barras'/>
             </div>
-            <span>Código de barras</span>
+            <span className='letrasIconos'>Código de barras</span>
           </div>
           <div className='log-box'>
             <div className={`log-i-a ${activeImage === 'qr' ? 'active' : ''}`} onClick={() => handleImageClick('qr')}>
               <img className='logs' src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Codigo_QR.svg/1200px-Codigo_QR.svg.png' alt='Codigo QR'/>
             </div>
-            <span>Código QR</span>
+            <span className='letrasIconos' >Código QR</span>
           </div>
           <div className='log-box'>
             <div className={`log-i-c ${activeImage === 'nfc' ? 'active' : ''}`} onClick={() => handleImageClick('nfc')}>
               <img className='logs' src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/NFC_logo.svg/2000px-NFC_logo.svg.png' alt='NFC'/>
             </div>
-            <span>NFC</span>
+            <span className='letrasIconos' >NFC</span>
           </div>
         </div>
       </div>

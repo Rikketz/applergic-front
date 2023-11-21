@@ -1,9 +1,44 @@
+.hidden {
+   display: none;
+ }
+
+
 .main-ingredients {
 
    width: 100vw;
    height: 100%;
    margin-bottom: 5%;
    
+   .main-ingredients-section {
+      width:100%;
+      height: 32vh;
+      display: flex;
+      justify-content: center;
+      
+      div {
+         width: 90%;
+         height: 100%;
+         border: 1px solid black;
+         border-radius: 5px;
+         display: flex;
+         flex-wrap: wrap;
+         
+         span {
+            width: 40px;
+            height: 40px;
+            padding: 3%;
+            border-radius: 100px;
+            background-color: #A8A8A8;
+            color: white;
+            margin: 4%;
+
+            a {
+               color: white;
+            }
+         }
+      }
+   }
+
    .p-accordion-content {
       display: flex;
       flex-wrap: wrap;
@@ -70,5 +105,60 @@
       padding: 3%;
       background-color: #F8466F;
       color: white;
+   }
+}
+
+.main-confirm {
+   width: 100vw;
+   height: 82vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+
+   .h2-main-confirm {
+      margin-top: 10%;
+      margin-left: 11%;
+      margin-right: 11%;
+   }
+
+   .chips-main {
+      width: 70%;
+      height: 70%;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      text-align: center;
+      align-items: center;
+      margin-top: 7%;
+
+      .p-chip {
+         background-color: #F8466F;
+         color: white;
+         margin: 5px;
+
+         span {
+            width: auto;
+            height: auto;
+            padding: 5px;
+            margin: 0;
+            font-size: 13px;
+         }
+      }
+   }
+
+   .main-button-toggle {
+      margin-top: 10px;
+      display: inline-block;
+      padding: 10px 15px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid #C4C4C4;
+      border-radius: 15px;
+      color: #C4C4C4;
+      background-color: white;
    }
 }

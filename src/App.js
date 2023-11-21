@@ -1,6 +1,5 @@
-import Ingredients from "./pages/Ingredients/Ingredients";
+// import Ingredients from "./pages/Ingredients/Ingredients";
 import RatingApp from "./pages/Rating-App/Rating";
-import SuccessfulScanner from "./pages/SuccessfulScanner/SuccessfulScanner";
 
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "./App.css";
@@ -13,26 +12,26 @@ import DocumentTranslated2 from "./pages/DocumentTranslated2/DocumentTranslated2
 import GenerateInform from "./pages/GenerateInform/GenerateInform";
 import Home from "./pages/Home/Home";
 import RegisterEmergencyContact from "./pages/Register/RegisterEmergencyContact";
-import Intro1 from './pages/Intros/Intro1';
-import Intro2 from './pages/Intros/Intro2';
-import Intro3 from './pages/Intros/Intro3';
-import Intro4 from './pages/Intros/Intro4';
+import Intro1 from "./pages/Intros/Intro1";
+import Intro2 from "./pages/Intros/Intro2";
+import Intro3 from "./pages/Intros/Intro3";
+import Intro4 from "./pages/Intros/Intro4";
 import ResultPage from "./pages/ResultPage/ResultPage";
 import CameraPage from "./pages/CameraPage/CameraPage";
 import axios from "axios";
 import IngredientsTest from "./pages/Ingredients/IngredientsTest";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import Main from "./pages/Main/Main";
-
+import FirstScanner from "./pages/SuccessfulScanner/SuccessfulScanner";
 export const Contexto = React.createContext();
 
 function App() {
   const [userData, setUserData] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [idioma, setIdioma] = useState("");
-  const [languageSelectedList, setLanguageSelectedList] = useState(["es"]);
+  const [languageSelectedList, setLanguageSelectedList] = useState([]);
   const [alergenos, setAlergenos] = useState([]);
-  const [codigoParaPasar, setCodigoParaPasar] = useState('');
+  const [codigoParaPasar, setCodigoParaPasar] = useState("");
 
   useEffect(() => {
     axios
@@ -40,29 +39,33 @@ function App() {
 
       .then((response) => {
         setAlergenos(response.data);
-        console.log("Alergenos:", response.data);
       })
       .catch((error) => {
         console.error("Error al obtener alérgenos:", error);
       });
   }, []);
 
-
   return (
-
-
-
-
-    <Contexto.Provider value={{ token, setToken, idioma, setIdioma, languageSelectedList, setLanguageSelectedList, alergenos, setAlergenos, codigoParaPasar, setCodigoParaPasar }}>
-
-
-
+    <Contexto.Provider
+      value={{
+        token,
+        setToken,
+        idioma,
+        setIdioma,
+        languageSelectedList,
+        setLanguageSelectedList,
+        alergenos,
+        setAlergenos,
+        codigoParaPasar,
+        setCodigoParaPasar,
+      }}
+    >
       <div className="App">
         <Router>
           <Routes>
             <Route path="/ingredientes" element={<IngredientsTest />} />
             <Route path="/valoracion" element={<RatingApp />} />
-            <Route path="/escaner_exitoso" element={<SuccessfulScanner />} />
+            <Route path="/escaner" element={<FirstScanner />} />
             <Route path="/main" element={<Main />} />
             <Route path="/intro1" element={<Intro1 />} />
             <Route path="/intro2" element={<Intro2 />} />

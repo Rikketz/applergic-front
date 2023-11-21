@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import arrow from "../../assets/left-arrow.png";
 import home from "../../assets/home.png";
 import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
@@ -55,10 +55,13 @@ const RegisterEmergencyContact = () => {
             <img className="left-arrow" src={arrow} alt="arrow icon" />
             <p className="p-volver" onClick={goBack}>Volver</p>
           </div>
-          <img className="homen-icon" src={home} alt="home icon" />
+          <p className="p-numbers">2 de 4</p>
+          <div className="home-icon-div">
+          <img className="home-icon" src={home} alt="home icon" />
+          </div>
         </div>
 
-        <p>2 de 4</p>
+
       </div>
       <div className="top-text">
         <div className="top-text__info">
@@ -119,7 +122,7 @@ const RegisterEmergencyContact = () => {
             />
 
             <input
-              className="all-inputs"
+              className="all-inputs__poliza"
               placeholder="Compañía de Seguros/Nº Póliza"
               type="text"
               {...register("poliza", {
@@ -131,7 +134,9 @@ const RegisterEmergencyContact = () => {
           </div>
         </form>
       </div>
+      <Link to={"/ingredientes"}>
       <p className="p-style">Registraré mi contacto en otro momento</p>
+      </Link>
     </div>
   );
 };

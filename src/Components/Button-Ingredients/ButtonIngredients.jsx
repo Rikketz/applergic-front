@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { ToggleButton } from "primereact/togglebutton";
 
@@ -19,10 +19,6 @@ export function ButtonIngredients({
       });
     }
   };
-
-  const [checkedItems, setCheckedItems] = useState(
-    new Array(value.length).fill(false)
-  );
 
   return (
     <>

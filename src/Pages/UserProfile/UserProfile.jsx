@@ -15,17 +15,17 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userId = localStorage.getItem("userId");
+        const userId = localStorage.getItem("userId"); 
         const response = await axios.get(
           `http://localhost:5053/user/getuser/${userId}`
         );
-        // console.log(response.data);
+  
         setUserData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
-
+  
     fetchUserData();
   }, []);
 

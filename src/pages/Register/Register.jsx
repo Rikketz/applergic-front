@@ -8,6 +8,8 @@ import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
 import camera from "../../assets/camera.png";
 import home from "../../assets/home.png";
 import passwordIcon from "../../assets/ojoCerrado.png";
+import openeye from "../../assets/ojoAbierto.png";
+import GreyButton from "../../Components/buttonGeneral/greyButton";
 
 const Register = () => {
   const fileInputRef = useRef(null);
@@ -17,6 +19,10 @@ const Register = () => {
   };
   const [isHomeVisible, setIsHomeVisible] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const handlePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
 
   const handlePasswordOn = () => {
     setIsPasswordVisible(true);
@@ -116,12 +122,17 @@ const Register = () => {
               Volver
             </p>
           </div>
+          <p className="p-numbers">1 de 4</p>
+          <div className="home-icon-div">
           {isHomeVisible && (
-            <Link to="/main"><img className="homen-icon" src={home} alt="home icon" /></Link>
+            <Link to="/main">
+              <img className="homen-icon" src={home} alt="home icon" />
+            </Link>
           )}
+          </div>
         </div>
 
-        <p>1 de 4</p>
+
       </div>
 
       <h2>Dinos quién eres</h2>
@@ -201,19 +212,19 @@ const Register = () => {
                 required: "El móvil no puede estar vacío",
                 pattern: {
                   message: "El móvil no tiene formato correcto",
-                  value: /^[0-9\b]+$/,
+                  value: /^[0-9]{9,}$/,
                 },
               })}
               onChange={handleInputCompleted}
             />
-
+            {errors.Móvil && <p>{errors.Móvil.message}</p>}
             <input
-              onFocus={handlePasswordOn}
-              className="all-inputs password-input-container"
+              // onFocus={handlePasswordOn}
+              className="all-inputs__password-input-container"
               placeholder="Password"
-              type="password"
+              type={isPasswordVisible ? "text" : "password"}
               {...register("password", {
-                required: "La contraseña no puede ser vacía",
+                required: "La contraseña no puede estar vacía",
                 pattern: {
                   message:
                     "La contraseña tiene que tener mayúscula, minúscula, número y símbolo entre 8 y 12 caracteres",
@@ -223,7 +234,6 @@ const Register = () => {
               })}
               onChange={handleInputCompleted}
             />
-
             {errors.password && (
               <>
                 {errors.password.type === "required" && (
@@ -234,20 +244,31 @@ const Register = () => {
                 )}
               </>
             )}
-
-            {isPasswordVisible && (
+            {!isPasswordVisible ? (
               <img
                 className="password-icon"
                 src={passwordIcon}
                 alt="password icon"
+                onClick={handlePasswordVisibility}
+              />
+            ) : (
+              <img
+                className="password-icon"
+                src={openeye}
+                alt="password icon"
+                onClick={handlePasswordVisibility}
               />
             )}
 
-            <ButtonGeneral
-              className="save-profile-button"
-              isHomeVisible={isHomeVisible}
-              text={"Guardar perfil"}
-            />
+            {isHomeVisible ? (
+              <ButtonGeneral
+                className="save-profile-button"
+                isHomeVisible={isHomeVisible}
+                text={"Guardar perfil"}
+              />
+            ) : (
+              <GreyButton text={"Guardar perfil"} />
+            )}
           </div>
         </form>
       </div>
