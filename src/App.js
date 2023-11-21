@@ -19,6 +19,7 @@ import ResultPage from "./pages/ResultPage/ResultPage";
 import CameraPage from "./pages/CameraPage/CameraPage";
 import axios from "axios";
 import IngredientsTest from "./pages/Ingredients/IngredientsTest";
+import UserProfile from "./pages/UserProfile/UserProfile";
 import Main from "./pages/Main/Main";
 import FirstScanner from "./pages/SuccessfulScanner/SuccessfulScanner";
 import ConfirmPage from "./pages/ConfirmPage/ConfirmPage";
@@ -30,6 +31,7 @@ function App() {
   const [idioma, setIdioma] = useState("");
   const [languageSelectedList, setLanguageSelectedList] = useState(["es"]);
   const [alergenos, setAlergenos] = useState([]);
+  const [codigoParaPasar, setCodigoParaPasar] = useState("");
 
   useEffect(() => {
     axios
@@ -44,19 +46,6 @@ function App() {
       });
   }, []);
 
-  // const checkSession = async () => {
-  //   try {
-  //     const result = await API.get("/checksession");
-  //     console.log(result);
-  //   } catch (error) {
-  //     localStorage.removeItem("token");
-  //     setToken(null);
-  //   }
-  // };
-  // useEffect(() => {
-  //   checkSession();
-  // }, []);
-
   return (
     <Contexto.Provider
       value={{
@@ -68,6 +57,8 @@ function App() {
         setLanguageSelectedList,
         alergenos,
         setAlergenos,
+        codigoParaPasar,
+        setCodigoParaPasar,
       }}
     >
       <div className="App">
@@ -89,6 +80,7 @@ function App() {
               element={<RegisterEmergencyContact userData={userData} />}
             />
             <Route path="login" element={<Login />} />
+            <Route path="userprofile" element={<UserProfile />} />
             <Route
               path="register"
               element={<Register setUserData={setUserData} />}
