@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "./styles/style.scss";
-
+import arrow from "../../assets/left-arrow.png";
 import applergic from "./assets/Logo.png";
 import back from "./assets/back.png";
 
@@ -14,17 +14,17 @@ import { Link } from "react-router-dom";
 export default function RatingApp() {
   const [value, setValue] = useState(null);
 
+  const goBack = () => {
+    window.history.back();
+  };
+
   return (
     <>
       <header className="header-rating">
         <Link to="/main">
           <div className="header-rating-div">
-            <img
-              src={back}
-              alt="back-logo"
-              className="img-header-rating-back"
-            />
-            <span className="span-header-rating">Volver</span>
+          <img className="left-arrow" src={arrow} alt="arrow icon" />
+          <p className="p-volver" onClick={goBack}>Volver</p>
           </div>
         </Link>
       </header>

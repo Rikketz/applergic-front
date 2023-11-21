@@ -6,18 +6,18 @@ $iphone-12-pro-width: 428px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-margin-top: 20px;
+margin-top: 40px;
 
   &__image--logo {
     width: 30%; 
     max-width: $iphone-12-pro-width; 
-    margin-top: 90px;
+    margin-top: 80px;
   }
 
   &__image {
     width: 60%; 
     max-width: $iphone-12-pro-width; 
-    margin-top: 90px;
+    margin-top: 80px;
   }
 
 
@@ -76,4 +76,10 @@ margin-top: 20px;
   width: 20px;
   height: auto;
 
+}
+
+.intro2__parteInferior{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }

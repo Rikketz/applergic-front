@@ -120,7 +120,7 @@ export default function DocumentTranslated() {
             src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/778C0600-375F-416A-AEB4-8241161DC7CF.png"
             alt=""
           />
-          <Link to={"/"}>
+          <Link to={"/main"}>
             <img
               className="documentTranslatedMainDiv__superior--img"
               src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/517E8F96-1F82-4480-82FB-A847C7B97F91.png"
@@ -206,11 +206,7 @@ export default function DocumentTranslated() {
                 :{" "}
                 <DocumentTranslator
                 codIdioma={codIdioma}
-                // ERROR: NO APARECE CORRECTAMENTE
-
                 texto1={resultadoIngredientes}
-
-                // ERROR: NO APARECE CORRECTAMENTE
                 />{" "}
             </p>
             </div>

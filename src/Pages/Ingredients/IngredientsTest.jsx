@@ -104,17 +104,16 @@ export default function IngredientsTest() {
       <section
         className={`section-ingredients ${showIngredients ? "" : "hidden"}`}
       >
-        <div className="mini-header">
-          <div className="volver-div">
-            <div className="volver-div__content">
-              <img className="left-arrow" src={arrow} alt="arrow icon" />
-              <p className="p-volver" onClick={goBack}>
-                Volver
-              </p>
-            </div>
-            <p className="p-numbers">3 de 4</p>
-            <div className="home-icon-div"></div>
+ <div className="mini-header">
+        <div className="volver-div">
+          <div className="volver-div__content">
+            <img className="left-arrow" src={arrow} alt="arrow icon" />
+            <p className="p-volver" onClick={goBack}>Volver</p>
           </div>
+          <p className="p-numbers">3 de 4</p>
+          <div className="home-icon-div">
+          </div>
+        </div>
         </div>
 
         {/* <div className="header-ingredients-div-link">
@@ -203,11 +202,11 @@ export default function IngredientsTest() {
             {selectedAlergenos.map((item, index) => (
               <Chip key={index} label={item.alergeno} />
             ))}
-            <br />
-            <a href="#header-ingredients" onClick={handleClassInvert}>
-              <button className="main-button-toggle">Añadir nuevos</button>
-            </a>
+
           </div>
+          <a href="#header-ingredients" onClick={handleClassInvert}>
+            <button className="main-button-toggle">Añadir nuevos</button>
+          </a>
         </main>
         <footer className="footer-confirm">
           <Link to="/escaner" onClick={handleSave}>

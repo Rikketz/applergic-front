@@ -1,6 +1,5 @@
 // import Ingredients from "./pages/Ingredients/Ingredients";
 import RatingApp from "./pages/Rating-App/Rating";
-
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
