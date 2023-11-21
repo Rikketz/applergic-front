@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
     margin-left: 16px;
     margin-right: 16px;
     &__superior{
@@ -137,4 +138,34 @@
 
 .negrita{
     font-weight: 520;
+}
+
+.documentTranslatedSemiFinal{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 40px;
+    align-items: center;
+
+}
+
+.documentTranslatedFinal{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 30px;
+    align-items: center;
+
+}
+
+.botonFinalCrear{
+    position: absolute;
+    width: 100%;
+    align-items: center;
+    bottom: 0;
+    margin-bottom: 70px;
 }

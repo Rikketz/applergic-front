@@ -32,7 +32,7 @@ export default function FirstScanner() {
         </h2>
       </main>
       <footer className="footer-scanner">
-        <Link to="/Main">
+        <Link to="/main">
           <ButtonGeneral text={"Escanea un producto"} />
         </Link>
       </footer>
