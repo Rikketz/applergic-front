@@ -40,6 +40,47 @@ export default function ResultPage({ detectedCode, userId }) {
   }, []);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    const fetchData = async () => {
+      if (token) {
+        const decodedToken = jwtDecode(token);
+
+        if (decodedToken) {
+          const { id, alergia } = decodedToken;
+          try {
+            const response = await fetch(
+              `http://localhost:5053/user/getuser/${id}`
+            );
+            const data = await response.json();
+
+            const listaAlergias = data.user.alergia;
+            setAlergiaList(listaAlergias);
+
+            const productAllergens = foundProduct?.alergenosPresentes || [];
+
+            const allergensMatch = listaAlergias.some((alergia) =>
+              productAllergens.includes(alergia)
+            );
+
+            if (allergensMatch) {
+              console.log(
+                "Al menos una alergia del usuario coincide con los alérgenos presentes en el producto."
+              );
+              // Realiza las acciones necesarias cuando hay coincidencia
+            } else {
+              console.log(
+                "Ninguna alergia del usuario coincide con los alérgenos presentes en el producto."
+              );
+              // Realiza las acciones necesarias cuando no hay coincidencia
+            }
+          } catch (error) {
+            console.error("Error al obtener el nombre del usuario:", error);
+          }
+        }
+      }
+    };
+
     if (detectedQRCode && productData.length > 0) {
       const codigoAsNumber = parseInt(detectedQRCode, 10);
       const matchingProduct = productData.find(
@@ -90,39 +131,6 @@ export default function ResultPage({ detectedCode, userId }) {
   const goBack = () => {
     window.history.back();
   };
-
-  const token = localStorage.getItem("token");
-
-  if (token) {
-    const decodedToken = jwtDecode(token);
-
-    if (decodedToken) {
-      const { id, alergia } = decodedToken;
-      fetch(`http://localhost:5053/user/getuser/${id}`)
-        .then((response) => response.json())
-        .then((data) => {
-
-          const listaAlergias = data.user.alergia;
-          setAlergiaList(listaAlergias);
-    
-          const productAllergens = foundProduct?.foundProductalergenosPresentes || [];
-    
-          const allergensMatch = listaAlergias.some(alergia => productAllergens.includes(alergia));
-    
-          if (allergensMatch) {
-
-            console.log("Al menos una alergia del usuario coincide con los alérgenos presentes en el producto.");
-            
-          } else {
-
-            console.log("Ninguna alergia del usuario coincide con los alérgenos presentes en el producto.");
-
-          }
-        })
-        .catch((error) => {
-          console.error("Error al obtener el nombre del usuario:", error);
-        });
-    };
 
   return (
     <div className={`page-result${foundProduct ? "" : " no-match"}`}>
@@ -244,6 +252,4 @@ export default function ResultPage({ detectedCode, userId }) {
       )}
     </div>
   );
-}
-
 }
