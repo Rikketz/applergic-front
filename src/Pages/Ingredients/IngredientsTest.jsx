@@ -57,7 +57,7 @@ export default function IngredientsTest() {
       );
       // console.log("Result from backend:", result);
       // console.log("Selecciones de alérgenos guardadas:", result.data);
-      navigate("/login");
+      // navigate("/login");
     } catch (error) {
       console.error("Hubo un error al guardar las selecciones:", error);
     }
