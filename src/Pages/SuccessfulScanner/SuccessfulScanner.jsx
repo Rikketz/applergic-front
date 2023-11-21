@@ -19,7 +19,7 @@ export default function FirstScanner() {
           </Link>
         </div>
         <span className="span-header-scanner">4 de 4</span>
-        <Link to="/Main" className="a-header-scanner-close">
+        <Link to="/main" className="a-header-scanner-close">
           <img
             src={close}
             alt="close-logo"
@@ -34,7 +34,7 @@ export default function FirstScanner() {
         </h2>
       </main>
       <footer className="footer-scanner">
-        <Link to="/main">
+        <Link to="/camerapage">
           <ButtonGeneral text={"Escanea un producto"} />
         </Link>
       </footer>

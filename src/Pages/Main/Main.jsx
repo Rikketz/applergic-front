@@ -51,11 +51,11 @@ export default function Main() {
         <Link to="/valoracion">
           <img src={star} alt="logo-star" className="img-footer-main" />
         </Link>
-        <img
+        <Link to='/generateInform'><img
           src={notebook}
           alt="logo-notebook"
           className="img-footer-main"
-        ></img>
+        ></img></Link>
         <img src={share} alt="logo-share" className="img-footer-main"></img>
       </footer>
     </>
