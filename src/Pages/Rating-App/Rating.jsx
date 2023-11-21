@@ -17,7 +17,7 @@ export default function RatingApp() {
   return (
     <>
       <header className="header-rating">
-        <Link to="/Main">
+        <Link to="/main">
           <div className="header-rating-div">
             <img
               src={back}

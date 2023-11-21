@@ -51,6 +51,7 @@
             border-color: rgba(54, 182, 182, 0.531); 
             margin-left: 10px;
             margin-right: 10px;
+            margin-bottom: 40px;
         }
     }
 }
@@ -75,6 +76,7 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
+
 }
 
 .separadorIdiomas{
@@ -254,3 +256,11 @@
     background-color: rgb(59, 200, 59);
     color: white;
 }
+
+.divBotonFinalCrear{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 50px;
+}
+

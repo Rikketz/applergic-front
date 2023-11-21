@@ -58,9 +58,9 @@ const detectedBarcode = location.state && location.state.detectedBarcode;
     }
     console.log('Detected QR Code:', detectedQRCode);
     console.log('Product Data:', productData);
-    productData.forEach(product => {
-      console.log(product.codigo);    
-    });
+    // productData.forEach(product => {
+    //   console.log(product.codigo);    
+    // });
     
     if (detectedBarcode && productData.length > 0) {
       const matchingBarcodeProduct = productData.find(product => product.codigo === detectedBarcode);
@@ -117,7 +117,7 @@ const detectedBarcode = location.state && location.state.detectedBarcode;
         )}
           <p className='p-n'>Este producto no es apto para ti, contiene {foundProduct?.alergenosPresentes.join(', ')}</p>
       </div>
-     
+    
 
     
 
@@ -157,17 +157,17 @@ const detectedBarcode = location.state && location.state.detectedBarcode;
 
 
 
- <div className='scan-button'>
- <Link to='/CameraPage' >
-   <button className='blue-button'>Escanea otro producto</button>
-   </Link>
+<div className='scan-button'>
+<Link to='/CameraPage' >
+  <button className='blue-button'>Escanea otro producto</button>
+  </Link>
     </div>
 
 <div>
   
 </div>
-     </React.Fragment>
-     )}
+    </React.Fragment>
+    )}
     </div>
     
   );

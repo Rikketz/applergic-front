@@ -5,32 +5,40 @@ import DocumentTranslator from "../../Components/DocumentTranslator/DocumentTran
 import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import "./DocumentTranslated.scss";
 
 export default function DocumentTranslated() {
-  const [username, setUsername] = useState("");
-  const [alergiaLista, setAlergiaLista] = useState();
-  const [resultadoIngredientes, setResultadoIngredientes] = useState();
+    const [username, setUsername] = useState("");
+    const [alergiaLista, setAlergiaLista] = useState();
+    const [resultadoIngredientes, setResultadoIngredientes] = useState();
 
   // ENTORNO DE PRUEBAS
 
+
   // FIN ENTORNO DE PRUEBAS
 
-  const {
-    setIdioma,
-    languageSelectedList,
-    setLanguageSelectedList,
-    codigoParaPasar,
-    setCodigoParaPasar,
-  } = useContext(Contexto);
-  const [idiomaNombre, setIdiomaNombre] = useState("");
-  const [infoProduct, setInfoProduct] = useState([]);
-  const navigate = useNavigate();
-  let codIdioma = languageSelectedList[0];
-  console.log(languageSelectedList);
-  const goBack = () => {
-    window.history.back();
-  };
-  console.log(codigoParaPasar);
+    const {
+        setIdioma,
+        languageSelectedList,
+        codigoParaPasar,
+    } = useContext(Contexto);
+    const [idiomaNombre, setIdiomaNombre] = useState("");
+    const [infoProduct, setInfoProduct] = useState([]);
+    const [ingredientString, setIngredientString] = useState();
+    const navigate = useNavigate();
+    let codIdioma = languageSelectedList[0];
+    const goBack = () => {
+        window.history.back();
+    };
+
+    // PARA PREGUNTAR A JOSE
+
+    // if (languageSelectedList[0] === "es") {
+    //     setIdiomaNombre("Español");
+    //     console.log(idiomaNombre);
+    // }
+
+//   console.log(codigoParaPasar);
 
   useEffect(() => {
     setIdioma(codIdioma);
@@ -58,25 +66,29 @@ export default function DocumentTranslated() {
     }
 
     fetch(`http://localhost:5053/product/code/${codigoParaPasar}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const arrayProduct = [data.nombre, data.foto, data.ingredientes, data.createdAt];
-        const ingredientsSeparator = arrayProduct[2];
-        const ingredientsString = ingredientsSeparator.join(", ");
-        setResultadoIngredientes(ingredientsString);
-        setInfoProduct(arrayProduct);
-        console.log(infoProduct[0]);
-      })
-      .catch((error) => {
-        console.error("Error al obtener información del producto:", error);
-      });
-  }, []);
+        .then((response) => response.json())
+        .then((data) => {
+            const arrayProduct = [data.nombre, data.foto, data.ingredientes, data.createdAt];
+            const ingredientsSeparator = arrayProduct[2];
+            const ingredientsString = ingredientsSeparator.join(", ");
+            setResultadoIngredientes(ingredientsString);
+            setInfoProduct(arrayProduct);
+            // console.log(infoProduct[2]);
+            const ingredientList = infoProduct[2] || [];
+            // console.log(resultadoIngredientes);
+            let testeos = ingredientList.join(", ");
+            setIngredientString(testeos);
+            // console.log(ingredientString);
+        })
+        .catch((error) => {
+            console.error("Error al obtener información del producto:", error);
+        });
+    }, []);
 
   const nextDoc = () => {
     codIdioma = languageSelectedList[1];
     navigate("/generateInform/inform2");
   };
-
   const generarPDF = () => {
     const input = document.querySelector(".documentTranslatedMainDiv");
     const pdfOptions = {
@@ -96,6 +108,7 @@ export default function DocumentTranslated() {
         link.click();
       });
   };
+
 
   return (
     <>
@@ -164,7 +177,7 @@ export default function DocumentTranslated() {
           <div className="documentTranslatedMainDiv__infoInferior__divFoto">
             <img
               className="documentTranslatedMainDiv__infoInferior__divFoto--img"
-              src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/14C0AA54-BB74-4621-9768-CF1FE99FCE4E.png"
+              src={infoProduct[1]}
               alt=""
             />
             <div className="documentTranslatedMainDiv__infoInferior__divFoto__textos">
@@ -172,52 +185,53 @@ export default function DocumentTranslated() {
                 {" "}
                 <DocumentTranslator
                   codIdioma={codIdioma}
-                  texto1={"FECHA"}
+                  texto1={infoProduct[3]}
                 />{" "}
-              </p>
-              <p className="documentTranslatedMainDiv__infoInferior__divFoto__textos--name">
+                </p>
+                <p className="documentTranslatedMainDiv__infoInferior__divFoto__textos--name">
                 {" "}
                 {infoProduct[0]}{" "}
-              </p>
+                </p>
             </div>
-          </div>
-          <div className="documentTranslatedMainDiv__infoInferior__divIngredients">
+            </div>
+            <div className="documentTranslatedMainDiv__infoInferior__divIngredients">
             <p className="documentTranslatedMainDiv__infoInferior__divIngredients--ingredients">
-              <span className="negrita">
+                <span className="negrita">
                 {" "}
                 <DocumentTranslator
-                  codIdioma={codIdioma}
-                  texto1={"Ingredientes"}
+                    codIdioma={codIdioma}
+                    texto1={"Ingredientes"}
                 />{" "}
-              </span>
-              :{" "}
-              <DocumentTranslator
+                </span>
+                :{" "}
+                <DocumentTranslator
                 codIdioma={codIdioma}
+                // ERROR: NO APARECE CORRECTAMENTE
+
                 texto1={resultadoIngredientes}
-              />{" "}
+
+                // ERROR: NO APARECE CORRECTAMENTE
+                />{" "}
             </p>
-          </div>
+            </div>
         </div>
 
-        <div onClick={generarPDF}>
-          <ButtonGeneral
-            text={
-              <DocumentTranslator
-                codIdioma={codIdioma}
-                texto1={"Guardar en PDF"}
-              />
-            }
-          />
+        <div className="documentTranslatedSemiFinal">
+            <div  className="documentTranslatedSemiFinal" onClick={generarPDF}>
+                <ButtonGeneral
+                    text={
+                    <DocumentTranslator
+                        codIdioma={codIdioma}
+                        texto1={"Guardar en PDF"}
+                    />
+                    }
+                />
+            </div> 
         </div>
-        <div onClick={nextDoc}>
-          <p className="documentTranslatedMainDiv--nextDoc">
-            <DocumentTranslator
-              codIdioma={codIdioma}
-              texto1={"Ir a informe siguiente"}
-            />
-          </p>
+            {languageSelectedList.length === 2 &&  <div className="documentTranslatedFinal" onClick={nextDoc}><p className="documentTranslatedMainDiv--nextDoc"><DocumentTranslator codIdioma={codIdioma} texto1={"Ir a informe siguiente"}/></p>
+            </div>}
         </div>
-      </div>
+        
     </>
-  );
+    );
 }
