@@ -9,7 +9,6 @@ import "./styles/style.scss";
 import close from "./assets/close.png";
 // import back from "./assets/back.png";
 import arrow from "../../assets/left-arrow.png";
-import { useNavigate } from "react-router-dom";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { ButtonIngredients } from "../../Components/Button-Ingredients/ButtonIngredients";
 import { Contexto } from "../../App";
@@ -24,7 +23,6 @@ export default function IngredientsTest() {
   const [alergenosPorLetra, setAlergenosPorLetra] = useState({});
   const [selectedAlergenos, setSelectedAlergenos] = useState([]);
   const { alergenos } = useContext(Contexto);
-  const navigate = useNavigate();
   const [showIngredients, setShowIngredients] = useState(true);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -57,7 +55,6 @@ export default function IngredientsTest() {
       );
       // console.log("Result from backend:", result);
       // console.log("Selecciones de alérgenos guardadas:", result.data);
-      // navigate("/login");
     } catch (error) {
       console.error("Hubo un error al guardar las selecciones:", error);
     }
@@ -205,6 +202,7 @@ export default function IngredientsTest() {
             {selectedAlergenos.map((item, index) => (
               <Chip key={index} label={item.alergeno} />
             ))}
+
           </div>
           <a href="#header-ingredients" onClick={handleClassInvert}>
             <button className="main-button-toggle">Añadir nuevos</button>

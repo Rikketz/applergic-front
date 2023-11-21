@@ -25,12 +25,6 @@ export default function RatingApp() {
           <div className="header-rating-div">
           <img className="left-arrow" src={arrow} alt="arrow icon" />
           <p className="p-volver" onClick={goBack}>Volver</p>
-            {/* <img
-              src={back}
-              alt="back-logo"
-              className="img-header-rating-back"
-            />
-            <span className="span-header-rating">Volver</span> */}
           </div>
         </Link>
       </header>

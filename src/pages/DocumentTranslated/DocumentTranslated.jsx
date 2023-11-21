@@ -206,9 +206,7 @@ export default function DocumentTranslated() {
                 :{" "}
                 <DocumentTranslator
                 codIdioma={codIdioma}
-
                 texto1={resultadoIngredientes}
-
                 />{" "}
             </p>
             </div>
