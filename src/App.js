@@ -1,4 +1,4 @@
-import Ingredients from "./pages/Ingredients/Ingredients";
+// import Ingredients from "./pages/Ingredients/Ingredients";
 import RatingApp from "./pages/Rating-App/Rating";
 import SuccessfulScanner from "./pages/SuccessfulScanner/SuccessfulScanner";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -29,7 +29,7 @@ function App() {
   const [userData, setUserData] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [idioma, setIdioma] = useState("");
-  const [languageSelectedList, setLanguageSelectedList] = useState(["es"]);
+  const [languageSelectedList, setLanguageSelectedList] = useState([]);
   const [alergenos, setAlergenos] = useState([]);
   const [codigoParaPasar, setCodigoParaPasar] = useState('');
 
@@ -39,12 +39,12 @@ function App() {
 
       .then((response) => {
         setAlergenos(response.data);
-        console.log("Alergenos:", response.data);
       })
       .catch((error) => {
         console.error("Error al obtener alérgenos:", error);
       });
   }, []);
+
 
 
   return (

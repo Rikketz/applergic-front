@@ -1,3 +1,5 @@
+
+
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -12,9 +14,7 @@ export default function ResultPage({ detectedCode, userId }) {
   const [productData, setProductData] = useState([]);
   const [foundProduct, setFoundProduct] = useState(null);
   const [alergiaList, setAlergiaList] = useState();
-  // const [detectedBarcode, setDetectedBarcode] = useState();
-  // const [filteredProduct] = useState(null);
-  const [loading, setLoading] = useState(true); // Variable de estado para el estado de carga
+  const [loading, setLoading] = useState(true);
   const { codigoParaPasar, setCodigoParaPasar } = useContext(Contexto);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function ResultPage({ detectedCode, userId }) {
           setLoading(false);
         }
       } catch (error) {
-        console.error("Error al obtener detalles del producto:");
+        console.error("Error al obtener detalles del producto:", error);
         setLoading(false);
       }
     };
@@ -40,47 +40,6 @@ export default function ResultPage({ detectedCode, userId }) {
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    const fetchData = async () => {
-      if (token) {
-        const decodedToken = jwtDecode(token);
-
-        if (decodedToken) {
-          const { id, alergia } = decodedToken;
-          try {
-            const response = await fetch(
-              `http://localhost:5053/user/getuser/${id}`
-            );
-            const data = await response.json();
-
-            const listaAlergias = data.user.alergia;
-            setAlergiaList(listaAlergias);
-
-            const productAllergens = foundProduct?.alergenosPresentes || [];
-
-            const allergensMatch = listaAlergias.some((alergia) =>
-              productAllergens.includes(alergia)
-            );
-
-            if (allergensMatch) {
-              console.log(
-                "Al menos una alergia del usuario coincide con los alérgenos presentes en el producto."
-              );
-              // Realiza las acciones necesarias cuando hay coincidencia
-            } else {
-              console.log(
-                "Ninguna alergia del usuario coincide con los alérgenos presentes en el producto."
-              );
-              // Realiza las acciones necesarias cuando no hay coincidencia
-            }
-          } catch (error) {
-            console.error("Error al obtener el nombre del usuario:", error);
-          }
-        }
-      }
-    };
-
     if (detectedQRCode && productData.length > 0) {
       const codigoAsNumber = parseInt(detectedQRCode, 10);
       const matchingProduct = productData.find(
@@ -98,11 +57,6 @@ export default function ResultPage({ detectedCode, userId }) {
         setFoundProduct(null);
       }
     }
-    console.log("Detected QR Code:", detectedQRCode);
-    console.log("Product Data:", productData);
-    productData.forEach((product) => {
-      console.log(product.codigo);
-    });
 
     if (detectedBarcode && productData.length > 0) {
       const matchingBarcodeProduct = productData.find(
@@ -125,16 +79,51 @@ export default function ResultPage({ detectedCode, userId }) {
     }
   }, [detectedQRCode, detectedBarcode, productData]);
 
-  // const hasDetectedProduct = !!filteredProduct;
-  // const isApto = foundProduct && detectedBarcode === foundProduct.codigo;
-
   const goBack = () => {
     window.history.back();
   };
 
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (foundProduct) {
+        const token = localStorage.getItem("token");
+        if (token) {
+          const decodedToken = jwtDecode(token);
+          if (decodedToken) {
+            const { id, alergia } = decodedToken;
+            try {
+              const response = await fetch(`http://localhost:5053/user/getuser/${id}`);
+              const userData = await response.json();
+              const listaAlergias = userData.user.alergia;
+              setAlergiaList(listaAlergias);
+
+              const productAllergens = foundProduct.alergenosPresentes || [];
+              const allergensMatch = listaAlergias.some(alergia =>
+                productAllergens.includes(alergia)
+              );
+
+              if (allergensMatch) {
+                console.log("Al menos una alergia del usuario coincide con los alérgenos presentes en el producto.");
+                alert("Este producto contiene al menos un alérgeno que coincide con tus alergias. No es apto para ti.");
+              } else {
+                console.log("Ninguna alergia del usuario coincide con los alérgenos presentes en el producto.");
+              }
+            } catch (error) {
+              console.error("Error al obtener el nombre del usuario:", error);
+            }
+          }
+        }
+      }
+    };
+
+    fetchUserData();
+  }, [foundProduct]);
+
   return (
     <div className={`page-result${foundProduct ? "" : " no-match"}`}>
-      {loading ? ( // Muestra un mensaje de carga si loading es true
+      {loading ? (
         <div className="loading">Buscando...</div>
       ) : (
         <React.Fragment>
