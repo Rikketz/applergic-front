@@ -22,7 +22,6 @@ import IngredientsTest from "./pages/Ingredients/IngredientsTest";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import Main from "./pages/Main/Main";
 import FirstScanner from "./pages/SuccessfulScanner/SuccessfulScanner";
-import ConfirmPage from "./pages/ConfirmPage/ConfirmPage";
 export const Contexto = React.createContext();
 
 function App() {
@@ -64,7 +63,6 @@ function App() {
         <Router>
           <Routes>
             <Route path="/ingredientes" element={<IngredientsTest />} />
-            <Route path="/confirmar" element={<ConfirmPage />} />
             <Route path="/valoracion" element={<RatingApp />} />
             <Route path="/escaner" element={<FirstScanner />} />
             <Route path="/main" element={<Main />} />
