@@ -44,7 +44,7 @@ const UserProfile = () => {
             </p>
           </div>
 
-          <img className="homen-icon" src={home} alt="home icon" />
+          {/* <img className="homen-icon" src={home} alt="home icon" /> */}
         </div>
 
         <img className="applergic-logo" src={logo} alt="applergic logo" />
