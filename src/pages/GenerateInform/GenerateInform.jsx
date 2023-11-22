@@ -35,122 +35,14 @@ export default function GenerateInform() {
             console.log("Selecciona un máximo de 2 idiomas");
             
         } else {
-            setLanguageSelectedList(languageSelectedList);
+            // setLanguageSelectedList(languageSelectedList);
             navigate('/generateInform/inform1');
             console.log("Todo correcto");
         }
     }
 
     useEffect(() => {
-        if (!languageSelectedList.includes('es')) {
-            document.querySelector('.separadorIdiomas--button--spain').classList.add('seleccionado');
-            languageSelectedList.push('es');
-            console.log(languageSelectedList);
-            console.log("Idioma añadido a la lista", languageSelectedList);
-        } else if (languageSelectedList.includes('es')){
-            document.querySelector('.separadorIdiomas--button--spain').classList.remove('seleccionado');
-            languageSelectedList.splice(languageSelectedList.indexOf('es'), 1);
-            console.log("Idioma eliminado de la lista", languageSelectedList);
-        }
-        if (!languageSelectedList.includes('fr')) {
-            document.querySelector('.separadorIdiomas--button--france').classList.add('seleccionado');
-            languageSelectedList.push('fr');
-            console.log("Idioma añadido a la lista", languageSelectedList);
-        } else if (languageSelectedList.includes('fr')){
-            document.querySelector('.separadorIdiomas--button--france').classList.remove('seleccionado');
-            languageSelectedList.splice(languageSelectedList.indexOf('fr'), 1);
-            console.log("Idioma eliminado de la lista", languageSelectedList);
-        }
-        if (!languageSelectedList.includes('pt')) {
-            document.querySelector('.separadorIdiomas--button--portugal').classList.add('seleccionado');
-            languageSelectedList.push('pt');
-            console.log("Idioma añadido a la lista", languageSelectedList);
-        } else if (languageSelectedList.includes('pt')){
-            document.querySelector('.separadorIdiomas--button--portugal').classList.remove('seleccionado');
-            languageSelectedList.splice(languageSelectedList.indexOf('pt'), 1);
-            console.log("Idioma eliminado de la lista", languageSelectedList);
-        }
-        if (!languageSelectedList.includes('de')) {
-            document.querySelector('.separadorIdiomas--button--germany').classList.add('seleccionado');
-            languageSelectedList.push('de');
-            console.log("Idioma añadido a la lista", languageSelectedList);
-        } else if (languageSelectedList.includes('de')){
-            document.querySelector('.separadorIdiomas--button--germany').classList.remove('seleccionado');
-            languageSelectedList.splice(languageSelectedList.indexOf('de'), 1);
-            console.log("Idioma eliminado de la lista", languageSelectedList);
-        }
-        if (!languageSelectedList.includes('ja')) {
-            document.querySelector('.separadorIdiomas--button--japan').classList.add('seleccionado');
-            languageSelectedList.push('ja');
-            console.log("Idioma añadido a la lista", languageSelectedList);
-        } else if (languageSelectedList.includes('ja')){
-            document.querySelector('.separadorIdiomas--button--japan').classList.remove('seleccionado');
-            languageSelectedList.splice(languageSelectedList.indexOf('ja'), 1);
-            console.log("Idioma eliminado de la lista", languageSelectedList);
-        }
-        if (!languageSelectedList.includes('ru')) {
-            document.querySelector('.separadorIdiomas--button--russia').classList.add('seleccionado');
-            languageSelectedList.push('ru');
-            console.log("Idioma añadido a la lista", languageSelectedList);
-        } else if (languageSelectedList.includes('ru')){
-            document.querySelector('.separadorIdiomas--button--russia').classList.remove('seleccionado');
-            languageSelectedList.splice(languageSelectedList.indexOf('ru'), 1);
-            console.log("Idioma eliminado de la lista", languageSelectedList);
-        }
-        if (!languageSelectedList.includes('en')) {
-            document.querySelector('.separadorIdiomas--button--uk').classList.add('seleccionado');
-            languageSelectedList.push('en');
-            console.log("Idioma añadido a la lista", languageSelectedList);
-        } else if (languageSelectedList.includes('en')){
-            document.querySelector('.separadorIdiomas--button--uk').classList.remove('seleccionado');
-            languageSelectedList.splice(languageSelectedList.indexOf('en'), 1);
-            console.log("Idioma eliminado de la lista", languageSelectedList);
-        }
-        if (!languageSelectedList.includes('it')) {
-            document.querySelector('.separadorIdiomas--button--italy').classList.add('seleccionado');
-            languageSelectedList.push('it');
-            console.log("Idioma añadido a la lista", languageSelectedList);
-        } else if (languageSelectedList.includes('it')){
-            document.querySelector('.separadorIdiomas--button--italy').classList.remove('seleccionado');
-            languageSelectedList.splice(languageSelectedList.indexOf('it'), 1);
-            console.log("Idioma eliminado de la lista", languageSelectedList);
-        }
-        if (!languageSelectedList.includes('sv')) {
-            document.querySelector('.separadorIdiomas--button--sweeden').classList.add('seleccionado');
-            languageSelectedList.push('sv');
-            console.log("Idioma añadido a la lista", languageSelectedList);
-        } else if (languageSelectedList.includes('sv')){
-            document.querySelector('.separadorIdiomas--button--sweeden').classList.remove('seleccionado');
-            languageSelectedList.splice(languageSelectedList.indexOf('sv'), 1);
-            console.log("Idioma eliminado de la lista", languageSelectedList);
-        }
-        if (!languageSelectedList.includes('hi')) {
-            document.querySelector('.separadorIdiomas--button--india').classList.add('seleccionado');
-            languageSelectedList.push('hi');
-            console.log("Idioma añadido a la lista", languageSelectedList);
-        } else if (languageSelectedList.includes('hi')){
-            document.querySelector('.separadorIdiomas--button--india').classList.remove('seleccionado');
-            languageSelectedList.splice(languageSelectedList.indexOf('hi'), 1);
-            console.log("Idioma eliminado de la lista", languageSelectedList);
-        }
-        if (!languageSelectedList.includes('zh')) {
-            document.querySelector('.separadorIdiomas--button--china').classList.add('seleccionado');
-            languageSelectedList.push('zh');
-            console.log("Idioma añadido a la lista", languageSelectedList);
-        } else if (languageSelectedList.includes('zh')){
-            document.querySelector('.separadorIdiomas--button--china').classList.remove('seleccionado');
-            languageSelectedList.splice(languageSelectedList.indexOf('zh'), 1);
-            console.log("Idioma eliminado de la lista", languageSelectedList);
-        }
-        if (!languageSelectedList.includes('ar')) {
-            document.querySelector('.separadorIdiomas--button--arab').classList.add('seleccionado');
-            languageSelectedList.push('ar');
-            console.log("Idioma añadido a la lista", languageSelectedList);
-        } else if (languageSelectedList.includes('ar')){
-            document.querySelector('.separadorIdiomas--button--arab').classList.remove('seleccionado');
-            languageSelectedList.splice(languageSelectedList.indexOf('ar'), 1);
-            console.log("Idioma eliminado de la lista", languageSelectedList);
-        }
+        
     }, [languageSelectedList]);
 
 
@@ -159,6 +51,7 @@ export default function GenerateInform() {
     let selectSpain = function(){
         if (!languageSelectedList.includes('es')) {
             document.querySelector('.separadorIdiomas--button--spain').classList.add('seleccionado');
+            setLanguageSelectedList();
             languageSelectedList.push('es');
             console.log(languageSelectedList);
             console.log("Idioma añadido a la lista", languageSelectedList);
@@ -167,6 +60,7 @@ export default function GenerateInform() {
             languageSelectedList.splice(languageSelectedList.indexOf('es'), 1);
             console.log("Idioma eliminado de la lista", languageSelectedList);
         }
+        
         // setIdioma("es");
         // console.log(idioma);
     }
