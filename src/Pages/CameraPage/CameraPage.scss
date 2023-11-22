@@ -20,12 +20,17 @@
   width: 18px;
   margin-top: 35px;
 }
-
+.hdr{
+  width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
 .camera-container {
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
 }
 
 .camera-video {

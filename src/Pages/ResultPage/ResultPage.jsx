@@ -1,5 +1,3 @@
-
-
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -16,6 +14,8 @@ export default function ResultPage({ detectedCode, userId }) {
   const [alergiaList, setAlergiaList] = useState();
   const [loading, setLoading] = useState(true);
   const { codigoParaPasar, setCodigoParaPasar } = useContext(Contexto);
+const [borderColorClass, setBorderColorClass] = useState(""); // Estado para la clase del borde
+const [borderColor, setBorderColor] = useState(""); // Estado para el color del borde
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,22 +93,24 @@ export default function ResultPage({ detectedCode, userId }) {
           const decodedToken = jwtDecode(token);
           if (decodedToken) {
             const { id, alergia } = decodedToken;
+            console.log(decodedToken)
             try {
               const response = await fetch(`http://localhost:5053/user/getuser/${id}`);
               const userData = await response.json();
               const listaAlergias = userData.user.alergia;
               setAlergiaList(listaAlergias);
-
+console.log()
               const productAllergens = foundProduct.alergenosPresentes || [];
               const allergensMatch = listaAlergias.some(alergia =>
                 productAllergens.includes(alergia)
               );
 
-              if (allergensMatch) {
-                console.log("Al menos una alergia del usuario coincide con los alérgenos presentes en el producto.");
-                alert("Este producto contiene al menos un alérgeno que coincide con tus alergias. No es apto para ti.");
+              if (listaAlergias.length === 0) {
+                setFoundProduct({ ...foundProduct, isSafe: true });
+              } else if (allergensMatch) {
+                setFoundProduct({ ...foundProduct, isSafe: false });
               } else {
-                console.log("Ninguna alergia del usuario coincide con los alérgenos presentes en el producto.");
+                setFoundProduct({ ...foundProduct, isSafe: true });
               }
             } catch (error) {
               console.error("Error al obtener el nombre del usuario:", error);
@@ -146,35 +148,30 @@ export default function ResultPage({ detectedCode, userId }) {
               </Link>
             </div>
           </div>
-          <div>
-            <h1>Aqui tienes el resultado.</h1>
+          <div className="title-1">
+            <h1 className="t">Aqui tienes el resultado.</h1>
           </div>
 
           <div className="result-p">
-            {foundProduct ? (
-              <p className="apto">Este producto es apto para ti</p>
-            ) : (
-              <p className="result-n">
-                Lo sentimos, no hay datos suficientes para poder valorar este
-                producto
-              </p>
-            )}
-            <p className="p-n">
-              Este producto no es apto para ti, contiene{" "}
+          {foundProduct && foundProduct.isSafe ? (
+            <p className="apto">Este producto es apto para ti.</p>
+          ) : foundProduct ? (
+            <p className="result-n">
+              Lo sentimos, este producto no es apto para ti. Contiene{" "}
               {foundProduct?.alergenosPresentes.join(", ")}
             </p>
-          </div>
+          ) : (
+            <p className="no-data">Lo sentimos, no hay suficientes datos para este producto.</p>
+          )}
+        </div>
 
-          <div>
-            <div>
-              <p className="code">Código: {foundProduct?.codigo}</p>
-              <p className="ing">
-                Ingredientes: {foundProduct?.ingredientes.join(", ")}
-              </p>
+          <div >
+            <div className="vox">
+             
 
               <div className="box-inf">
                 <div className="image-container">
-                  <div className="my-result">
+                <div className={`my-result${!foundProduct?.isSafe ? " border-red" : ""}`} style={{ borderColor }}>
                     {foundProduct && (
                       <img
                         className="img-r"
@@ -183,21 +180,29 @@ export default function ResultPage({ detectedCode, userId }) {
                       />
                     )}
                   </div>
-                  <img
-                    className="log-check-c"
-                    src="https://www.bailaconeneko.com/wp-content/uploads/2020/04/check.png"
-                    alt="checkbox"
-                  />
-                  <img
-                    className="log-check-b"
-                    src="https://images.freeimages.com/vhq/images/previews/176/question-mark-clip-art-89107.png"
-                    alt="checkbox"
-                  />
+                     {foundProduct && !foundProduct.isSafe && (
                   <img
                     className="log-check"
                     src="https://icones.pro/wp-content/uploads/2021/08/icone-x-avec-cercle-rose.png"
                     alt="checkbox"
                   />
+                )}
+                {/* Ocultar log-check-b y log-check-c */}
+                {foundProduct === null && (                  
+                <img
+                    className="log-check-b"
+                    src="https://images.freeimages.com/vhq/images/previews/176/question-mark-clip-art-89107.png"
+                    alt="checkbox"
+                    
+                  />
+                )}
+                {foundProduct && foundProduct.isSafe && (
+  <img
+    className="log-check-c"
+    src="https://png.pngtree.com/png-clipart/20230414/ourmid/pngtree-blue-verified-check-mark-round-icons-illustrations-transparent-png-image_6704760.png"
+    alt="checkbox"
+  />
+)}
                 </div>
 
                 <div className="logos-container">
@@ -221,12 +226,14 @@ export default function ResultPage({ detectedCode, userId }) {
                 </div>
               </div>
 
-              <p className="nm">Nombre: {foundProduct?.nombre}</p>
-              <p className="marc">Marca: {foundProduct?.marca}</p>
-              <p className="ap">
-                Alergenos presentes:{" "}
-                {foundProduct?.alergenosPresentes?.join(", ")}
+              <p className="nm">{foundProduct?.nombre}</p>
+              <p className="marc">{foundProduct?.marca}</p>
+              
+              <div className="ing-b">
+              <p className="ing">
+                Ingredientes: {foundProduct?.ingredientes.join(", ")}
               </p>
+              </div>
             </div>
           </div>
 
