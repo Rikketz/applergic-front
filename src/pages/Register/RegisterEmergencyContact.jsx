@@ -116,7 +116,7 @@ const RegisterEmergencyContact = () => {
                 required: "El móvil no puede estar vacío",
                 pattern: {
                   message: "El móvil no tiene formato correcto",
-                  value: /^[0-9\b]+$/,
+                  value: /^[0-9]{9,}$/,
                 },
               })}
             />
