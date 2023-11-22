@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import jsQR from 'jsqr';
 import Quagga from '@ericblade/quagga2';
 import './CameraPage.scss';
@@ -82,8 +82,8 @@ export default function CameraPage () {
   const decodeBarcode = () => {
     if (activeImage === 'bar') {
       const video = videoRef.current;
-
-      if (video) {
+  
+      if (video && video.readyState === 4) { // Comprueba si el video se ha cargado completamente
         Quagga.init({
           inputStream: {
             name: 'Live',
@@ -94,14 +94,14 @@ export default function CameraPage () {
             },
           },
           decoder: {
-            readers: ['ean_reader'],
+            readers: ['upc_reader'],
           },
         }, (err) => {
           if (err) {
             console.error('Error initializing Quagga:', err);
             return;
           }
-
+  
           Quagga.start();
           Quagga.onDetected((data) => {
             console.log('Código de barras detectado:', data.codeResult.code);
@@ -111,10 +111,12 @@ export default function CameraPage () {
             setTimeout(() => {
               setShowBarcodeMessage(false);
               setDetectedBarcode('');
-            }, 3000);
+            }, );
             navigate('/ResultPage', { state: { detectedCode: data.codeResult.code } });
           });
         });
+      } else {
+        console.log('El video no se ha cargado completamente');
       }
     }
   };
@@ -146,9 +148,15 @@ export default function CameraPage () {
 
   return (
     <div>
-      <div className='head'>
-        <img className='logo-x' src='https://icones.pro/wp-content/uploads/2021/08/icone-x-grise.png' alt='logo x'/>
-      </div>
+      <div className='hdr'>
+       <Link to="/">
+    <img
+      className="logo-x-r"
+      src="https://icones.pro/wp-content/uploads/2021/08/icone-x-grise.png"
+      alt="logo x"
+    />
+  </Link>
+  </div>
       <div className='page'>
         {isTitleVisible && <h2 className='t-p'>Escaneando...</h2>}
         <div>

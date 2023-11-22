@@ -1,8 +1,4 @@
 
-*{
-  list-style: none;
-
-}
 .page-result{
   width: 100%;
   height: 100vh;
@@ -20,6 +16,11 @@
 .hd{
   display: flex;
   align-items: flex-end;
+}
+.no-data{
+  margin-top: 50px;
+  width: 290px;
+  font-size: medium;
 }
 .logo-x-r{
   width: 25px;
@@ -49,7 +50,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border: 4px solid #ff0000;
   margin-left: 55px;
   display: grid;
   align-items: center;
@@ -84,6 +84,8 @@ display: grid;
 
 .result-n{
   width: 293px;
+  font-size: medium;
+  margin-top: 25px;
 }
 .p-n{
   width: 235px;
@@ -118,6 +120,13 @@ display: grid;
   border: 10px solid #000000;
 
 }
+.ing{
+  text-align: left;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
 
 /* .result-p .p-n + .my-result {
   border: 10px solid #ff00e4;
@@ -152,26 +161,51 @@ display: grid;
   left: 25px;
   position: absolute;
   width: 80px;
-  top: 172px;
+  top: 155px;
 }
 
 .img-r{
 width: 100px;
+z-index: -1;
 }
 
 .nm{
 margin-top: 60px;
+margin-bottom: 10px;
+    -webkit-text-stroke: thick;
+    font-size: x-large;
+    width: 240px;
+
 }
+.apto{
+  margin-top: 50px;
+  font-size: medium;
+}
+.title-1{
+  display: flex;
+  justify-content: center;
+}
+.t{
+  width: 220px;
+}
+.marc{
+  
+  -webkit-text-stroke: medium;
+  margin-bottom: 20px;
 
-
+}
+.vox{
+  display: grid;
+  justify-items: center;
+}
 .my-result:first-child {
 border-color: #0051ff; /* Cambio del borde a azul cuando se muestra el primer log-check */
 }
 
-.log-check-b,
-.log-check {
-display: none; 
-}
+// .log-check-b,
+// .log-check {
+// display: none; 
+// }
 
 .page-result .my-result {
 /* hay coincidencia */
@@ -192,7 +226,6 @@ background-size: cover;
 .page-result.no-match .marc,
 .page-result.no-match .ap,
 .page-result.no-match .ing,
-.page-result.no-match .code,
 .page-result.no-match .p-n
 
 {
@@ -231,4 +264,22 @@ font-size: xxx-large;
 100% {
   transform: scale(0.9);
 }
+}
+
+// .my-result:foundProduct && foundProduct.isSafe{
+//   border-color: red;
+  
+// }
+// ResultPage.scss
+.my-result {
+  // Estilos predeterminados
+  // ...
+
+  &.border-red {
+    border-color: rgb(202, 0, 94);
+  }
+
+  &.border-blue {
+    border-color: blue;
+  }
 }
