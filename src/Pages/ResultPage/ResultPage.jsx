@@ -4,6 +4,10 @@ import axios from "axios";
 import "./ResultPage.scss";
 import { Contexto } from "../../App";
 import { jwtDecode } from "jwt-decode";
+import ButtonGeneral from "../../Components/buttonGeneral/buttonGeneral";
+import checkVerde from "../../assets/pictures/tickVerde.png";
+import checkRojo from "../../assets/pictures/tickRojo.png";
+import checkNaranja from "../../assets/pictures/tickNaranja.png";
 
 export default function ResultPage({ detectedCode, userId }) {
   const location = useLocation();
@@ -14,8 +18,8 @@ export default function ResultPage({ detectedCode, userId }) {
   const [alergiaList, setAlergiaList] = useState();
   const [loading, setLoading] = useState(true);
   const { codigoParaPasar, setCodigoParaPasar } = useContext(Contexto);
-const [borderColorClass, setBorderColorClass] = useState(""); // Estado para la clase del borde
-const [borderColor, setBorderColor] = useState(""); // Estado para el color del borde
+  const [borderColorClass, setBorderColorClass] = useState(""); // Estado para la clase del borde
+  const [borderColor, setBorderColor] = useState(""); // Estado para el color del borde
 
   useEffect(() => {
     const fetchData = async () => {
@@ -133,23 +137,21 @@ console.log()
             <div className="hd" onClick={goBack}>
               <img
                 className="logo-back"
-                src="https://icones.pro/wp-content/uploads/2021/06/symbole-fleche-gauche-bleu.png"
-                alt="logo back"
-              />
-              <span className="text-b">Volver</span>
+                src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/10739CD9-9739-4D82-9E45-702CDB5213DB.png"
+                alt="logo back"></img>
             </div>
             <div>
-              <Link to="/CameraPage">
+              <Link to="/main">
                 <img
                   className="logo-x-r"
-                  src="https://icones.pro/wp-content/uploads/2021/08/icone-x-grise.png"
+                  src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/6D5F8D68-00D7-45BB-AF47-521B50AF9B78.png"
                   alt="logo x"
                 />
               </Link>
             </div>
           </div>
           <div className="title-1">
-            <h1 className="t">Aqui tienes el resultado.</h1>
+            <h1 className="t">Aquí tienes el resultado.</h1>
           </div>
 
           <div className="result-p">
@@ -183,7 +185,7 @@ console.log()
                      {foundProduct && !foundProduct.isSafe && (
                   <img
                     className="log-check"
-                    src="https://icones.pro/wp-content/uploads/2021/08/icone-x-avec-cercle-rose.png"
+                    src={checkRojo}
                     alt="checkbox"
                   />
                 )}
@@ -191,36 +193,36 @@ console.log()
                 {foundProduct === null && (                  
                 <img
                     className="log-check-b"
-                    src="https://images.freeimages.com/vhq/images/previews/176/question-mark-clip-art-89107.png"
+                    src={checkNaranja}
                     alt="checkbox"
                     
                   />
                 )}
                 {foundProduct && foundProduct.isSafe && (
-  <img
-    className="log-check-c"
-    src="https://png.pngtree.com/png-clipart/20230414/ourmid/pngtree-blue-verified-check-mark-round-icons-illustrations-transparent-png-image_6704760.png"
-    alt="checkbox"
-  />
-)}
+                  <img
+                    className="log-check-c"
+                    src={checkVerde}
+                    alt="checkbox"
+                  />
+                )}
                 </div>
 
                 <div className="logos-container">
                   <img
                     className="logos-r"
-                    src="https://w7.pngwing.com/pngs/194/804/png-transparent-favorite-star-favorites-favourite-multimedia-multimedia-icon.png"
+                    src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/B36BF490-D188-416C-AA3E-E28AAE157534.png"
                     alt="Logo 1"
                   />
                   <Link to={"/generateInform"}>
                     <img
                       className="logos-r"
-                      src="https://w7.pngwing.com/pngs/750/391/png-transparent-computer-icons-diary-address-book-notebook-miscellaneous-rectangle-black.png"
+                      src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/111417BD-866E-4A3A-A431-283494BE3606.png"
                       alt="Logo 2"
                     />
                   </Link>
                   <img
                     className="logos-r"
-                    src="https://w7.pngwing.com/pngs/613/126/png-transparent-three-circle-and-two-line-logo-computer-icons-share-icon-sharing-symbol-share-miscellaneous-black-and-white-share.png"
+                    src="https://cdn.zeplin.io/5e2a11b5ca786f8064774510/assets/BFD55A82-71B2-4E81-B847-982DC753DBB2.png"
                     alt="Logo 3"
                   />
                 </div>
@@ -239,7 +241,7 @@ console.log()
 
           <div className="scan-button">
             <Link to="/CameraPage">
-              <button className="blue-button">Escanea otro producto</button>
+              <ButtonGeneral text="Escanea otro producto" />
             </Link>
           </div>
 

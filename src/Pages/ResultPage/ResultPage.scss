@@ -1,7 +1,11 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url(../../assets/fonts/Montserrat.ttf);
+}
 
 .page-result{
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -10,7 +14,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding-top: 10px;
+  margin-top: 22px;
   align-items: center;
 }
 .hd{
@@ -24,11 +28,11 @@
 }
 .logo-x-r{
   width: 25px;
-  margin-top: 25px;
-  margin-right: 35px;
+  margin-right: 18px;
 }
 .logo-back{
-  width: 25px;
+  width: 76px;
+  margin-left: 18px;
 }
 .text-b{
   color: blue;
@@ -75,11 +79,11 @@ strong{
 
 }
 .result-p{
+  display: flex;
 width: 100%;
 justify-content: center;
 margin-bottom: 50px;
-display: grid;
-  justify-items: center
+
 }
 
 .result-n{
@@ -92,7 +96,12 @@ display: grid;
 }
 
 .scan-button{
-  margin-top: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+position: fixed;
+align-items: center;
+bottom: 80px;
 }
 
 .blue-button {
@@ -121,8 +130,10 @@ display: grid;
 
 }
 .ing{
+  margin-left: 26px;
+  margin-right: 26px;
+  font-size: 13px;
   text-align: left;
-  width: 300px;
   display: flex;
   justify-content: center;
 }
@@ -145,22 +156,22 @@ display: grid;
 }
  */
 .log-check-b{
-  left: 17px;
+  left: 25px;
   position: absolute;
-  width: 81px;
-  top: 69px;
+  width: 70px;
+  top: 65px;
 }
 .log-check-c{
   left: 25px;
   position: absolute;
-  width: 80px;
-  top: -40px;
+  width: 70px;
+  top: -30px;
 }
 
 .log-check{
   left: 25px;
   position: absolute;
-  width: 80px;
+  width: 70px;
   top: 155px;
 }
 
@@ -170,15 +181,17 @@ z-index: -1;
 }
 
 .nm{
-margin-top: 60px;
-margin-bottom: 10px;
-    -webkit-text-stroke: thick;
-    font-size: x-large;
-    width: 240px;
+  margin-top: 36px;
+  width: 250px;
+  margin-bottom: 26px;
+  color: black;
+  font-weight: 600;
+  font-size: 20px;
 
 }
 .apto{
-  margin-top: 50px;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 45px;
   font-size: medium;
 }
 .title-1{
@@ -186,12 +199,14 @@ margin-bottom: 10px;
   justify-content: center;
 }
 .t{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
   width: 220px;
 }
 .marc{
   
   -webkit-text-stroke: medium;
-  margin-bottom: 20px;
+  margin-bottom: 26px;
 
 }
 .vox{
@@ -209,12 +224,13 @@ border-color: #0051ff; /* Cambio del borde a azul cuando se muestra el primer lo
 
 .page-result .my-result {
 /* hay coincidencia */
-border-color: #0051ff;
+border-color: rgb(131, 216, 173);
+border-radius: 7px;
 }
 
 .page-result.no-match .my-result {
 /* no hay coincidencia */
-border-color: #ff9100;
+border-color: rgb(251, 210, 146);
 background-image: url(https://images.vexels.com/media/users/3/152599/isolated/preview/3919975f3dac8628047ecb23632a9841-vector-de-simbolo-de-signo-de-interrogacion.png);
 background-position: center;
 background-size: cover;
@@ -276,10 +292,13 @@ font-size: xxx-large;
   // ...
 
   &.border-red {
-    border-color: rgb(202, 0, 94);
+    border-color: rgb(251, 146, 170);
   }
 
   &.border-blue {
     border-color: blue;
   }
+}
+.negrita{
+  font-weight: bold;
 }
